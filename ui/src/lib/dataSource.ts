@@ -80,6 +80,19 @@ export function getCacheStats(): CacheStats { return KB.cache; }
 const API = import.meta.env.VITE_API_URL as string | undefined;
 export function isLive(): boolean { return !!API; }
 
+/** Ping the backend /health (live mode only). Drives the BackendStatus indicator. */
+export async function checkHealth(): Promise<{ reachable: boolean; indexLoaded: boolean }> {
+  if (!API) return { reachable: true, indexLoaded: true }; // mock/playback = always "ready"
+  try {
+    const res = await fetch(`${API}/health`, { method: "GET" });
+    if (!res.ok) return { reachable: false, indexLoaded: false };
+    const d = await res.json();
+    return { reachable: true, indexLoaded: !!d.index_loaded };
+  } catch {
+    return { reachable: false, indexLoaded: false };
+  }
+}
+
 export async function ask(question: string, threadId: string): Promise<ConversationState> {
   if (API) {
     const key = sessionStorage.getItem("demo_access_key") ?? "";

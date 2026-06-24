@@ -14,6 +14,7 @@ import { cn } from "@/lib/utils";
 import { navigate, useRoute, type Route } from "@/lib/router";
 import { ACMonogram } from "./logo";
 import { MakersMark } from "./MakersMark";
+import { BackendStatus } from "./BackendStatus";
 
 const NAV: { route: Route; label: string; icon: typeof MessageSquareText }[] = [
   { route: "/", label: "Ask", icon: MessageSquareText },
@@ -59,7 +60,8 @@ export function AppShell({ children }: { children: ReactNode }) {
           })}
         </nav>
 
-        <div className="ml-auto">
+        <div className="ml-auto flex items-center gap-4">
+          <BackendStatus />
           <MakersMark />
         </div>
       </header>

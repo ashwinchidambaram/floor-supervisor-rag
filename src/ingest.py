@@ -18,7 +18,7 @@ import time
 
 from src.state import DocSource, ElementType
 from src.tools.chunker import chunk_markdown
-from src.tools.hybrid_search import KB_INDEX, hybrid_search
+from src.tools.hybrid_search import KB_INDEX, _store, hybrid_search
 from src.tools.table_summary import summarize_table
 from src.tools.vector_store import VectorStore
 
@@ -26,7 +26,9 @@ CORPUS_GLOB = "knowledge_documents_rag/*.md"
 
 
 def ingest() -> VectorStore:
-    store = VectorStore(index=KB_INDEX)
+    # Populate the SAME cached singleton that hybrid_search + /health read, so the index is
+    # consistent even without Redis (HF deploy has no Redis; ingest persists in-process).
+    store = _store()
     store.clear()  # fresh build — no duplicate chunks across re-runs
 
     total_prose, total_tables, llm_calls, fallbacks = 0, 0, 0, 0
