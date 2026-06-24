@@ -47,3 +47,10 @@ ask→answer), and deploy a password-gated demo (Render + Vercel). Cache + cache
 | Error | Attempt | Resolution |
 |-------|---------|------------|
 | (none yet) | | |
+
+## Thread: Redis cache + Tier-3 nits + README finishing (2026-06-23) — COMPLETE
+- [x] P1 cache backend (spec §4b: retrieve+assemble cached, judge re-runs) — pytest 20→21.
+- [x] P2 measured miss/hit → var/cache_measure.log ($0.0248 → $0.0210, 15% saved).
+- [x] P3 cache UI band (measured-local + honest note) · P4 all 9 Tier-3 nits.
+- [x] P5 README finishing pass (every number grounded; judge-rerun design callout).
+- [x] P6 redeploy HF+Vercel; live e2e 16/16; RESULTS/CODE_REVIEW updated.

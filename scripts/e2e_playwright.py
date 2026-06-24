@@ -115,6 +115,11 @@ def main() -> int:
         check("knowledge: route", "#/knowledge-base" in page.url, page.url)
         check("knowledge: 3 real docs render",
               all(d in kb.upper() for d in ("SAFETY", "MAINTENANCE", "QUALITY")))
+        # The measured cache band (Redis-less demo → recorded measured-local numbers + honest note).
+        low = kb.lower()
+        check("knowledge: measured cache band",
+              "cache" in low and ("redis" in low or "measured" in low)
+              and ("0.0210" in kb or "0.0248" in kb))
         shot(page, "02_knowledge")
 
         # --- 3. Observe surface -------------------------------------------

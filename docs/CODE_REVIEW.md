@@ -42,6 +42,12 @@ Date: 2026-06-23.
 | ASSEMBLE | LOW | "under 150 words unless a multi-step procedure" |
 
 ### Tier 3 — logged / deferred (low value or large; rationale)
+
+> **UPDATE (2026-06-23): all Tier-3 items RESOLVED** in the cache+nits thread — chunk_id filename-stem
+> namespacing, the retry-success branch test (`test_retry_success`), `np.vstack` collect-then-stack,
+> BM25-per-source cache, sqlite `_conn` `threading.Lock`, `@app.on_event`→`lifespan`, and the 3 UI a11y
+> nits (CorpusTree `role=tree` on a div, AuditTrail actor `text-ink-muted`, KnowledgeBase shared `Band`).
+> `table_summary` prompt hardening remains intentionally deferred (it would perturb the measured index).
 - `chunker` 0-chunks-on-no-`##`-heading + `chunk_id` collision across malformed docs — only fires with a **4th malformed doc**; current 3-doc corpus is well-formed. *Add an ingest guard `len(chunks)==0 → warn`; defer the id-namespacing.*
 - `test_orchestration` missing the **retry-success branch** (FAIL→re-retrieve→PASS) — add a forced-stub test.
 - `observability.py` `_conn` sqlite singleton thread race — benign single-process demo; note for prod.

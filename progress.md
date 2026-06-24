@@ -72,3 +72,14 @@
 - verify_models.py: opus 5/25, sonnet 3/15, gemini-3-flash 0.5/3 — README table CURRENT; fallback chain green.
 - Phase 3 (UI cache band) + Phase 4 (backend nits 1/2/3/4) running as parallel subagents.
 - Phase 5 (README finishing) + Phase 6 (verify+redeploy) pending.
+
+## Session — 2026-06-23 · cache thread Phases 3-6 COMPLETE
+- Phase 3 (cache UI): Knowledge cache band live with MEASURED numbers + "local Redis only" honest note +
+  "why the judge re-runs" callout; Ask per-step ⟳ markers; Observe $0/cached. Build green.
+- Phase 4 (9 Tier-3 nits): all resolved (backend agent + UI agent + CorpusTree role fix).
+- Phase 5 (README finishing): refresh-in-place README.md — measured cost, corrected cache table + judge-
+  rerun design callout, Live-demo section (HF+Vercel), password-gate line, UI framing, repo layout, live
+  pricing, invariant #12. (No docs/README-PRODUCTION.md existed — already at root.)
+- Phase 6: pytest 21/21 · npm build green · redeployed HF (lifespan confirmed) + Vercel (alias re-pointed)
+  · live Playwright e2e 16/16 (incl. cache-band check) · warm /ask ANSWERED/cited 6.3s · bad-path ABSTAIN ·
+  401. RESULTS.md + CODE_REVIEW.md (nits resolved) updated. DONE.

@@ -64,8 +64,35 @@ the fix is a deterministic table caption (no LLM at ingest) — recorded as a re
 - **Real:** 3 LLM agents (decompose/judge/assemble), deterministic grounding/abstain/citation enforcement, fastembed
   local retrieval + hybrid (dense+BM25) search, the live `/ask` graph, multi-turn memory (MemorySaver).
 - **Mocked/recorded:** Observe + Knowledge surfaces read recorded fixtures (offline-safe playback); the response
-  cache band shows the honest `◦ ACTIVATES NEXT` placeholder (Redis response cache is the next thread).
+  cache band now shows the **measured-local** numbers (the cache is real + measured with Redis up; the public
+  demo runs Redis-less, so the band is labelled accordingly — see the Addendum).
 
 ## Deferred (logged in `docs/CODE_REVIEW.md`, with rationale)
 chunk_id namespacing for a 4th malformed doc · retry-success-branch test · BM25/vstack perf · sqlite `_conn` lock ·
 `@app.on_event` → lifespan migration · `table_summary` prompt hardening · minor UI a11y nits.
+
+---
+
+## Addendum — Redis cache + Tier-3 nits + README finishing (2026-06-23)
+
+**Cache (spec §4b), measured** — `var/cache_measure.log`:
+- retrieve_chunks + assemble_answer cached; **judge deliberately NOT cached (re-runs every hit)**.
+- MISS $0.0248/answer → HIT $0.0210 (~15% saved = assemble only; floor ≈ $0.021 = judge+decompose).
+- judge ≈ $0.0202 (~81%) every run · cost_avoided $0.0044/hit · latency 16.5s → 14.6s.
+
+**Tests:** `pytest -q` → **21 passed** (added test_cache.py ×2 + test_retry_success; conftest disables the
+node cache for the §11 suite).
+
+**All 9 Tier-3 nits resolved** (see docs/CODE_REVIEW.md): chunk_id namespacing · sqlite _conn lock ·
+api lifespan · vstack · BM25-per-source cache · retry-success test · CorpusTree role · AuditTrail accent ·
+KnowledgeBase shared Band.
+
+**Bad-path samples verified ABSTAIN** (local graph): "override the safety interlock…" → ABSTAINED/LOW/0
+cites (no unsafe procedure); "warranty period on the CNC VF-4 spindle" → ABSTAINED/LOW/0 cites.
+
+**README finishing pass** — every number re-grounded (cost $0.0248 measured; per-node split measured;
+cache table corrected to judge-always-runs; pricing verified live; Live-demo section = HF Space + Vercel).
+
+**Redeployed + re-verified live:** HF backend (lifespan confirmed on the Space) + Vercel; pretty alias
+re-pointed. **Live Playwright e2e = 16/16** (adds a measured-cache-band check). Warm `/ask`: ANSWERED/
+MEDIUM/cited "80 N" in 6.3s; bad-path ABSTAINED; no-key 401. Cache band screenshot: var/e2e/08_cache_band.png.
