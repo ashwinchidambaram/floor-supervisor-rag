@@ -1,0 +1,19 @@
+# Default stack (per CLAUDE.md). Unpinned for interview-day flexibility — pin if you prefer.
+langgraph
+langgraph-checkpoint-sqlite
+# langgraph-checkpoint-postgres   # production checkpointer (reference only)
+pydantic>=2
+langchain-openai            # ChatOpenAI pointed at OpenRouter
+openai                      # or the raw OpenAI-compatible client
+python-dotenv
+fastapi                     # HTTP gateway (src/api.py)
+uvicorn[standard]           # ASGI server with websocket/reload extras
+pytest
+playwright                  # headless browser validation for the UI
+httpx
+# --- RAG + caching (local, lightweight) ---
+redis                       # prompt/embedding/response cache + vector persistence
+fastembed                   # local ONNX embeddings (bge-small-en, 384-dim, no torch)
+numpy                       # exact cosine KNN over the embedding matrix
+rank-bm25                   # BM25 sparse half of hybrid_search (fused with dense via RRF)
+python-dotenv               # load .env (OpenRouter key) for the ingest-time table summarizer

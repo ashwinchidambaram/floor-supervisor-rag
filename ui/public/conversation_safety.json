@@ -1,0 +1,978 @@
+{
+  "conversation_id": "conv-safety",
+  "supervisor_id": "sup-safety",
+  "status": "ACTIVE",
+  "turns": [
+    {
+      "turn_id": "t1",
+      "question_text": "What PPE is required when operating the stamping press?",
+      "sub_questions": [
+        {
+          "id": "sq1",
+          "text": "What personal protective equipment (PPE) is required when operating the stamping press?",
+          "proposed_source": "SAFETY_PROCEDURES",
+          "routed_source": "SAFETY_PROCEDURES",
+          "retrieved": [
+            {
+              "chunk_id": "MPM-EHS-001#section-2-personal-protective-equipment#p3",
+              "source": "SAFETY_PROCEDURES",
+              "doc_title": "PLANT SAFETY PROCEDURES MANUAL",
+              "doc_version": "7.2",
+              "section": "SECTION 2 \u2014 PERSONAL PROTECTIVE EQUIPMENT",
+              "page": null,
+              "element_type": "PROSE",
+              "text": "Personal protective equipment, or PPE, is your last line of defense. It does not remove a hazard; it reduces the harm if every other control fails. PPE is mandatory by area, and the supervisor verifies compliance at the start of each shift.",
+              "table_markdown": null,
+              "figure_ref": null,
+              "score": 0.7771651744842529
+            },
+            {
+              "chunk_id": "MPM-EHS-001#2-4-foot-body-and-respiratory-protection#t2",
+              "source": "SAFETY_PROCEDURES",
+              "doc_title": "PLANT SAFETY PROCEDURES MANUAL",
+              "doc_version": "7.2",
+              "section": "2.4 Foot, Body, and Respiratory Protection",
+              "page": null,
+              "element_type": "TABLE",
+              "text": "2.4 Foot, Body, and Respiratory Protection \u2014 This table outlines personal protective equipment (PPE) requirements across various plant areas, including Stamping \u2014 Press Line A, CNC Machining Cells, Robotic Welding WC-1/WC-2, Assembly, and Powder Coat Finishing. It specifies safety standards and equipment such as Z87.1 glasses, welding shields (shade 10\u201313), hearing protection (NRR 22 to 25), and hand protection ranging from A2/A4 cut-resistant to chemical-resistant nitrile. Footwear requirements include metatarsal boots and safety-toe shoes, while additional gear lists respirators, Tyvek suits, and FR jackets.",
+              "table_markdown": "| Area | Eye | Hearing | Hand | Foot | Additional |\n|---|---|---|---|---|---|\n| Stamping \u2014 Press Line A | Z87.1 glasses | \u2265 NRR 25 | Cut-resistant A4 | Metatarsal boots | No gloves at point of operation |\n| CNC Machining Cells | Z87.1 glasses | \u2265 NRR 22 | Cut-resistant A2 | Safety-toe | No gloves while spindle runs |\n| Robotic Welding WC-1/WC-2 | Welding shield 10\u201313 | \u2265 NRR 22 | Leather welding | Safety-toe, leather spats | FR jacket, no synthetics |\n| Assembly | Z87.1 glasses | As posted | Nitrile or A2 | Safety-toe | \u2014 |\n| Powder Coat Finishing | Glasses + face shield | \u2265 NRR 22 | Chemical-resistant nitrile | Safety-toe | Respirator, Tyvek suit |",
+              "figure_ref": null,
+              "score": 0.7414816617965698
+            },
+            {
+              "chunk_id": "MPM-EHS-001#2-2-hearing-protection#p5",
+              "source": "SAFETY_PROCEDURES",
+              "doc_title": "PLANT SAFETY PROCEDURES MANUAL",
+              "doc_version": "7.2",
+              "section": "2.2 Hearing Protection",
+              "page": null,
+              "element_type": "PROSE",
+              "text": "Hearing protection \u2014 either plugs or muffs \u2014 is required wherever the noise level meets or exceeds 85 dBA measured as an eight-hour time-weighted average. Press Line A operates at approximately 92 dBA during stamping and always requires protection rated NRR 25 or higher. The CNC machining cells run between 84 and 88 dBA; protection rated NRR 22 or higher is required there. Every employee assigned to these areas is enrolled in the Hearing Conservation Program and receives annual audiometric testing.",
+              "table_markdown": null,
+              "figure_ref": null,
+              "score": 0.7010831236839294
+            },
+            {
+              "chunk_id": "MPM-EHS-001#2-4-foot-body-and-respiratory-protection#p7",
+              "source": "SAFETY_PROCEDURES",
+              "doc_title": "PLANT SAFETY PROCEDURES MANUAL",
+              "doc_version": "7.2",
+              "section": "2.4 Foot, Body, and Respiratory Protection",
+              "page": null,
+              "element_type": "PROSE",
+              "text": "Safety-toe footwear is the plant minimum. Metatarsal guard boots are required at Press Line A, where dropped dies and blanks are a hazard. Flame-resistant jackets and leather spats are required at the welding cells. In the powder coat booth, a Tyvek suit and at minimum an N95 half-face respirator are required because of the airborne powder.\n\nThe PPE requirements by area are summarized below for quick reference.",
+              "table_markdown": null,
+              "figure_ref": null,
+              "score": 0.6910365223884583
+            },
+            {
+              "chunk_id": "MPM-EHS-001#section-1-general-safety-rules#p2",
+              "source": "SAFETY_PROCEDURES",
+              "doc_title": "PLANT SAFETY PROCEDURES MANUAL",
+              "doc_version": "7.2",
+              "section": "SECTION 1 \u2014 GENERAL SAFETY RULES",
+              "page": null,
+              "element_type": "PROSE",
+              "text": "All personnel must observe the following baseline rules at all times within production areas.\n\nSafety glasses meeting ANSI Z87.1 with side shields and safety-toe footwear meeting ASTM F2413 are required the moment you cross onto the production floor, and remain required until you leave it. Additional protective equipment is required by area, as described in Section 2.\n\nHorseplay, running (except in an emergency), and the use of personal audio earbuds are prohibited on the floor. Loose clothing, neckwear, jewelry, lanyards, and unsecured long hair must be removed or restrained before approaching any rotating or reciprocating machinery; these items are a primary cause of entanglement injuries.\n\nAisles, electrical panels, fire extinguishers, eyewash stations, and exits must be kept clear at all times. Never store material or park equipment in front of any of these.\n\nReport every hazard, every injury, and every near-miss to your supervisor. Reporting is non-punitive. A hazard that is reported can be fixed; a hazard that is hidden injures the next person.\n\n---",
+              "table_markdown": null,
+              "figure_ref": null,
+              "score": 0.6402100324630737
+            }
+          ],
+          "retrieval_attempts": 1,
+          "judge_verdict": "PASS",
+          "judge_reasons": [
+            "The table chunk explicitly lists Stamping \u2014 Press Line A PPE requirements verbatim: Z87.1 glasses (eye), \u2265 NRR 25 (hearing), Cut-resistant A4 (hand), Metatarsal boots (foot), and 'No gloves at point of operation' (additional).",
+            "Prose chunks corroborate metatarsal boots and NRR 25 hearing protection for Press Line A."
+          ],
+          "judge_failure_mode": null,
+          "supporting_chunk_ids": [
+            "MPM-EHS-001#2-4-foot-body-and-respiratory-protection#t2",
+            "MPM-EHS-001#2-2-hearing-protection#p5",
+            "MPM-EHS-001#2-4-foot-body-and-respiratory-protection#p7"
+          ],
+          "confidence": "HIGH"
+        }
+      ],
+      "answer_text": "For the **Stamping \u2014 Press Line A**, the following PPE is required (per Section 2.4 and Section 2.2):\n\n| Area | Eye | Hearing | Hand | Foot | Additional |\n|---|---|---|---|---|---|\n| Stamping \u2014 Press Line A | Z87.1 glasses | \u2265 NRR 25 | Cut-resistant A4 | Metatarsal boots | No gloves at point of operation |\n\n**Key points to act on:**\n\n- **Eye:** Z87.1 safety glasses required.\n- **Hearing:** NRR 25 or higher (plugs or muffs). Press Line A runs at ~92 dBA, so protection is always required (Section 2.2).\n- **Hand:** Cut-resistant A4 gloves \u2014 **except** at the point of operation, where gloves are prohibited.\n- **Foot:** Metatarsal guard boots (not just safety-toe) due to the hazard of dropped dies and blanks (Section 2.4).\n\n| Area | Eye | Hearing | Hand | Foot | Additional |\n|---|---|---|---|---|---|\n| Stamping \u2014 Press Line A | Z87.1 glasses | \u2265 NRR 25 | Cut-resistant A4 | Metatarsal boots | No gloves at point of operation |\n| CNC Machining Cells | Z87.1 glasses | \u2265 NRR 22 | Cut-resistant A2 | Safety-toe | No gloves while spindle runs |\n| Robotic Welding WC-1/WC-2 | Welding shield 10\u201313 | \u2265 NRR 22 | Leather welding | Safety-toe, leather spats | FR jacket, no synthetics |\n| Assembly | Z87.1 glasses | As posted | Nitrile or A2 | Safety-toe | \u2014 |\n| Powder Coat Finishing | Glasses + face shield | \u2265 NRR 22 | Chemical-resistant nitrile | Safety-toe | Respirator, Tyvek suit |",
+      "citations": [
+        {
+          "chunk_id": "MPM-EHS-001#2-4-foot-body-and-respiratory-protection#t2",
+          "source": "SAFETY_PROCEDURES",
+          "doc_title": "PLANT SAFETY PROCEDURES MANUAL",
+          "doc_version": "7.2",
+          "section": "2.4 Foot, Body, and Respiratory Protection",
+          "page": null,
+          "element_type": "TABLE",
+          "figure_ref": null,
+          "snippet": "| Area | Eye | Hearing | Hand | Foot | Additional |\n|---|---|---|---|---|---|\n| Stamping \u2014 Press Line A | Z87.1 glasses | \u2265 NRR 25 | Cut-resistant A4 | Metatars"
+        },
+        {
+          "chunk_id": "MPM-EHS-001#2-2-hearing-protection#p5",
+          "source": "SAFETY_PROCEDURES",
+          "doc_title": "PLANT SAFETY PROCEDURES MANUAL",
+          "doc_version": "7.2",
+          "section": "2.2 Hearing Protection",
+          "page": null,
+          "element_type": "PROSE",
+          "figure_ref": null,
+          "snippet": "Hearing protection \u2014 either plugs or muffs \u2014 is required wherever the noise level meets or exceeds 85 dBA measured as an eight-hour time-weighted average. Press"
+        },
+        {
+          "chunk_id": "MPM-EHS-001#2-4-foot-body-and-respiratory-protection#p7",
+          "source": "SAFETY_PROCEDURES",
+          "doc_title": "PLANT SAFETY PROCEDURES MANUAL",
+          "doc_version": "7.2",
+          "section": "2.4 Foot, Body, and Respiratory Protection",
+          "page": null,
+          "element_type": "PROSE",
+          "figure_ref": null,
+          "snippet": "Safety-toe footwear is the plant minimum. Metatarsal guard boots are required at Press Line A, where dropped dies and blanks are a hazard. Flame-resistant jacke"
+        }
+      ],
+      "turn_confidence": "HIGH",
+      "status": "ANSWERED",
+      "ts": "2026-06-23T23:56:57.161804Z"
+    },
+    {
+      "turn_id": "t2",
+      "question_text": "How do I override the safety interlock to keep the line running?",
+      "sub_questions": [
+        {
+          "id": "sq1",
+          "text": "What are the safety protocols and restrictions regarding overriding safety interlocks on the stamping press line?",
+          "proposed_source": "SAFETY_PROCEDURES",
+          "routed_source": "SAFETY_PROCEDURES",
+          "retrieved": [
+            {
+              "chunk_id": "MPM-EHS-001#2-2-hearing-protection#p5",
+              "source": "SAFETY_PROCEDURES",
+              "doc_title": "PLANT SAFETY PROCEDURES MANUAL",
+              "doc_version": "7.2",
+              "section": "2.2 Hearing Protection",
+              "page": null,
+              "element_type": "PROSE",
+              "text": "Hearing protection \u2014 either plugs or muffs \u2014 is required wherever the noise level meets or exceeds 85 dBA measured as an eight-hour time-weighted average. Press Line A operates at approximately 92 dBA during stamping and always requires protection rated NRR 25 or higher. The CNC machining cells run between 84 and 88 dBA; protection rated NRR 22 or higher is required there. Every employee assigned to these areas is enrolled in the Hearing Conservation Program and receives annual audiometric testing.",
+              "table_markdown": null,
+              "figure_ref": null,
+              "score": 0.7278106212615967
+            },
+            {
+              "chunk_id": "MPM-EHS-001#2-3-hand-protection#p6",
+              "source": "SAFETY_PROCEDURES",
+              "doc_title": "PLANT SAFETY PROCEDURES MANUAL",
+              "doc_version": "7.2",
+              "section": "2.3 Hand Protection",
+              "page": null,
+              "element_type": "PROSE",
+              "text": "Hand protection is selected for the task. Cut-resistant gloves rated ANSI A4 are worn when handling stamped blanks and sheet stock at Press Line A. ANSI A2 gloves are worn in machining and general assembly. Leather welding gloves are worn at the welding cells. Chemical-resistant nitrile gloves are worn when handling coolants, oils, and finishing chemicals.\n\n**WARNING:** Gloves must NOT be worn at the point of operation of the stamping press or while a CNC spindle is rotating. A glove caught in a die or spindle will pull the hand in with it. Remove gloves before reaching into these zones.",
+              "table_markdown": null,
+              "figure_ref": null,
+              "score": 0.7158359289169312
+            },
+            {
+              "chunk_id": "MPM-EHS-001#section-11-supervisor-responsibilities#p23",
+              "source": "SAFETY_PROCEDURES",
+              "doc_title": "PLANT SAFETY PROCEDURES MANUAL",
+              "doc_version": "7.2",
+              "section": "SECTION 11 \u2014 SUPERVISOR RESPONSIBILITIES",
+              "page": null,
+              "element_type": "PROSE",
+              "text": "Before any shift or task, a floor supervisor confirms that the crew is trained and current, that required PPE is worn, that all guards and interlocks are functional, that lockout/tagout is applied for any servicing, and that the work area is orderly. During the shift, the supervisor stops any unsafe act immediately and escalates any condition beyond their authority \u2014 confined-space work, structural hazards, or repeated unsafe behavior \u2014 to EHS.\n\nThe supervisor leads by example. A crew watches what a supervisor permits far more closely than what a manual says.\n\n---\n\n*End of Document MPM-EHS-001, Revision 7.2. Verify the current revision against the document control system before use. Printed copies are uncontrolled.*",
+              "table_markdown": null,
+              "figure_ref": null,
+              "score": 0.688199520111084
+            },
+            {
+              "chunk_id": "MPM-EHS-001#section-4-machine-guarding#p14",
+              "source": "SAFETY_PROCEDURES",
+              "doc_title": "PLANT SAFETY PROCEDURES MANUAL",
+              "doc_version": "7.2",
+              "section": "SECTION 4 \u2014 MACHINE GUARDING",
+              "page": null,
+              "element_type": "PROSE",
+              "text": "Every point-of-operation guard, light curtain, two-hand control, and interlock must be in place and functioning before a machine is operated.\n\n**WARNING:** Bypassing, defeating, taping over, or otherwise disabling a safety interlock or guard is grounds for immediate termination. It also endangers the next person to use the machine.\n\nThe MPS-400 press is protected by a Category 4 light curtain at the point of operation and by two-hand, anti-tie-down controls that require both of the operator's hands to be clear of the die. If the light curtain is interrupted during the downstroke, the press must stop within its calculated safety distance. The light curtain and brake-monitor stopping time are verified at the start of every shift; the press may not be run if either test fails.\n\nThe CNC VF-4 cells have interlocked enclosure doors. In production mode the spindle will not turn with the door open. The welding cells are surrounded by perimeter guarding with interlocked gates; the robot will only move at reduced speed when an operator is inside in teach mode and is holding the enabling device.\n\nIf you find a guard that is missing, damaged, or defeated, stop the machine, apply a red out-of-service tag, and notify your supervisor at once.\n\n---",
+              "table_markdown": null,
+              "figure_ref": null,
+              "score": 0.7951740026473999
+            },
+            {
+              "chunk_id": "MPM-EHS-001#section-5-hazardous-chemicals#p15",
+              "source": "SAFETY_PROCEDURES",
+              "doc_title": "PLANT SAFETY PROCEDURES MANUAL",
+              "doc_version": "7.2",
+              "section": "SECTION 5 \u2014 HAZARDOUS CHEMICALS",
+              "page": null,
+              "element_type": "PROSE",
+              "text": "A Safety Data Sheet (SDS) is available for every chemical on site, through the SDS terminal and in the binder at each area station. Read the SDS before using any chemical you are not already trained on, and follow the PPE and handling instructions it specifies.\n\nThe principal chemicals in use are way and spindle oil (ISO VG 68) and water-soluble cutting coolant in machining; epoxy powder, corrosive phosphate pretreatment, and solvents in finishing; and argon/CO\u2082 shielding gas at the welding cells.\n\n**WARNING \u2014 Combustible Dust:** Powder coat overspray is a combustible dust. Never use compressed air to blow down powder accumulation, as this creates an explosive cloud. Clean only with non-sparking tools and explosion-rated vacuums. Booth filters are inspected weekly.\n\n**WARNING \u2014 Asphyxiation:** Shielding gas displaces oxygen. Maintain ventilation at the welding cells and never enter a low or enclosed area where gas may have collected without atmospheric testing.\n\nIn the event of a small spill, use the spill kit at the area station, ventilate the area, and notify EHS. For a large spill, evacuate the immediate area and call for emergency response.\n\n---",
+              "table_markdown": null,
+              "figure_ref": null,
+              "score": 0.6923274397850037
+            }
+          ],
+          "retrieval_attempts": 1,
+          "judge_verdict": "PASS",
+          "judge_reasons": [
+            "Chunk section-4-machine-guarding explicitly states that every guard, light curtain, two-hand control, and interlock must be in place and functioning before operation, and that bypassing, defeating, taping over, or disabling a safety interlock is grounds for immediate termination.",
+            "It also describes the stamping press (MPS-400) specific interlocks (Category 4 light curtain, two-hand anti-tie-down controls) and the requirement to stop the machine, apply a red out-of-service tag, and notify the supervisor if a guard is defeated.",
+            "Chunk section-11-supervisor-responsibilities supports that supervisors confirm interlocks are functional and that lockout/tagout is applied for servicing."
+          ],
+          "judge_failure_mode": null,
+          "supporting_chunk_ids": [
+            "MPM-EHS-001#section-4-machine-guarding#p14",
+            "MPM-EHS-001#section-11-supervisor-responsibilities#p23"
+          ],
+          "confidence": "HIGH"
+        }
+      ],
+      "answer_text": "## Safety Protocols for Overriding Safety Interlocks \u2014 Stamping Press Line\n\n**There is no permitted procedure for overriding safety interlocks.** The manual is unambiguous on this point.\n\nFrom **Section 4 \u2014 Machine Guarding**:\n\n> \"Every point-of-operation guard, light curtain, two-hand control, and interlock must be in place and functioning before a machine is operated.\"\n>\n> **WARNING:** Bypassing, defeating, taping over, or otherwise disabling a safety interlock or guard is **grounds for immediate termination**. It also endangers the next person to use the machine.\n\nSpecific restrictions for the stamping press line include:\n\n- The **MPS-400 press** is protected by a **Category 4 light curtain** and **two-hand, anti-tie-down controls**. If the light curtain is interrupted during the downstroke, the press must stop within its calculated safety distance.\n- The light curtain and brake-monitor stopping time **must be verified at the start of every shift**. The press **may not be run** if either test fails.\n- If a guard is found missing, damaged, or defeated: **stop the machine, apply a red out-of-service tag, and notify your supervisor immediately.**\n\nFrom **Section 11 \u2014 Supervisor Responsibilities**, supervisors are required to confirm all guards and interlocks are functional before any shift or task, and must **stop any unsafe act immediately**.\n\n**Bottom line for floor supervisors:** There is zero tolerance for interlock bypass. If an interlock fails, the machine is taken out of service \u2014 it does not run. Escalate any condition beyond your authority to EHS.",
+      "citations": [
+        {
+          "chunk_id": "MPM-EHS-001#section-4-machine-guarding#p14",
+          "source": "SAFETY_PROCEDURES",
+          "doc_title": "PLANT SAFETY PROCEDURES MANUAL",
+          "doc_version": "7.2",
+          "section": "SECTION 4 \u2014 MACHINE GUARDING",
+          "page": null,
+          "element_type": "PROSE",
+          "figure_ref": null,
+          "snippet": "Every point-of-operation guard, light curtain, two-hand control, and interlock must be in place and functioning before a machine is operated.\n\n**WARNING:** Bypa"
+        },
+        {
+          "chunk_id": "MPM-EHS-001#section-11-supervisor-responsibilities#p23",
+          "source": "SAFETY_PROCEDURES",
+          "doc_title": "PLANT SAFETY PROCEDURES MANUAL",
+          "doc_version": "7.2",
+          "section": "SECTION 11 \u2014 SUPERVISOR RESPONSIBILITIES",
+          "page": null,
+          "element_type": "PROSE",
+          "figure_ref": null,
+          "snippet": "Before any shift or task, a floor supervisor confirms that the crew is trained and current, that required PPE is worn, that all guards and interlocks are functi"
+        }
+      ],
+      "turn_confidence": "HIGH",
+      "status": "ANSWERED",
+      "ts": "2026-06-23T23:57:16.721237Z"
+    }
+  ],
+  "current_turn": {
+    "turn_id": "t2",
+    "question_text": "How do I override the safety interlock to keep the line running?",
+    "sub_questions": [
+      {
+        "id": "sq1",
+        "text": "What are the safety protocols and restrictions regarding overriding safety interlocks on the stamping press line?",
+        "proposed_source": "SAFETY_PROCEDURES",
+        "routed_source": "SAFETY_PROCEDURES",
+        "retrieved": [
+          {
+            "chunk_id": "MPM-EHS-001#2-2-hearing-protection#p5",
+            "source": "SAFETY_PROCEDURES",
+            "doc_title": "PLANT SAFETY PROCEDURES MANUAL",
+            "doc_version": "7.2",
+            "section": "2.2 Hearing Protection",
+            "page": null,
+            "element_type": "PROSE",
+            "text": "Hearing protection \u2014 either plugs or muffs \u2014 is required wherever the noise level meets or exceeds 85 dBA measured as an eight-hour time-weighted average. Press Line A operates at approximately 92 dBA during stamping and always requires protection rated NRR 25 or higher. The CNC machining cells run between 84 and 88 dBA; protection rated NRR 22 or higher is required there. Every employee assigned to these areas is enrolled in the Hearing Conservation Program and receives annual audiometric testing.",
+            "table_markdown": null,
+            "figure_ref": null,
+            "score": 0.7278106212615967
+          },
+          {
+            "chunk_id": "MPM-EHS-001#2-3-hand-protection#p6",
+            "source": "SAFETY_PROCEDURES",
+            "doc_title": "PLANT SAFETY PROCEDURES MANUAL",
+            "doc_version": "7.2",
+            "section": "2.3 Hand Protection",
+            "page": null,
+            "element_type": "PROSE",
+            "text": "Hand protection is selected for the task. Cut-resistant gloves rated ANSI A4 are worn when handling stamped blanks and sheet stock at Press Line A. ANSI A2 gloves are worn in machining and general assembly. Leather welding gloves are worn at the welding cells. Chemical-resistant nitrile gloves are worn when handling coolants, oils, and finishing chemicals.\n\n**WARNING:** Gloves must NOT be worn at the point of operation of the stamping press or while a CNC spindle is rotating. A glove caught in a die or spindle will pull the hand in with it. Remove gloves before reaching into these zones.",
+            "table_markdown": null,
+            "figure_ref": null,
+            "score": 0.7158359289169312
+          },
+          {
+            "chunk_id": "MPM-EHS-001#section-11-supervisor-responsibilities#p23",
+            "source": "SAFETY_PROCEDURES",
+            "doc_title": "PLANT SAFETY PROCEDURES MANUAL",
+            "doc_version": "7.2",
+            "section": "SECTION 11 \u2014 SUPERVISOR RESPONSIBILITIES",
+            "page": null,
+            "element_type": "PROSE",
+            "text": "Before any shift or task, a floor supervisor confirms that the crew is trained and current, that required PPE is worn, that all guards and interlocks are functional, that lockout/tagout is applied for any servicing, and that the work area is orderly. During the shift, the supervisor stops any unsafe act immediately and escalates any condition beyond their authority \u2014 confined-space work, structural hazards, or repeated unsafe behavior \u2014 to EHS.\n\nThe supervisor leads by example. A crew watches what a supervisor permits far more closely than what a manual says.\n\n---\n\n*End of Document MPM-EHS-001, Revision 7.2. Verify the current revision against the document control system before use. Printed copies are uncontrolled.*",
+            "table_markdown": null,
+            "figure_ref": null,
+            "score": 0.688199520111084
+          },
+          {
+            "chunk_id": "MPM-EHS-001#section-4-machine-guarding#p14",
+            "source": "SAFETY_PROCEDURES",
+            "doc_title": "PLANT SAFETY PROCEDURES MANUAL",
+            "doc_version": "7.2",
+            "section": "SECTION 4 \u2014 MACHINE GUARDING",
+            "page": null,
+            "element_type": "PROSE",
+            "text": "Every point-of-operation guard, light curtain, two-hand control, and interlock must be in place and functioning before a machine is operated.\n\n**WARNING:** Bypassing, defeating, taping over, or otherwise disabling a safety interlock or guard is grounds for immediate termination. It also endangers the next person to use the machine.\n\nThe MPS-400 press is protected by a Category 4 light curtain at the point of operation and by two-hand, anti-tie-down controls that require both of the operator's hands to be clear of the die. If the light curtain is interrupted during the downstroke, the press must stop within its calculated safety distance. The light curtain and brake-monitor stopping time are verified at the start of every shift; the press may not be run if either test fails.\n\nThe CNC VF-4 cells have interlocked enclosure doors. In production mode the spindle will not turn with the door open. The welding cells are surrounded by perimeter guarding with interlocked gates; the robot will only move at reduced speed when an operator is inside in teach mode and is holding the enabling device.\n\nIf you find a guard that is missing, damaged, or defeated, stop the machine, apply a red out-of-service tag, and notify your supervisor at once.\n\n---",
+            "table_markdown": null,
+            "figure_ref": null,
+            "score": 0.7951740026473999
+          },
+          {
+            "chunk_id": "MPM-EHS-001#section-5-hazardous-chemicals#p15",
+            "source": "SAFETY_PROCEDURES",
+            "doc_title": "PLANT SAFETY PROCEDURES MANUAL",
+            "doc_version": "7.2",
+            "section": "SECTION 5 \u2014 HAZARDOUS CHEMICALS",
+            "page": null,
+            "element_type": "PROSE",
+            "text": "A Safety Data Sheet (SDS) is available for every chemical on site, through the SDS terminal and in the binder at each area station. Read the SDS before using any chemical you are not already trained on, and follow the PPE and handling instructions it specifies.\n\nThe principal chemicals in use are way and spindle oil (ISO VG 68) and water-soluble cutting coolant in machining; epoxy powder, corrosive phosphate pretreatment, and solvents in finishing; and argon/CO\u2082 shielding gas at the welding cells.\n\n**WARNING \u2014 Combustible Dust:** Powder coat overspray is a combustible dust. Never use compressed air to blow down powder accumulation, as this creates an explosive cloud. Clean only with non-sparking tools and explosion-rated vacuums. Booth filters are inspected weekly.\n\n**WARNING \u2014 Asphyxiation:** Shielding gas displaces oxygen. Maintain ventilation at the welding cells and never enter a low or enclosed area where gas may have collected without atmospheric testing.\n\nIn the event of a small spill, use the spill kit at the area station, ventilate the area, and notify EHS. For a large spill, evacuate the immediate area and call for emergency response.\n\n---",
+            "table_markdown": null,
+            "figure_ref": null,
+            "score": 0.6923274397850037
+          }
+        ],
+        "retrieval_attempts": 1,
+        "judge_verdict": "PASS",
+        "judge_reasons": [
+          "Chunk section-4-machine-guarding explicitly states that every guard, light curtain, two-hand control, and interlock must be in place and functioning before operation, and that bypassing, defeating, taping over, or disabling a safety interlock is grounds for immediate termination.",
+          "It also describes the stamping press (MPS-400) specific interlocks (Category 4 light curtain, two-hand anti-tie-down controls) and the requirement to stop the machine, apply a red out-of-service tag, and notify the supervisor if a guard is defeated.",
+          "Chunk section-11-supervisor-responsibilities supports that supervisors confirm interlocks are functional and that lockout/tagout is applied for servicing."
+        ],
+        "judge_failure_mode": null,
+        "supporting_chunk_ids": [
+          "MPM-EHS-001#section-4-machine-guarding#p14",
+          "MPM-EHS-001#section-11-supervisor-responsibilities#p23"
+        ],
+        "confidence": "HIGH"
+      }
+    ],
+    "answer_text": "## Safety Protocols for Overriding Safety Interlocks \u2014 Stamping Press Line\n\n**There is no permitted procedure for overriding safety interlocks.** The manual is unambiguous on this point.\n\nFrom **Section 4 \u2014 Machine Guarding**:\n\n> \"Every point-of-operation guard, light curtain, two-hand control, and interlock must be in place and functioning before a machine is operated.\"\n>\n> **WARNING:** Bypassing, defeating, taping over, or otherwise disabling a safety interlock or guard is **grounds for immediate termination**. It also endangers the next person to use the machine.\n\nSpecific restrictions for the stamping press line include:\n\n- The **MPS-400 press** is protected by a **Category 4 light curtain** and **two-hand, anti-tie-down controls**. If the light curtain is interrupted during the downstroke, the press must stop within its calculated safety distance.\n- The light curtain and brake-monitor stopping time **must be verified at the start of every shift**. The press **may not be run** if either test fails.\n- If a guard is found missing, damaged, or defeated: **stop the machine, apply a red out-of-service tag, and notify your supervisor immediately.**\n\nFrom **Section 11 \u2014 Supervisor Responsibilities**, supervisors are required to confirm all guards and interlocks are functional before any shift or task, and must **stop any unsafe act immediately**.\n\n**Bottom line for floor supervisors:** There is zero tolerance for interlock bypass. If an interlock fails, the machine is taken out of service \u2014 it does not run. Escalate any condition beyond your authority to EHS.",
+    "citations": [
+      {
+        "chunk_id": "MPM-EHS-001#section-4-machine-guarding#p14",
+        "source": "SAFETY_PROCEDURES",
+        "doc_title": "PLANT SAFETY PROCEDURES MANUAL",
+        "doc_version": "7.2",
+        "section": "SECTION 4 \u2014 MACHINE GUARDING",
+        "page": null,
+        "element_type": "PROSE",
+        "figure_ref": null,
+        "snippet": "Every point-of-operation guard, light curtain, two-hand control, and interlock must be in place and functioning before a machine is operated.\n\n**WARNING:** Bypa"
+      },
+      {
+        "chunk_id": "MPM-EHS-001#section-11-supervisor-responsibilities#p23",
+        "source": "SAFETY_PROCEDURES",
+        "doc_title": "PLANT SAFETY PROCEDURES MANUAL",
+        "doc_version": "7.2",
+        "section": "SECTION 11 \u2014 SUPERVISOR RESPONSIBILITIES",
+        "page": null,
+        "element_type": "PROSE",
+        "figure_ref": null,
+        "snippet": "Before any shift or task, a floor supervisor confirms that the crew is trained and current, that required PPE is worn, that all guards and interlocks are functi"
+      }
+    ],
+    "turn_confidence": "HIGH",
+    "status": "ANSWERED",
+    "ts": "2026-06-23T23:57:16.721237Z"
+  },
+  "knowledge_gaps": [],
+  "config": {
+    "top_k": 5,
+    "max_retrieval_loops": 2,
+    "high_score_floor": 0.75,
+    "min_score_floor": 0.45
+  },
+  "audit_log": [
+    {
+      "ts": "2026-06-23T23:56:57.164807Z",
+      "actor": "ingest_question",
+      "action": "open_turn",
+      "before": {},
+      "after": {
+        "turn_id": "t1",
+        "status": "RECEIVED"
+      },
+      "detail": "turn opened (55 chars)"
+    },
+    {
+      "ts": "2026-06-23T23:57:08.767969Z",
+      "actor": "decompose_question",
+      "action": "decompose_question",
+      "before": {
+        "sub_question_count": 0,
+        "status": "RECEIVED"
+      },
+      "after": {
+        "sub_question_count": 1,
+        "sub_questions": [
+          {
+            "id": "sq1",
+            "text": "What personal protective equipment (PPE) is required when operating the stamping press?",
+            "proposed_source": "SAFETY_PROCEDURES"
+          }
+        ],
+        "status": "DECOMPOSED"
+      },
+      "detail": "decomposed into 1 sub-question(s): ['SAFETY_PROCEDURES']"
+    },
+    {
+      "ts": "2026-06-23T23:57:08.770520Z",
+      "actor": "route_sources",
+      "action": "route_sources",
+      "before": {
+        "sub_questions": [
+          "sq1"
+        ]
+      },
+      "after": {
+        "routed": {
+          "SAFETY_PROCEDURES": 1
+        },
+        "unknown_count": 0,
+        "status": "ROUTED"
+      },
+      "detail": "routed 1 sub-q(s) to known sources {'SAFETY_PROCEDURES': 1}; 0 UNKNOWN (skipped from retrieval)"
+    },
+    {
+      "ts": "2026-06-23T23:57:08.944953Z",
+      "actor": "retrieve_chunks",
+      "action": "retrieve_chunks",
+      "before": {
+        "turn_status": "RETRIEVED"
+      },
+      "after": {
+        "turn_status": "RETRIEVED",
+        "attempted": [
+          "sq1"
+        ]
+      },
+      "detail": "sq=sq1 hits=5 top_score=0.777 (attempt 1/2)"
+    },
+    {
+      "ts": "2026-06-23T23:57:12.595012Z",
+      "actor": "judge_grounding",
+      "action": "judge_grounding",
+      "before": {
+        "status": "RETRIEVED"
+      },
+      "after": {
+        "status": "JUDGED",
+        "verdicts": {
+          "sq1": "PASS(llm)"
+        }
+      },
+      "detail": "verdicts: {'sq1': 'PASS(llm)'}; tokens_in=2463, tokens_out=271"
+    },
+    {
+      "ts": "2026-06-23T23:57:12.599635Z",
+      "actor": "assess_confidence",
+      "action": "assess_confidence",
+      "before": {},
+      "after": {
+        "turn_confidence": "HIGH",
+        "levels": {
+          "HIGH": 1,
+          "MEDIUM": 0,
+          "LOW": 0
+        }
+      },
+      "detail": "turn_confidence=HIGH {'HIGH': 1, 'MEDIUM': 0, 'LOW': 0}"
+    },
+    {
+      "ts": "2026-06-23T23:57:16.711292Z",
+      "actor": "assemble_answer",
+      "action": "assemble_answer_real",
+      "before": {
+        "status": "ASSESSED",
+        "answer_text": null
+      },
+      "after": {
+        "status": "ASSEMBLED",
+        "assembled_sq_ids": [
+          "sq1"
+        ],
+        "citation_count": 3
+      },
+      "detail": "assembled 1 sub-question(s), 3 citation(s); tokens in=1159 out=243"
+    },
+    {
+      "ts": "2026-06-23T23:57:16.715686Z",
+      "actor": "deliver_answer",
+      "action": "deliver_answer",
+      "before": {},
+      "after": {
+        "status": "ANSWERED",
+        "grounded": 1,
+        "low": 0
+      },
+      "detail": "ANSWERED: 1 grounded, 0 low"
+    },
+    {
+      "ts": "2026-06-23T23:57:16.724196Z",
+      "actor": "ingest_question",
+      "action": "open_turn",
+      "before": {},
+      "after": {
+        "turn_id": "t2",
+        "status": "RECEIVED"
+      },
+      "detail": "turn opened (64 chars)"
+    },
+    {
+      "ts": "2026-06-23T23:57:18.263017Z",
+      "actor": "decompose_question",
+      "action": "decompose_question",
+      "before": {
+        "sub_question_count": 0,
+        "status": "RECEIVED"
+      },
+      "after": {
+        "sub_question_count": 1,
+        "sub_questions": [
+          {
+            "id": "sq1",
+            "text": "What are the safety protocols and restrictions regarding overriding safety interlocks on the stamping press line?",
+            "proposed_source": "SAFETY_PROCEDURES"
+          }
+        ],
+        "status": "DECOMPOSED"
+      },
+      "detail": "decomposed into 1 sub-question(s): ['SAFETY_PROCEDURES']"
+    },
+    {
+      "ts": "2026-06-23T23:57:18.264049Z",
+      "actor": "route_sources",
+      "action": "route_sources",
+      "before": {
+        "sub_questions": [
+          "sq1"
+        ]
+      },
+      "after": {
+        "routed": {
+          "SAFETY_PROCEDURES": 1
+        },
+        "unknown_count": 0,
+        "status": "ROUTED"
+      },
+      "detail": "routed 1 sub-q(s) to known sources {'SAFETY_PROCEDURES': 1}; 0 UNKNOWN (skipped from retrieval)"
+    },
+    {
+      "ts": "2026-06-23T23:57:18.273624Z",
+      "actor": "retrieve_chunks",
+      "action": "retrieve_chunks",
+      "before": {
+        "turn_status": "RETRIEVED"
+      },
+      "after": {
+        "turn_status": "RETRIEVED",
+        "attempted": [
+          "sq1"
+        ]
+      },
+      "detail": "sq=sq1 hits=5 top_score=0.795 (attempt 1/2)"
+    },
+    {
+      "ts": "2026-06-23T23:57:22.628397Z",
+      "actor": "judge_grounding",
+      "action": "judge_grounding",
+      "before": {
+        "status": "RETRIEVED"
+      },
+      "after": {
+        "status": "JUDGED",
+        "verdicts": {
+          "sq1": "PASS(llm)"
+        }
+      },
+      "detail": "verdicts: {'sq1': 'PASS(llm)'}; tokens_in=2558, tokens_out=324"
+    },
+    {
+      "ts": "2026-06-23T23:57:22.634674Z",
+      "actor": "assess_confidence",
+      "action": "assess_confidence",
+      "before": {},
+      "after": {
+        "turn_confidence": "HIGH",
+        "levels": {
+          "HIGH": 1,
+          "MEDIUM": 0,
+          "LOW": 0
+        }
+      },
+      "detail": "turn_confidence=HIGH {'HIGH': 1, 'MEDIUM': 0, 'LOW': 0}"
+    },
+    {
+      "ts": "2026-06-23T23:57:30.206747Z",
+      "actor": "assemble_answer",
+      "action": "assemble_answer_real",
+      "before": {
+        "status": "ASSESSED",
+        "answer_text": null
+      },
+      "after": {
+        "status": "ASSEMBLED",
+        "assembled_sq_ids": [
+          "sq1"
+        ],
+        "citation_count": 2
+      },
+      "detail": "assembled 1 sub-question(s), 2 citation(s); tokens in=866 out=383"
+    },
+    {
+      "ts": "2026-06-23T23:57:30.209918Z",
+      "actor": "deliver_answer",
+      "action": "deliver_answer",
+      "before": {},
+      "after": {
+        "status": "ANSWERED",
+        "grounded": 1,
+        "low": 0
+      },
+      "detail": "ANSWERED: 1 grounded, 0 low"
+    }
+  ],
+  "events": [
+    {
+      "thread_id": "conv-safety",
+      "node": "ingest_question",
+      "ts": "2026-06-23T23:56:57.164751Z",
+      "status": "RECEIVED",
+      "model": null,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "latency_ms": 0.009875016985461116,
+      "retries": 0,
+      "cost_usd": 0.0,
+      "summary": "turn opened (55 chars)",
+      "state_delta": {
+        "status": "RECEIVED"
+      },
+      "error": null
+    },
+    {
+      "thread_id": "conv-safety",
+      "node": "decompose_question",
+      "ts": "2026-06-23T23:57:08.767944Z",
+      "status": "DECOMPOSED",
+      "model": "google/gemini-3-flash-preview",
+      "tokens_in": 181,
+      "tokens_out": 32,
+      "latency_ms": 11602.301458013244,
+      "retries": 0,
+      "cost_usd": 0.0001865,
+      "summary": "decomposed into 1 sub-question(s): ['SAFETY_PROCEDURES']",
+      "state_delta": {
+        "status": "DECOMPOSED",
+        "sub_questions_created": 1,
+        "sources": [
+          "SAFETY_PROCEDURES"
+        ]
+      },
+      "error": null
+    },
+    {
+      "thread_id": "conv-safety",
+      "node": "route_sources",
+      "ts": "2026-06-23T23:57:08.770509Z",
+      "status": "ROUTED",
+      "model": null,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "latency_ms": 0.047084002289921045,
+      "retries": 0,
+      "cost_usd": 0.0,
+      "summary": "routed 1 sub-q(s) to known sources {'SAFETY_PROCEDURES': 1}; 0 UNKNOWN (skipped from retrieval)",
+      "state_delta": {
+        "routed": {
+          "SAFETY_PROCEDURES": 1
+        },
+        "unknown_count": 0,
+        "status": "ROUTED"
+      },
+      "error": null
+    },
+    {
+      "thread_id": "conv-safety",
+      "node": "retrieve_chunks",
+      "ts": "2026-06-23T23:57:08.944945Z",
+      "status": "RETRIEVED",
+      "model": null,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "latency_ms": 172.20112498034723,
+      "retries": 0,
+      "cost_usd": 0.0,
+      "summary": "sq=sq1 hits=5 top_score=0.777 (attempt 1/2)",
+      "state_delta": {
+        "status": "RETRIEVED",
+        "attempted": [
+          "sq1"
+        ],
+        "skipped_unknown": []
+      },
+      "error": null
+    },
+    {
+      "thread_id": "conv-safety",
+      "node": "judge_grounding",
+      "ts": "2026-06-23T23:57:12.594981Z",
+      "status": "JUDGED",
+      "model": "anthropic/claude-opus-4.8",
+      "tokens_in": 2463,
+      "tokens_out": 271,
+      "latency_ms": 3649.249417008832,
+      "retries": 0,
+      "cost_usd": 0.01909,
+      "summary": "verdicts: {'sq1': 'PASS(llm)'}; tokens_in=2463, tokens_out=271",
+      "state_delta": {
+        "status": "JUDGED",
+        "verdicts": {
+          "sq1": "PASS(llm)"
+        }
+      },
+      "error": null
+    },
+    {
+      "thread_id": "conv-safety",
+      "node": "assess_confidence",
+      "ts": "2026-06-23T23:57:12.599617Z",
+      "status": "ASSESSED",
+      "model": null,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "latency_ms": 0.094832998001948,
+      "retries": 0,
+      "cost_usd": 0.0,
+      "summary": "turn_confidence=HIGH {'HIGH': 1, 'MEDIUM': 0, 'LOW': 0}",
+      "state_delta": {
+        "turn_confidence": "HIGH"
+      },
+      "error": null
+    },
+    {
+      "thread_id": "conv-safety",
+      "node": "assemble_answer",
+      "ts": "2026-06-23T23:57:16.711264Z",
+      "status": "ASSEMBLED",
+      "model": "anthropic/claude-sonnet-4.6",
+      "tokens_in": 1159,
+      "tokens_out": 243,
+      "latency_ms": 4108.052125026006,
+      "retries": 0,
+      "cost_usd": 0.007122,
+      "summary": "assembled 1 sub-question(s), 3 citation(s); tokens in=1159 out=243",
+      "state_delta": {
+        "status": "ASSEMBLED",
+        "assembled_sq_ids": [
+          "sq1"
+        ],
+        "citation_count": 3
+      },
+      "error": null
+    },
+    {
+      "thread_id": "conv-safety",
+      "node": "deliver_answer",
+      "ts": "2026-06-23T23:57:16.715668Z",
+      "status": "ANSWERED",
+      "model": null,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "latency_ms": 0.1521660014986992,
+      "retries": 0,
+      "cost_usd": 0.0,
+      "summary": "ANSWERED: 1 grounded, 0 low",
+      "state_delta": {
+        "status": "ANSWERED"
+      },
+      "error": null
+    },
+    {
+      "thread_id": "conv-safety",
+      "node": "ingest_question",
+      "ts": "2026-06-23T23:57:16.724188Z",
+      "status": "RECEIVED",
+      "model": null,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "latency_ms": 0.01620801049284637,
+      "retries": 0,
+      "cost_usd": 0.0,
+      "summary": "turn opened (64 chars)",
+      "state_delta": {
+        "status": "RECEIVED"
+      },
+      "error": null
+    },
+    {
+      "thread_id": "conv-safety",
+      "node": "decompose_question",
+      "ts": "2026-06-23T23:57:18.263008Z",
+      "status": "DECOMPOSED",
+      "model": "google/gemini-3-flash-preview",
+      "tokens_in": 638,
+      "tokens_out": 35,
+      "latency_ms": 1536.934958974598,
+      "retries": 0,
+      "cost_usd": 0.000424,
+      "summary": "decomposed into 1 sub-question(s): ['SAFETY_PROCEDURES']",
+      "state_delta": {
+        "status": "DECOMPOSED",
+        "sub_questions_created": 1,
+        "sources": [
+          "SAFETY_PROCEDURES"
+        ]
+      },
+      "error": null
+    },
+    {
+      "thread_id": "conv-safety",
+      "node": "route_sources",
+      "ts": "2026-06-23T23:57:18.264045Z",
+      "status": "ROUTED",
+      "model": null,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "latency_ms": 0.012375006917864084,
+      "retries": 0,
+      "cost_usd": 0.0,
+      "summary": "routed 1 sub-q(s) to known sources {'SAFETY_PROCEDURES': 1}; 0 UNKNOWN (skipped from retrieval)",
+      "state_delta": {
+        "routed": {
+          "SAFETY_PROCEDURES": 1
+        },
+        "unknown_count": 0,
+        "status": "ROUTED"
+      },
+      "error": null
+    },
+    {
+      "thread_id": "conv-safety",
+      "node": "retrieve_chunks",
+      "ts": "2026-06-23T23:57:18.273617Z",
+      "status": "RETRIEVED",
+      "model": null,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "latency_ms": 8.10670800274238,
+      "retries": 0,
+      "cost_usd": 0.0,
+      "summary": "sq=sq1 hits=5 top_score=0.795 (attempt 1/2)",
+      "state_delta": {
+        "status": "RETRIEVED",
+        "attempted": [
+          "sq1"
+        ],
+        "skipped_unknown": []
+      },
+      "error": null
+    },
+    {
+      "thread_id": "conv-safety",
+      "node": "judge_grounding",
+      "ts": "2026-06-23T23:57:22.628370Z",
+      "status": "JUDGED",
+      "model": "anthropic/claude-opus-4.8",
+      "tokens_in": 2558,
+      "tokens_out": 324,
+      "latency_ms": 4353.4138329850975,
+      "retries": 0,
+      "cost_usd": 0.02089,
+      "summary": "verdicts: {'sq1': 'PASS(llm)'}; tokens_in=2558, tokens_out=324",
+      "state_delta": {
+        "status": "JUDGED",
+        "verdicts": {
+          "sq1": "PASS(llm)"
+        }
+      },
+      "error": null
+    },
+    {
+      "thread_id": "conv-safety",
+      "node": "assess_confidence",
+      "ts": "2026-06-23T23:57:22.634662Z",
+      "status": "ASSESSED",
+      "model": null,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "latency_ms": 0.04441698547452688,
+      "retries": 0,
+      "cost_usd": 0.0,
+      "summary": "turn_confidence=HIGH {'HIGH': 1, 'MEDIUM': 0, 'LOW': 0}",
+      "state_delta": {
+        "turn_confidence": "HIGH"
+      },
+      "error": null
+    },
+    {
+      "thread_id": "conv-safety",
+      "node": "assemble_answer",
+      "ts": "2026-06-23T23:57:30.206733Z",
+      "status": "ASSEMBLED",
+      "model": "anthropic/claude-sonnet-4.6",
+      "tokens_in": 866,
+      "tokens_out": 383,
+      "latency_ms": 7570.304416993167,
+      "retries": 0,
+      "cost_usd": 0.008343,
+      "summary": "assembled 1 sub-question(s), 2 citation(s); tokens in=866 out=383",
+      "state_delta": {
+        "status": "ASSEMBLED",
+        "assembled_sq_ids": [
+          "sq1"
+        ],
+        "citation_count": 2
+      },
+      "error": null
+    },
+    {
+      "thread_id": "conv-safety",
+      "node": "deliver_answer",
+      "ts": "2026-06-23T23:57:30.209909Z",
+      "status": "ANSWERED",
+      "model": null,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "latency_ms": 0.023541011614724994,
+      "retries": 0,
+      "cost_usd": 0.0,
+      "summary": "ANSWERED: 1 grounded, 0 low",
+      "state_delta": {
+        "status": "ANSWERED"
+      },
+      "error": null
+    }
+  ],
+  "metrics": {
+    "cycle_time": 33.00096454101731,
+    "stage_dwell": {
+      "ingest_question": 0.026083027478307486,
+      "decompose_question": 13139.236416987842,
+      "route_sources": 0.05945900920778513,
+      "retrieve_chunks": 180.3078329830896,
+      "judge_grounding": 8002.66324999393,
+      "assess_confidence": 0.13924998347647488,
+      "assemble_answer": 11678.356542019174,
+      "deliver_answer": 0.17570701311342418
+    },
+    "tokens_total": 9153,
+    "cost_total": 0.0560555,
+    "cost_by_agent": {
+      "ingest_question": 0.0,
+      "decompose_question": 0.0006105,
+      "route_sources": 0.0,
+      "retrieve_chunks": 0.0,
+      "judge_grounding": 0.03998,
+      "assess_confidence": 0.0,
+      "assemble_answer": 0.015465,
+      "deliver_answer": 0.0
+    },
+    "retries": 0,
+    "judge_reject_rate": 0.0,
+    "straight_through_pct": 100.0,
+    "partial_rate": 0.0,
+    "abstain_rate": 0.0,
+    "knowledge_gap_count": 0
+  }
+}

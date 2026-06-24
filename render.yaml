@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: grounded-rag-api
+    env: docker
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /health
+    plan: free
+    envVars:
+      - key: OPENROUTER_API_KEY
+        sync: false
+      - key: DEMO_ACCESS_KEY
+        sync: false
+      - key: ALLOWED_ORIGIN
+        sync: false

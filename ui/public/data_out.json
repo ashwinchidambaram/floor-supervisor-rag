@@ -1,0 +1,1626 @@
+{
+  "conversation_id": "smoke-1",
+  "supervisor_id": "sup-7",
+  "status": "ACTIVE",
+  "turns": [
+    {
+      "turn_id": "t1",
+      "question_text": "What torque do the CNC VF-4 vise jaw bolts need?",
+      "sub_questions": [
+        {
+          "id": "sq1",
+          "text": "What is the required torque specification for the CNC VF-4 vise jaw bolts?",
+          "proposed_source": "MAINTENANCE_MANUALS",
+          "routed_source": "MAINTENANCE_MANUALS",
+          "retrieved": [
+            {
+              "chunk_id": "MPM-MNT-002#section-4-torque-specifications#t3",
+              "source": "MAINTENANCE_MANUALS",
+              "doc_title": "EQUIPMENT MAINTENANCE MANUAL",
+              "doc_version": "5.4",
+              "section": "SECTION 4 \u2014 TORQUE SPECIFICATIONS",
+              "page": null,
+              "element_type": "TABLE",
+              "text": "SECTION 4 \u2014 TORQUE SPECIFICATIONS \u2014 This table lists torque specifications for various manufacturing applications, including the MPS-400 die clamp and bolster mounting, CNC VF-4 tool holders and vise jaws, welding fixture clamps, and conveyor drive couplings. It details fastener types such as M10, M12, M16, M20, and M24 (grades 8.8 and 10.9) with corresponding values in Newton-meters (N\u00b7m), foot-pounds (ft\u00b7lb), and pounds-force (lbf). The data includes specific maintenance notes such as star pattern tightening, drawbar gauge verification, and the application of Loctite 243.",
+              "table_markdown": "| Application | Fastener | Torque | Notes |\n|---|---|---|---|\n| MPS-400 die clamp bolts | M20 grade 10.9 | 410 N\u00b7m (302 ft\u00b7lb) | Tighten in a star pattern; re-check after the first stroke |\n| MPS-400 bolster mounting | M24 grade 10.9 | 710 N\u00b7m (524 ft\u00b7lb) | \u2014 |\n| CNC VF-4 tool holder retention | Per drawbar spec | 1,200 lbf draw | Verify with drawbar gauge |\n| CNC VF-4 vise jaw bolts | M12 grade 8.8 | 80 N\u00b7m (59 ft\u00b7lb) | \u2014 |\n| Welding fixture clamp base | M16 grade 8.8 | 195 N\u00b7m (144 ft\u00b7lb) | Apply Loctite 243 (blue) |\n| Conveyor drive coupling | M10 grade 8.8 | 47 N\u00b7m (35 ft\u00b7lb) | \u2014 |",
+              "figure_ref": null,
+              "score": 0.7627824544906616
+            },
+            {
+              "chunk_id": "MPM-MNT-002#section-6-fault-code-quick-reference-cnc#t4",
+              "source": "MAINTENANCE_MANUALS",
+              "doc_title": "EQUIPMENT MAINTENANCE MANUAL",
+              "doc_version": "5.4",
+              "section": "SECTION 6 \u2014 FAULT CODE QUICK REFERENCE (CNC VF-4)",
+              "page": null,
+              "element_type": "TABLE",
+              "text": "SECTION 6 \u2014 FAULT CODE QUICK REFERENCE (CNC VF-4) \u2014 This fault code quick reference table for the CNC VF-4 lists error codes, their meanings, and recommended first actions for operators and technicians. It includes specific codes such as 102 (Servo overheat), 117 (Spindle overload), 144 (Way lube low), 159 (Low air pressure), 201 (Axis travel limit), and 9999 (Control battery low). The table provides technical specifications and instructions, such as verifying an 85 psi air supply and performing battery preventative maintenance.",
+              "table_markdown": "| Code | Meaning | First Action |\n|---|---|---|\n| 102 | Servo overheat | Check the enclosure cooling fan; allow to cool (O) |\n| 117 | Spindle overload | Reduce load; inspect the tool (O) |\n| 144 | Way lube low | Refill the reservoir (O) |\n| 159 | Low air pressure | Verify the 85 psi supply (O) |\n| 201 | Axis travel limit | Jog off the limit in handle mode (O) |\n| 9999 | Control battery low | Schedule the battery PM; do not power off until parameters are backed up (T) |",
+              "figure_ref": null,
+              "score": 0.6692378520965576
+            },
+            {
+              "chunk_id": "MPM-MNT-002#section-4-torque-specifications#p9",
+              "source": "MAINTENANCE_MANUALS",
+              "doc_title": "EQUIPMENT MAINTENANCE MANUAL",
+              "doc_version": "5.4",
+              "section": "SECTION 4 \u2014 TORQUE SPECIFICATIONS",
+              "page": null,
+              "element_type": "PROSE",
+              "text": "Torque values below are for dry threads unless noted. Always use a torque wrench with current calibration; calibration is verified quarterly and cross-referenced to the quality records in MPM-QC-003, Section 6.\n\n**CAUTION:** Never reuse a single-use locking fastener. Replace it. Where a thread-locking compound is specified, apply the specified grade \u2014 substituting a stronger grade can make later removal impossible without damage.",
+              "table_markdown": null,
+              "figure_ref": null,
+              "score": 0.6581611037254333
+            },
+            {
+              "chunk_id": "MPM-MNT-002#section-7-critical-spare-parts#t5",
+              "source": "MAINTENANCE_MANUALS",
+              "doc_title": "EQUIPMENT MAINTENANCE MANUAL",
+              "doc_version": "5.4",
+              "section": "SECTION 7 \u2014 CRITICAL SPARE PARTS",
+              "page": null,
+              "element_type": "TABLE",
+              "text": "SECTION 7 \u2014 CRITICAL SPARE PARTS \u2014 This table lists critical spare parts for manufacturing equipment including the MPS-400, CNC VF-4, WC-1/WC-2 welding cells, and the powder line. It details part descriptions such as hydraulic filter elements, way-lube cartridges, and torch nozzle kits alongside their required minimum stock levels and CMMS numbers like SP-VF4-LUBE-68 and SP-WC-TORCH-A. Specific components mentioned include light curtain pairs, spindle drawbar spring kits, wire feed drive rollers, and primary booth filters.",
+              "table_markdown": "| Part | Used On | Minimum Stock | CMMS Number |\n|---|---|---|---|\n| Hydraulic filter element | MPS-400 | 2 | SP-MPS-FLT-10 |\n| Light curtain transmitter/receiver pair | MPS-400 | 1 | SP-MPS-LC-04 |\n| Way-lube cartridge | CNC VF-4 | 6 | SP-VF4-LUBE-68 |\n| Spindle drawbar spring kit | CNC VF-4 | 1 | SP-VF4-DB-22 |\n| Torch nozzle / contact tip kit | WC-1/WC-2 | 12 | SP-WC-TORCH-A |\n| Wire feed drive roller | WC-1/WC-2 | 4 | SP-WC-ROLL-035 |\n| Booth filter, primary | Powder line | 8 | SP-PC-FLT-PRI |",
+              "figure_ref": null,
+              "score": 0.6015607118606567
+            },
+            {
+              "chunk_id": "MPM-MNT-002#section-3-lubrication#t2",
+              "source": "MAINTENANCE_MANUALS",
+              "doc_title": "EQUIPMENT MAINTENANCE MANUAL",
+              "doc_version": "5.4",
+              "section": "SECTION 3 \u2014 LUBRICATION",
+              "page": null,
+              "element_type": "TABLE",
+              "text": "SECTION 3 \u2014 LUBRICATION \u2014 This table details lubrication requirements for manufacturing equipment including the MPS-400, CNC VF-4, welding robots, and powder conveyors. It lists specific lubricants and specifications such as ISO VG 220, ISO VG 46, ISO VG 68, and NLGI 1 or 2 grease for components like ram gibs, main bearings, and axis gearboxes. Maintenance intervals are provided for each point, ranging from daily reservoir checks to annual oil replacements.",
+              "table_markdown": "| Equipment | Point | Lubricant | Specification | Interval |\n|---|---|---|---|---|\n| MPS-400 | Ram gibs / slides | Way oil | ISO VG 220 | Weekly |\n| MPS-400 | Main bearings | EP grease, lithium | NLGI 2 | Monthly |\n| MPS-400 | Hydraulic reservoir | AW hydraulic oil | ISO VG 46 | Top off daily; replace annually |\n| CNC VF-4 | Way surfaces | Way lube | ISO VG 68 | Auto-lube; check reservoir daily |\n| CNC VF-4 | Spindle | Sealed, no service | \u2014 | \u2014 |\n| Welding robots | Axis gearboxes | Robot reducer oil | Manufacturer-specified | Annually |\n| Powder conveyor | Chain | High-temp chain oil | NLGI 1, rated 400\u00b0F | Monthly |",
+              "figure_ref": null,
+              "score": 0.6629972457885742
+            }
+          ],
+          "retrieval_attempts": 1,
+          "judge_verdict": "PASS",
+          "judge_reasons": [
+            "Chunk MPM-MNT-002#section-4-torque-specifications#t3 contains a table row 'CNC VF-4 vise jaw bolts | M12 grade 8.8 | 80 N\u00b7m (59 ft\u00b7lb)' which explicitly provides the torque specification asked for."
+          ],
+          "judge_failure_mode": null,
+          "supporting_chunk_ids": [
+            "MPM-MNT-002#section-4-torque-specifications#t3"
+          ],
+          "confidence": "HIGH"
+        }
+      ],
+      "answer_text": "The CNC VF-4 vise jaw bolts require **80 N\u00b7m (59 ft\u00b7lb)** using an M12 grade 8.8 fastener, with no additional notes specified.\n\nFrom Section 4 \u2014 Torque Specifications:\n\n| Application | Fastener | Torque | Notes |\n|---|---|---|---|\n| CNC VF-4 vise jaw bolts | M12 grade 8.8 | 80 N\u00b7m (59 ft\u00b7lb) | \u2014 |\n\n| Application | Fastener | Torque | Notes |\n|---|---|---|---|\n| MPS-400 die clamp bolts | M20 grade 10.9 | 410 N\u00b7m (302 ft\u00b7lb) | Tighten in a star pattern; re-check after the first stroke |\n| MPS-400 bolster mounting | M24 grade 10.9 | 710 N\u00b7m (524 ft\u00b7lb) | \u2014 |\n| CNC VF-4 tool holder retention | Per drawbar spec | 1,200 lbf draw | Verify with drawbar gauge |\n| CNC VF-4 vise jaw bolts | M12 grade 8.8 | 80 N\u00b7m (59 ft\u00b7lb) | \u2014 |\n| Welding fixture clamp base | M16 grade 8.8 | 195 N\u00b7m (144 ft\u00b7lb) | Apply Loctite 243 (blue) |\n| Conveyor drive coupling | M10 grade 8.8 | 47 N\u00b7m (35 ft\u00b7lb) | \u2014 |",
+      "citations": [
+        {
+          "chunk_id": "MPM-MNT-002#section-4-torque-specifications#t3",
+          "source": "MAINTENANCE_MANUALS",
+          "doc_title": "EQUIPMENT MAINTENANCE MANUAL",
+          "doc_version": "5.4",
+          "section": "SECTION 4 \u2014 TORQUE SPECIFICATIONS",
+          "page": null,
+          "element_type": "TABLE",
+          "figure_ref": null,
+          "snippet": "| Application | Fastener | Torque | Notes |\n|---|---|---|---|\n| MPS-400 die clamp bolts | M20 grade 10.9 | 410 N\u00b7m (302 ft\u00b7lb) | Tighten in a star pattern; re-c"
+        }
+      ],
+      "turn_confidence": "HIGH",
+      "status": "ANSWERED",
+      "ts": "2026-06-23T22:53:20.456817Z"
+    },
+    {
+      "turn_id": "t2",
+      "question_text": "What is the first action for fault code 144 on the VF-4?",
+      "sub_questions": [
+        {
+          "id": "sq1",
+          "text": "What is the first action for fault code 144 on the CNC VF-4?",
+          "proposed_source": "MAINTENANCE_MANUALS",
+          "routed_source": "MAINTENANCE_MANUALS",
+          "retrieved": [
+            {
+              "chunk_id": "MPM-MNT-002#section-6-fault-code-quick-reference-cnc#t4",
+              "source": "MAINTENANCE_MANUALS",
+              "doc_title": "EQUIPMENT MAINTENANCE MANUAL",
+              "doc_version": "5.4",
+              "section": "SECTION 6 \u2014 FAULT CODE QUICK REFERENCE (CNC VF-4)",
+              "page": null,
+              "element_type": "TABLE",
+              "text": "SECTION 6 \u2014 FAULT CODE QUICK REFERENCE (CNC VF-4) \u2014 This fault code quick reference table for the CNC VF-4 lists error codes, their meanings, and recommended first actions for operators and technicians. It includes specific codes such as 102 (Servo overheat), 117 (Spindle overload), 144 (Way lube low), 159 (Low air pressure), 201 (Axis travel limit), and 9999 (Control battery low). The table provides technical specifications and instructions, such as verifying an 85 psi air supply and performing battery preventative maintenance.",
+              "table_markdown": "| Code | Meaning | First Action |\n|---|---|---|\n| 102 | Servo overheat | Check the enclosure cooling fan; allow to cool (O) |\n| 117 | Spindle overload | Reduce load; inspect the tool (O) |\n| 144 | Way lube low | Refill the reservoir (O) |\n| 159 | Low air pressure | Verify the 85 psi supply (O) |\n| 201 | Axis travel limit | Jog off the limit in handle mode (O) |\n| 9999 | Control battery low | Schedule the battery PM; do not power off until parameters are backed up (T) |",
+              "figure_ref": null,
+              "score": 0.7879093885421753
+            },
+            {
+              "chunk_id": "MPM-MNT-002#section-8-work-orders-and-escalation#p16",
+              "source": "MAINTENANCE_MANUALS",
+              "doc_title": "EQUIPMENT MAINTENANCE MANUAL",
+              "doc_version": "5.4",
+              "section": "SECTION 8 \u2014 WORK ORDERS AND ESCALATION",
+              "page": null,
+              "element_type": "PROSE",
+              "text": "When a fault is found, first attempt the operator-level corrective action in Section 5. If it cannot be resolved at that level, or the task is technician-level, the supervisor raises a CMMS work order recording the asset, the symptom, any fault code, and a priority.\n\nPriorities are assigned as follows. Priority 1 is a safety-critical fault or a full line stoppage and requires a response within 30 minutes. Priority 2 is a single station down and requires a response within two hours. Priority 3 is a machine degraded but still running and is addressed the same shift. Priority 4 is scheduled or preventive work.\n\n**WARNING:** Any safety-critical fault \u2014 a brake-monitor fault, a defeated guard, or a light-curtain failure \u2014 is automatically Priority 1, and the equipment is red-tagged out of service until a technician clears it. See MPM-EHS-001, Section 4.\n\n---",
+              "table_markdown": null,
+              "figure_ref": null,
+              "score": 0.6299048662185669
+            },
+            {
+              "chunk_id": "MPM-MNT-002#section-1-equipment-covered#p2",
+              "source": "MAINTENANCE_MANUALS",
+              "doc_title": "EQUIPMENT MAINTENANCE MANUAL",
+              "doc_version": "5.4",
+              "section": "SECTION 1 \u2014 EQUIPMENT COVERED",
+              "page": null,
+              "element_type": "PROSE",
+              "text": "This manual covers the MPS-400 stamping press on Press Line A, the four CNC VF-4 machining cells, the robotic welding cells WC-1 and WC-2, and the powder coat line consisting of the conveyor, spray booth, and cure oven. Asset identification numbers are stenciled on each machine and match the records in the computerized maintenance management system (CMMS).\n\n---",
+              "table_markdown": null,
+              "figure_ref": null,
+              "score": 0.5784369707107544
+            },
+            {
+              "chunk_id": "MPM-MNT-002#5-2-cnc-vf-4#p12",
+              "source": "MAINTENANCE_MANUALS",
+              "doc_title": "EQUIPMENT MAINTENANCE MANUAL",
+              "doc_version": "5.4",
+              "section": "5.2 CNC VF-4",
+              "page": null,
+              "element_type": "PROSE",
+              "text": "A poor surface finish usually means a dull tool, low coolant concentration, or spindle runout. Replace the tool and confirm coolant at 8 to 10 percent (O). If runout is suspected, raise a work order (T).\n\nAlarm 144, way lube low, means the way-lube reservoir is empty; refill with ISO VG 68 (O). Alarm 117, spindle overload, usually means the feed or depth of cut is too aggressive or the tool is binding; reduce the feed and inspect the tool (O).\n\nIf parts are drifting out of tolerance over a run, suspect thermal growth, axis backlash, or a loose fixture. Allow a proper warm-up cycle and check the fixture (O). If backlash is suspected, raise a work order for compensation (T).\n\nIf coolant is not reaching the cut, the nozzle is likely clogged or the pump pressure is low. Clear the nozzle (O); if the pump is weak, raise a work order (T).",
+              "table_markdown": null,
+              "figure_ref": null,
+              "score": 0.5825159549713135
+            },
+            {
+              "chunk_id": "MPM-MNT-002#foreword#p1",
+              "source": "MAINTENANCE_MANUALS",
+              "doc_title": "EQUIPMENT MAINTENANCE MANUAL",
+              "doc_version": "5.4",
+              "section": "FOREWORD",
+              "page": null,
+              "element_type": "PROSE",
+              "text": "This manual is the working reference for maintaining the primary production equipment at Plant 7. It is written to be used at the machine, by the people who keep it running: maintenance technicians performing scheduled work, operators performing first-line checks, and supervisors deciding whether a fault can be cleared on the line or requires a technician and a work order.\n\nThroughout this manual, tasks are marked **(O)** where they may be performed by a trained operator or supervisor, and **(T)** where they require a qualified maintenance technician. Respect that distinction. A task marked (T) is marked that way because doing it wrong creates a hazard or damages the machine.\n\n**WARNING:** Every maintenance task in this manual begins with the same prerequisite: apply and verify lockout/tagout in accordance with manual MPM-EHS-001, Section 3, before any guard is opened or any hand enters a danger zone. This instruction is not repeated at every step. Treat it as standing.\n\n---",
+              "table_markdown": null,
+              "figure_ref": null,
+              "score": 0.5847196578979492
+            }
+          ],
+          "retrieval_attempts": 1,
+          "judge_verdict": "PASS",
+          "judge_reasons": [
+            "The table chunk explicitly lists code 144 (Way lube low) with first action 'Refill the reservoir (O)'.",
+            "Prose chunk 5.2 confirms Alarm 144, way lube low, means refill with ISO VG 68 (O)."
+          ],
+          "judge_failure_mode": null,
+          "supporting_chunk_ids": [
+            "MPM-MNT-002#section-6-fault-code-quick-reference-cnc#t4",
+            "MPM-MNT-002#5-2-cnc-vf-4#p12"
+          ],
+          "confidence": "HIGH"
+        }
+      ],
+      "answer_text": "For fault code 144 (Way lube low) on the CNC VF-4, the first action is to **refill the reservoir** (specifically with ISO VG 68, per section 5.2).\n\nFrom the fault code quick reference table (Section 6):\n\n| Code | Meaning | First Action |\n|---|---|---|\n| 144 | Way lube low | Refill the reservoir (O) |\n\n| Code | Meaning | First Action |\n|---|---|---|\n| 102 | Servo overheat | Check the enclosure cooling fan; allow to cool (O) |\n| 117 | Spindle overload | Reduce load; inspect the tool (O) |\n| 144 | Way lube low | Refill the reservoir (O) |\n| 159 | Low air pressure | Verify the 85 psi supply (O) |\n| 201 | Axis travel limit | Jog off the limit in handle mode (O) |\n| 9999 | Control battery low | Schedule the battery PM; do not power off until parameters are backed up (T) |",
+      "citations": [
+        {
+          "chunk_id": "MPM-MNT-002#section-6-fault-code-quick-reference-cnc#t4",
+          "source": "MAINTENANCE_MANUALS",
+          "doc_title": "EQUIPMENT MAINTENANCE MANUAL",
+          "doc_version": "5.4",
+          "section": "SECTION 6 \u2014 FAULT CODE QUICK REFERENCE (CNC VF-4)",
+          "page": null,
+          "element_type": "TABLE",
+          "figure_ref": null,
+          "snippet": "| Code | Meaning | First Action |\n|---|---|---|\n| 102 | Servo overheat | Check the enclosure cooling fan; allow to cool (O) |\n| 117 | Spindle overload | Reduce "
+        },
+        {
+          "chunk_id": "MPM-MNT-002#5-2-cnc-vf-4#p12",
+          "source": "MAINTENANCE_MANUALS",
+          "doc_title": "EQUIPMENT MAINTENANCE MANUAL",
+          "doc_version": "5.4",
+          "section": "5.2 CNC VF-4",
+          "page": null,
+          "element_type": "PROSE",
+          "figure_ref": null,
+          "snippet": "A poor surface finish usually means a dull tool, low coolant concentration, or spindle runout. Replace the tool and confirm coolant at 8 to 10 percent (O). If r"
+        }
+      ],
+      "turn_confidence": "HIGH",
+      "status": "ANSWERED",
+      "ts": "2026-06-23T22:53:31.952462Z"
+    },
+    {
+      "turn_id": "t3",
+      "question_text": "What torque do the vise jaw bolts need, and what is the spindle warranty period?",
+      "sub_questions": [
+        {
+          "id": "sq1",
+          "text": "What is the required torque for the CNC VF-4 vise jaw bolts?",
+          "proposed_source": "MAINTENANCE_MANUALS",
+          "routed_source": "MAINTENANCE_MANUALS",
+          "retrieved": [
+            {
+              "chunk_id": "MPM-MNT-002#section-4-torque-specifications#t3",
+              "source": "MAINTENANCE_MANUALS",
+              "doc_title": "EQUIPMENT MAINTENANCE MANUAL",
+              "doc_version": "5.4",
+              "section": "SECTION 4 \u2014 TORQUE SPECIFICATIONS",
+              "page": null,
+              "element_type": "TABLE",
+              "text": "SECTION 4 \u2014 TORQUE SPECIFICATIONS \u2014 This table lists torque specifications for various manufacturing applications, including the MPS-400 die clamp and bolster mounting, CNC VF-4 tool holders and vise jaws, welding fixture clamps, and conveyor drive couplings. It details fastener types such as M10, M12, M16, M20, and M24 (grades 8.8 and 10.9) with corresponding values in Newton-meters (N\u00b7m), foot-pounds (ft\u00b7lb), and pounds-force (lbf). The data includes specific maintenance notes such as star pattern tightening, drawbar gauge verification, and the application of Loctite 243.",
+              "table_markdown": "| Application | Fastener | Torque | Notes |\n|---|---|---|---|\n| MPS-400 die clamp bolts | M20 grade 10.9 | 410 N\u00b7m (302 ft\u00b7lb) | Tighten in a star pattern; re-check after the first stroke |\n| MPS-400 bolster mounting | M24 grade 10.9 | 710 N\u00b7m (524 ft\u00b7lb) | \u2014 |\n| CNC VF-4 tool holder retention | Per drawbar spec | 1,200 lbf draw | Verify with drawbar gauge |\n| CNC VF-4 vise jaw bolts | M12 grade 8.8 | 80 N\u00b7m (59 ft\u00b7lb) | \u2014 |\n| Welding fixture clamp base | M16 grade 8.8 | 195 N\u00b7m (144 ft\u00b7lb) | Apply Loctite 243 (blue) |\n| Conveyor drive coupling | M10 grade 8.8 | 47 N\u00b7m (35 ft\u00b7lb) | \u2014 |",
+              "figure_ref": null,
+              "score": 0.728600025177002
+            },
+            {
+              "chunk_id": "MPM-MNT-002#section-6-fault-code-quick-reference-cnc#t4",
+              "source": "MAINTENANCE_MANUALS",
+              "doc_title": "EQUIPMENT MAINTENANCE MANUAL",
+              "doc_version": "5.4",
+              "section": "SECTION 6 \u2014 FAULT CODE QUICK REFERENCE (CNC VF-4)",
+              "page": null,
+              "element_type": "TABLE",
+              "text": "SECTION 6 \u2014 FAULT CODE QUICK REFERENCE (CNC VF-4) \u2014 This fault code quick reference table for the CNC VF-4 lists error codes, their meanings, and recommended first actions for operators and technicians. It includes specific codes such as 102 (Servo overheat), 117 (Spindle overload), 144 (Way lube low), 159 (Low air pressure), 201 (Axis travel limit), and 9999 (Control battery low). The table provides technical specifications and instructions, such as verifying an 85 psi air supply and performing battery preventative maintenance.",
+              "table_markdown": "| Code | Meaning | First Action |\n|---|---|---|\n| 102 | Servo overheat | Check the enclosure cooling fan; allow to cool (O) |\n| 117 | Spindle overload | Reduce load; inspect the tool (O) |\n| 144 | Way lube low | Refill the reservoir (O) |\n| 159 | Low air pressure | Verify the 85 psi supply (O) |\n| 201 | Axis travel limit | Jog off the limit in handle mode (O) |\n| 9999 | Control battery low | Schedule the battery PM; do not power off until parameters are backed up (T) |",
+              "figure_ref": null,
+              "score": 0.652787446975708
+            },
+            {
+              "chunk_id": "MPM-MNT-002#section-4-torque-specifications#p9",
+              "source": "MAINTENANCE_MANUALS",
+              "doc_title": "EQUIPMENT MAINTENANCE MANUAL",
+              "doc_version": "5.4",
+              "section": "SECTION 4 \u2014 TORQUE SPECIFICATIONS",
+              "page": null,
+              "element_type": "PROSE",
+              "text": "Torque values below are for dry threads unless noted. Always use a torque wrench with current calibration; calibration is verified quarterly and cross-referenced to the quality records in MPM-QC-003, Section 6.\n\n**CAUTION:** Never reuse a single-use locking fastener. Replace it. Where a thread-locking compound is specified, apply the specified grade \u2014 substituting a stronger grade can make later removal impossible without damage.",
+              "table_markdown": null,
+              "figure_ref": null,
+              "score": 0.6415290832519531
+            },
+            {
+              "chunk_id": "MPM-MNT-002#section-7-critical-spare-parts#t5",
+              "source": "MAINTENANCE_MANUALS",
+              "doc_title": "EQUIPMENT MAINTENANCE MANUAL",
+              "doc_version": "5.4",
+              "section": "SECTION 7 \u2014 CRITICAL SPARE PARTS",
+              "page": null,
+              "element_type": "TABLE",
+              "text": "SECTION 7 \u2014 CRITICAL SPARE PARTS \u2014 This table lists critical spare parts for manufacturing equipment including the MPS-400, CNC VF-4, WC-1/WC-2 welding cells, and the powder line. It details part descriptions such as hydraulic filter elements, way-lube cartridges, and torch nozzle kits alongside their required minimum stock levels and CMMS numbers like SP-VF4-LUBE-68 and SP-WC-TORCH-A. Specific components mentioned include light curtain pairs, spindle drawbar spring kits, wire feed drive rollers, and primary booth filters.",
+              "table_markdown": "| Part | Used On | Minimum Stock | CMMS Number |\n|---|---|---|---|\n| Hydraulic filter element | MPS-400 | 2 | SP-MPS-FLT-10 |\n| Light curtain transmitter/receiver pair | MPS-400 | 1 | SP-MPS-LC-04 |\n| Way-lube cartridge | CNC VF-4 | 6 | SP-VF4-LUBE-68 |\n| Spindle drawbar spring kit | CNC VF-4 | 1 | SP-VF4-DB-22 |\n| Torch nozzle / contact tip kit | WC-1/WC-2 | 12 | SP-WC-TORCH-A |\n| Wire feed drive roller | WC-1/WC-2 | 4 | SP-WC-ROLL-035 |\n| Booth filter, primary | Powder line | 8 | SP-PC-FLT-PRI |",
+              "figure_ref": null,
+              "score": 0.5759954452514648
+            },
+            {
+              "chunk_id": "MPM-MNT-002#section-3-lubrication#t2",
+              "source": "MAINTENANCE_MANUALS",
+              "doc_title": "EQUIPMENT MAINTENANCE MANUAL",
+              "doc_version": "5.4",
+              "section": "SECTION 3 \u2014 LUBRICATION",
+              "page": null,
+              "element_type": "TABLE",
+              "text": "SECTION 3 \u2014 LUBRICATION \u2014 This table details lubrication requirements for manufacturing equipment including the MPS-400, CNC VF-4, welding robots, and powder conveyors. It lists specific lubricants and specifications such as ISO VG 220, ISO VG 46, ISO VG 68, and NLGI 1 or 2 grease for components like ram gibs, main bearings, and axis gearboxes. Maintenance intervals are provided for each point, ranging from daily reservoir checks to annual oil replacements.",
+              "table_markdown": "| Equipment | Point | Lubricant | Specification | Interval |\n|---|---|---|---|---|\n| MPS-400 | Ram gibs / slides | Way oil | ISO VG 220 | Weekly |\n| MPS-400 | Main bearings | EP grease, lithium | NLGI 2 | Monthly |\n| MPS-400 | Hydraulic reservoir | AW hydraulic oil | ISO VG 46 | Top off daily; replace annually |\n| CNC VF-4 | Way surfaces | Way lube | ISO VG 68 | Auto-lube; check reservoir daily |\n| CNC VF-4 | Spindle | Sealed, no service | \u2014 | \u2014 |\n| Welding robots | Axis gearboxes | Robot reducer oil | Manufacturer-specified | Annually |\n| Powder conveyor | Chain | High-temp chain oil | NLGI 1, rated 400\u00b0F | Monthly |",
+              "figure_ref": null,
+              "score": 0.6365649700164795
+            }
+          ],
+          "retrieval_attempts": 1,
+          "judge_verdict": "PASS",
+          "judge_reasons": [
+            "The table chunk MPM-MNT-002#section-4-torque-specifications#t3 contains the exact row 'CNC VF-4 vise jaw bolts | M12 grade 8.8 | 80 N\u00b7m (59 ft\u00b7lb)', directly answering the torque value asked."
+          ],
+          "judge_failure_mode": null,
+          "supporting_chunk_ids": [
+            "MPM-MNT-002#section-4-torque-specifications#t3"
+          ],
+          "confidence": "MEDIUM"
+        },
+        {
+          "id": "sq2",
+          "text": "What is the spindle warranty period for the CNC VF-4?",
+          "proposed_source": "QUALITY_CONTROL",
+          "routed_source": "QUALITY_CONTROL",
+          "retrieved": [
+            {
+              "chunk_id": "MPM-QC-003#foreword#p1",
+              "source": "QUALITY_CONTROL",
+              "doc_title": "QUALITY CONTROL MANUAL",
+              "doc_version": "4.1",
+              "section": "FOREWORD",
+              "page": null,
+              "element_type": "PROSE",
+              "text": "This manual defines how quality is measured, judged, and protected at Plant 7. It is written for the people who make the calls on the floor: inspectors performing measurements, operators reacting to a control chart, and supervisors deciding whether a part is good, whether a lot is held, and when to escalate.\n\nThe reference product used throughout this manual is the bracket assembly, part number MPM-4471 \u2014 a part that is stamped, welded, and powder-coated, and therefore touches every process in the plant. Where a procedure is illustrated with MPM-4471 numbers, the same procedure applies to other parts using their own drawings and control plans.\n\nThe central principle of this manual is simple: a part is conforming only when it meets every requirement of its drawing and control plan. \"Close enough\" is not a quality standard. When a part does not conform, this manual tells you what to do with it and who decides.\n\n---",
+              "table_markdown": null,
+              "figure_ref": null,
+              "score": 0.5659947395324707
+            },
+            {
+              "chunk_id": "MPM-QC-003#preamble#t1",
+              "source": "QUALITY_CONTROL",
+              "doc_title": "QUALITY CONTROL MANUAL",
+              "doc_version": "4.1",
+              "section": "Preamble",
+              "page": null,
+              "element_type": "TABLE",
+              "text": "Preamble \u2014 This table provides administrative metadata for document MPM-QC-003, including revision 4.1 and an effective date of January 20, 2026. It identifies the Quality Department as the document owner and lists conformance standards for IATF 16949 and ISO 9001. The document is classified as controlled and requires approval from the Quality Manager and Plant Director.",
+              "table_markdown": "| | |\n|---|---|\n| Document Number | MPM-QC-003 |\n| Revision | 4.1 |\n| Effective Date | January 20, 2026 |\n| Document Owner | Quality Department |\n| Approved By | Quality Manager; Plant Director |\n| Conformance | Aligned to IATF 16949 / ISO 9001 |\n| Review Cycle | Annual |\n| Classification | Controlled \u2014 printed copies are uncontrolled |",
+              "figure_ref": null,
+              "score": 0.5981876850128174
+            },
+            {
+              "chunk_id": "MPM-QC-003#section-7-nonconforming-product#p10",
+              "source": "QUALITY_CONTROL",
+              "doc_title": "QUALITY CONTROL MANUAL",
+              "doc_version": "4.1",
+              "section": "SECTION 7 \u2014 NONCONFORMING PRODUCT",
+              "page": null,
+              "element_type": "PROSE",
+              "text": "When nonconforming product is found, it is tagged with a red HOLD tag and physically moved to the quarantine area so that it cannot be used by mistake. The supervisor then opens a Nonconformance Report in the QMS.\n\nThe disposition of nonconforming product \u2014 the decision about what happens to it \u2014 is made by the Material Review Board, which brings together Quality, Engineering, and Production. The available dispositions are use-as-is (accept the deviation as it stands), rework (bring the part back into specification by a defined process), repair (bring it to a usable but not fully conforming condition), scrap (the part cannot be used and is destroyed or recycled), and return to supplier (for an incoming-material defect).",
+              "table_markdown": null,
+              "figure_ref": null,
+              "score": 0.5458071231842041
+            },
+            {
+              "chunk_id": "MPM-QC-003#section-10-escalation-guide-for-supervis#p14",
+              "source": "QUALITY_CONTROL",
+              "doc_title": "QUALITY CONTROL MANUAL",
+              "doc_version": "4.1",
+              "section": "SECTION 10 \u2014 ESCALATION GUIDE FOR SUPERVISORS",
+              "page": null,
+              "element_type": "PROSE",
+              "text": "This guide summarizes the actions a floor supervisor takes for the most common quality events.\n\nWhen a critical defect is found, stop the process, quarantine the affected product, place the lot under 100 percent containment, open a Nonconformance Report, and notify Quality immediately. When an out-of-control signal appears on a control chart, stop, quarantine all product made since the last good check, and notify Quality. When a gauge appears to be reading wrong or out of calibration, remove the gauge from service, flag the measurements taken with it, and notify Quality.\n\nWhen coating or weld defects begin trending, check the linked process parameters in MPM-MNT-002 before scrapping parts, because the cause is often in the process rather than the part, and raise a maintenance work order if so. And whenever a disposition beyond scrap is being considered \u2014 use-as-is, rework, or repair \u2014 escalate to the Material Review Board rather than deciding on the floor.\n\n---\n\n*End of Document MPM-QC-003, Revision 4.1. Verify the current revision against the QMS before use. Printed copies are uncontrolled.*",
+              "table_markdown": null,
+              "figure_ref": null,
+              "score": 0.5887710452079773
+            },
+            {
+              "chunk_id": "MPM-QC-003#section-4-defect-classification#p6",
+              "source": "QUALITY_CONTROL",
+              "doc_title": "QUALITY CONTROL MANUAL",
+              "doc_version": "4.1",
+              "section": "SECTION 4 \u2014 DEFECT CLASSIFICATION",
+              "page": null,
+              "element_type": "PROSE",
+              "text": "Every defect is classified by severity, because severity determines both the sampling plan and what may be done with the part.\n\nA **critical defect** is one that affects safety, violates a regulatory requirement, or causes the part to lose its function. For part MPM-4471 this includes any crack in the weld or base metal, lack of weld penetration or a missing weld, the wrong material or wrong part entirely, a mounting hole that is missing, mislocated beyond its true position, or undersized below 10.50 mm so that it will not accept its fastener, and any sharp burr that presents a laceration hazard on a handled edge. Critical defects are never shipped, are never reworked back into specification without engineering approval, and are always quarantined.\n\nA **major defect** is one likely to cause a failure in service or a customer rejection, but which is not immediately a safety hazard. This includes any functional dimension out of tolerance \u2014 length, flange angle, or thickness \u2014 a weld leg under 5.0 mm or with excessive porosity, coating thickness outside the 60 to 110 \u00b5m range, and deformation that affects fit.\n\nA **minor defect** is cosmetic and unlikely to affect function: a light surface scratch within cosmetic limits, minor coating orange-peel or gloss variation, or a small handling mark outside any functional or sealing area.\n\n---",
+              "table_markdown": null,
+              "figure_ref": null,
+              "score": 0.5562320351600647
+            }
+          ],
+          "retrieval_attempts": 2,
+          "judge_verdict": "FAIL",
+          "judge_reasons": [
+            "The question asks about the spindle warranty period for a CNC VF-4 machine, but all retrieved chunks pertain to a quality control manual (MPM-QC-003) covering defect classification, nonconforming product, and escalation procedures.",
+            "No chunk mentions CNC VF-4, spindle, or warranty information."
+          ],
+          "judge_failure_mode": "IRRELEVANT",
+          "supporting_chunk_ids": [],
+          "confidence": "LOW"
+        }
+      ],
+      "answer_text": "The required torque for the CNC VF-4 vise jaw bolts is **80 N\u00b7m (59 ft\u00b7lb)** using M12 grade 8.8 fasteners (Section 4 \u2014 Torque Specifications):\n\n| Application | Fastener | Torque | Notes |\n|---|---|---|---|\n| CNC VF-4 vise jaw bolts | M12 grade 8.8 | 80 N\u00b7m (59 ft\u00b7lb) | \u2014 |\n\n| Application | Fastener | Torque | Notes |\n|---|---|---|---|\n| MPS-400 die clamp bolts | M20 grade 10.9 | 410 N\u00b7m (302 ft\u00b7lb) | Tighten in a star pattern; re-check after the first stroke |\n| MPS-400 bolster mounting | M24 grade 10.9 | 710 N\u00b7m (524 ft\u00b7lb) | \u2014 |\n| CNC VF-4 tool holder retention | Per drawbar spec | 1,200 lbf draw | Verify with drawbar gauge |\n| CNC VF-4 vise jaw bolts | M12 grade 8.8 | 80 N\u00b7m (59 ft\u00b7lb) | \u2014 |\n| Welding fixture clamp base | M16 grade 8.8 | 195 N\u00b7m (144 ft\u00b7lb) | Apply Loctite 243 (blue) |\n| Conveyor drive coupling | M10 grade 8.8 | 47 N\u00b7m (35 ft\u00b7lb) | \u2014 |\n\n\u26a0\ufe0e Evidence for \"What is the required torque for the CNC VF-4 vise jaw bolts?\" is partial \u2014 verify against the cited section.\n\n\u26a0\ufe0e Regarding \"What is the spindle warranty period for the CNC VF-4?\": I don't have grounded documentation to answer this \u2014 please consult the quality-control standards.",
+      "citations": [
+        {
+          "chunk_id": "MPM-MNT-002#section-4-torque-specifications#t3",
+          "source": "MAINTENANCE_MANUALS",
+          "doc_title": "EQUIPMENT MAINTENANCE MANUAL",
+          "doc_version": "5.4",
+          "section": "SECTION 4 \u2014 TORQUE SPECIFICATIONS",
+          "page": null,
+          "element_type": "TABLE",
+          "figure_ref": null,
+          "snippet": "| Application | Fastener | Torque | Notes |\n|---|---|---|---|\n| MPS-400 die clamp bolts | M20 grade 10.9 | 410 N\u00b7m (302 ft\u00b7lb) | Tighten in a star pattern; re-c"
+        }
+      ],
+      "turn_confidence": "LOW",
+      "status": "ANSWERED_PARTIAL",
+      "ts": "2026-06-23T22:53:38.253190Z"
+    },
+    {
+      "turn_id": "t4",
+      "question_text": "What is the company's parental leave policy?",
+      "sub_questions": [
+        {
+          "id": "sq1",
+          "text": "What is the company's parental leave policy?",
+          "proposed_source": "UNKNOWN",
+          "routed_source": "UNKNOWN",
+          "retrieved": [],
+          "retrieval_attempts": 0,
+          "judge_verdict": null,
+          "judge_reasons": [],
+          "judge_failure_mode": null,
+          "supporting_chunk_ids": [],
+          "confidence": "LOW"
+        }
+      ],
+      "answer_text": "I was unable to answer your question: the system could not identify a relevant documentation source for any part of your query. Please consult your subject-matter expert directly.",
+      "citations": [],
+      "turn_confidence": "LOW",
+      "status": "ABSTAINED",
+      "ts": "2026-06-23T22:53:54.443005Z"
+    }
+  ],
+  "current_turn": {
+    "turn_id": "t4",
+    "question_text": "What is the company's parental leave policy?",
+    "sub_questions": [
+      {
+        "id": "sq1",
+        "text": "What is the company's parental leave policy?",
+        "proposed_source": "UNKNOWN",
+        "routed_source": "UNKNOWN",
+        "retrieved": [],
+        "retrieval_attempts": 0,
+        "judge_verdict": null,
+        "judge_reasons": [],
+        "judge_failure_mode": null,
+        "supporting_chunk_ids": [],
+        "confidence": "LOW"
+      }
+    ],
+    "answer_text": "I was unable to answer your question: the system could not identify a relevant documentation source for any part of your query. Please consult your subject-matter expert directly.",
+    "citations": [],
+    "turn_confidence": "LOW",
+    "status": "ABSTAINED",
+    "ts": "2026-06-23T22:53:54.443005Z"
+  },
+  "knowledge_gaps": [
+    {
+      "ts": "2026-06-23T22:53:52.325776Z",
+      "turn_id": "t3",
+      "sub_question_id": "sq2",
+      "question_text": "What is the spindle warranty period for the CNC VF-4?",
+      "attempted_source": "QUALITY_CONTROL",
+      "reason": "JUDGE_FAIL_AT_CAP",
+      "top_score": 0.5981876850128174
+    },
+    {
+      "ts": "2026-06-23T22:53:55.725737Z",
+      "turn_id": "t4",
+      "sub_question_id": "sq1",
+      "question_text": "What is the company's parental leave policy?",
+      "attempted_source": "UNKNOWN",
+      "reason": "NO_SOURCE_MATCHED",
+      "top_score": 0.0
+    }
+  ],
+  "config": {
+    "top_k": 5,
+    "max_retrieval_loops": 2,
+    "high_score_floor": 0.75,
+    "min_score_floor": 0.45
+  },
+  "audit_log": [
+    {
+      "ts": "2026-06-23T22:53:20.458798Z",
+      "actor": "ingest_question",
+      "action": "open_turn",
+      "before": {},
+      "after": {
+        "turn_id": "t1",
+        "status": "RECEIVED"
+      },
+      "detail": "turn opened (48 chars)"
+    },
+    {
+      "ts": "2026-06-23T22:53:26.808736Z",
+      "actor": "decompose_question",
+      "action": "decompose_question",
+      "before": {
+        "sub_question_count": 0,
+        "status": "RECEIVED"
+      },
+      "after": {
+        "sub_question_count": 1,
+        "sub_questions": [
+          {
+            "id": "sq1",
+            "text": "What is the required torque specification for the CNC VF-4 vise jaw bolts?",
+            "proposed_source": "MAINTENANCE_MANUALS"
+          }
+        ],
+        "status": "DECOMPOSED"
+      },
+      "detail": "decomposed into 1 sub-question(s): ['MAINTENANCE_MANUALS']"
+    },
+    {
+      "ts": "2026-06-23T22:53:26.812944Z",
+      "actor": "route_sources",
+      "action": "route_sources",
+      "before": {
+        "sub_questions": [
+          "sq1"
+        ]
+      },
+      "after": {
+        "routed": {
+          "MAINTENANCE_MANUALS": 1
+        },
+        "unknown_count": 0,
+        "status": "ROUTED"
+      },
+      "detail": "routed 1 sub-q(s) to known sources {'MAINTENANCE_MANUALS': 1}; 0 UNKNOWN (skipped from retrieval)"
+    },
+    {
+      "ts": "2026-06-23T22:53:26.830714Z",
+      "actor": "retrieve_chunks",
+      "action": "retrieve_chunks",
+      "before": {
+        "turn_status": "RETRIEVED"
+      },
+      "after": {
+        "turn_status": "RETRIEVED",
+        "attempted": [
+          "sq1"
+        ]
+      },
+      "detail": "sq=sq1 hits=5 top_score=0.763 (attempt 1/2)"
+    },
+    {
+      "ts": "2026-06-23T22:53:29.601762Z",
+      "actor": "judge_grounding",
+      "action": "judge_grounding",
+      "before": {
+        "status": "RETRIEVED"
+      },
+      "after": {
+        "status": "JUDGED",
+        "verdicts": {
+          "sq1": "PASS(llm)"
+        }
+      },
+      "detail": "verdicts: {'sq1': 'PASS(llm)'}; tokens_in=3310, tokens_out=162"
+    },
+    {
+      "ts": "2026-06-23T22:53:29.605619Z",
+      "actor": "assess_confidence",
+      "action": "assess_confidence",
+      "before": {},
+      "after": {
+        "turn_confidence": "HIGH",
+        "levels": {
+          "HIGH": 1,
+          "MEDIUM": 0,
+          "LOW": 0
+        }
+      },
+      "detail": "turn_confidence=HIGH {'HIGH': 1, 'MEDIUM': 0, 'LOW': 0}"
+    },
+    {
+      "ts": "2026-06-23T22:53:31.948366Z",
+      "actor": "assemble_answer",
+      "action": "assemble_answer_real",
+      "before": {
+        "status": "ASSESSED",
+        "answer_text": null
+      },
+      "after": {
+        "status": "ASSEMBLED",
+        "assembled_sq_ids": [
+          "sq1"
+        ],
+        "citation_count": 1
+      },
+      "detail": "assembled 1 sub-question(s), 1 citation(s); tokens in=767 out=125"
+    },
+    {
+      "ts": "2026-06-23T22:53:31.949725Z",
+      "actor": "deliver_answer",
+      "action": "deliver_answer",
+      "before": {},
+      "after": {
+        "status": "ANSWERED",
+        "grounded": 1,
+        "low": 0
+      },
+      "detail": "ANSWERED: 1 grounded, 0 low"
+    },
+    {
+      "ts": "2026-06-23T22:53:31.954140Z",
+      "actor": "ingest_question",
+      "action": "open_turn",
+      "before": {},
+      "after": {
+        "turn_id": "t2",
+        "status": "RECEIVED"
+      },
+      "detail": "turn opened (56 chars)"
+    },
+    {
+      "ts": "2026-06-23T22:53:32.996121Z",
+      "actor": "decompose_question",
+      "action": "decompose_question",
+      "before": {
+        "sub_question_count": 0,
+        "status": "RECEIVED"
+      },
+      "after": {
+        "sub_question_count": 1,
+        "sub_questions": [
+          {
+            "id": "sq1",
+            "text": "What is the first action for fault code 144 on the CNC VF-4?",
+            "proposed_source": "MAINTENANCE_MANUALS"
+          }
+        ],
+        "status": "DECOMPOSED"
+      },
+      "detail": "decomposed into 1 sub-question(s): ['MAINTENANCE_MANUALS']"
+    },
+    {
+      "ts": "2026-06-23T22:53:32.998118Z",
+      "actor": "route_sources",
+      "action": "route_sources",
+      "before": {
+        "sub_questions": [
+          "sq1"
+        ]
+      },
+      "after": {
+        "routed": {
+          "MAINTENANCE_MANUALS": 1
+        },
+        "unknown_count": 0,
+        "status": "ROUTED"
+      },
+      "detail": "routed 1 sub-q(s) to known sources {'MAINTENANCE_MANUALS': 1}; 0 UNKNOWN (skipped from retrieval)"
+    },
+    {
+      "ts": "2026-06-23T22:53:33.095754Z",
+      "actor": "retrieve_chunks",
+      "action": "retrieve_chunks",
+      "before": {
+        "turn_status": "RETRIEVED"
+      },
+      "after": {
+        "turn_status": "RETRIEVED",
+        "attempted": [
+          "sq1"
+        ]
+      },
+      "detail": "sq=sq1 hits=5 top_score=0.788 (attempt 1/2)"
+    },
+    {
+      "ts": "2026-06-23T22:53:36.160778Z",
+      "actor": "judge_grounding",
+      "action": "judge_grounding",
+      "before": {
+        "status": "RETRIEVED"
+      },
+      "after": {
+        "status": "JUDGED",
+        "verdicts": {
+          "sq1": "PASS(llm)"
+        }
+      },
+      "detail": "verdicts: {'sq1': 'PASS(llm)'}; tokens_in=2583, tokens_out=184"
+    },
+    {
+      "ts": "2026-06-23T22:53:36.166232Z",
+      "actor": "assess_confidence",
+      "action": "assess_confidence",
+      "before": {},
+      "after": {
+        "turn_confidence": "HIGH",
+        "levels": {
+          "HIGH": 1,
+          "MEDIUM": 0,
+          "LOW": 0
+        }
+      },
+      "detail": "turn_confidence=HIGH {'HIGH': 1, 'MEDIUM': 0, 'LOW': 0}"
+    },
+    {
+      "ts": "2026-06-23T22:53:38.242537Z",
+      "actor": "assemble_answer",
+      "action": "assemble_answer_real",
+      "before": {
+        "status": "ASSESSED",
+        "answer_text": null
+      },
+      "after": {
+        "status": "ASSEMBLED",
+        "assembled_sq_ids": [
+          "sq1"
+        ],
+        "citation_count": 2
+      },
+      "detail": "assembled 1 sub-question(s), 2 citation(s); tokens in=968 out=99"
+    },
+    {
+      "ts": "2026-06-23T22:53:38.248058Z",
+      "actor": "deliver_answer",
+      "action": "deliver_answer",
+      "before": {},
+      "after": {
+        "status": "ANSWERED",
+        "grounded": 1,
+        "low": 0
+      },
+      "detail": "ANSWERED: 1 grounded, 0 low"
+    },
+    {
+      "ts": "2026-06-23T22:53:38.257258Z",
+      "actor": "ingest_question",
+      "action": "open_turn",
+      "before": {},
+      "after": {
+        "turn_id": "t3",
+        "status": "RECEIVED"
+      },
+      "detail": "turn opened (80 chars)"
+    },
+    {
+      "ts": "2026-06-23T22:53:45.518614Z",
+      "actor": "decompose_question",
+      "action": "decompose_question",
+      "before": {
+        "sub_question_count": 0,
+        "status": "RECEIVED"
+      },
+      "after": {
+        "sub_question_count": 2,
+        "sub_questions": [
+          {
+            "id": "sq1",
+            "text": "What is the required torque for the CNC VF-4 vise jaw bolts?",
+            "proposed_source": "MAINTENANCE_MANUALS"
+          },
+          {
+            "id": "sq2",
+            "text": "What is the spindle warranty period for the CNC VF-4?",
+            "proposed_source": "QUALITY_CONTROL"
+          }
+        ],
+        "status": "DECOMPOSED"
+      },
+      "detail": "decomposed into 2 sub-question(s): ['MAINTENANCE_MANUALS', 'QUALITY_CONTROL']"
+    },
+    {
+      "ts": "2026-06-23T22:53:45.524352Z",
+      "actor": "route_sources",
+      "action": "route_sources",
+      "before": {
+        "sub_questions": [
+          "sq1",
+          "sq2"
+        ]
+      },
+      "after": {
+        "routed": {
+          "MAINTENANCE_MANUALS": 1,
+          "QUALITY_CONTROL": 1
+        },
+        "unknown_count": 0,
+        "status": "ROUTED"
+      },
+      "detail": "routed 2 sub-q(s) to known sources {'MAINTENANCE_MANUALS': 1, 'QUALITY_CONTROL': 1}; 0 UNKNOWN (skipped from retrieval)"
+    },
+    {
+      "ts": "2026-06-23T22:53:45.554198Z",
+      "actor": "retrieve_chunks",
+      "action": "retrieve_chunks",
+      "before": {
+        "turn_status": "RETRIEVED"
+      },
+      "after": {
+        "turn_status": "RETRIEVED",
+        "attempted": [
+          "sq1",
+          "sq2"
+        ]
+      },
+      "detail": "sq=sq1 hits=5 top_score=0.729 (attempt 1/2) | sq=sq2 hits=5 top_score=0.598 (attempt 1/2)"
+    },
+    {
+      "ts": "2026-06-23T22:53:52.311071Z",
+      "actor": "judge_grounding",
+      "action": "judge_grounding",
+      "before": {
+        "status": "RETRIEVED"
+      },
+      "after": {
+        "status": "JUDGED",
+        "verdicts": {
+          "sq1": "PASS(llm)",
+          "sq2": "FAIL(llm)"
+        }
+      },
+      "detail": "verdicts: {'sq1': 'PASS(llm)', 'sq2': 'FAIL(llm)'}; tokens_in=5974, tokens_out=313"
+    },
+    {
+      "ts": "2026-06-23T22:53:52.320068Z",
+      "actor": "retrieve_chunks",
+      "action": "retrieve_chunks",
+      "before": {
+        "turn_status": "RETRIEVED"
+      },
+      "after": {
+        "turn_status": "RETRIEVED",
+        "attempted": [
+          "sq2"
+        ]
+      },
+      "detail": "sq=sq2 hits=5 top_score=0.598 (attempt 2/2) | skipped PASS (already grounded): ['sq1'] | skipped AT_CAP: ['sq2']"
+    },
+    {
+      "ts": "2026-06-23T22:53:52.324048Z",
+      "actor": "judge_grounding",
+      "action": "judge_grounding",
+      "before": {
+        "status": "RETRIEVED"
+      },
+      "after": {
+        "status": "JUDGED",
+        "verdicts": {
+          "sq1": "PASS(forced)",
+          "sq2": "FAIL(forced)"
+        }
+      },
+      "detail": "verdicts: {'sq1': 'PASS(forced)', 'sq2': 'FAIL(forced)'}; tokens_in=0, tokens_out=0"
+    },
+    {
+      "ts": "2026-06-23T22:53:52.328668Z",
+      "actor": "assess_confidence",
+      "action": "assess_confidence",
+      "before": {},
+      "after": {
+        "turn_confidence": "LOW",
+        "levels": {
+          "HIGH": 0,
+          "MEDIUM": 1,
+          "LOW": 1
+        }
+      },
+      "detail": "turn_confidence=LOW {'HIGH': 0, 'MEDIUM': 1, 'LOW': 1}"
+    },
+    {
+      "ts": "2026-06-23T22:53:54.430525Z",
+      "actor": "assemble_answer",
+      "action": "assemble_answer_real",
+      "before": {
+        "status": "ASSESSED",
+        "answer_text": null
+      },
+      "after": {
+        "status": "ASSEMBLED",
+        "assembled_sq_ids": [
+          "sq1"
+        ],
+        "citation_count": 1
+      },
+      "detail": "assembled 1 sub-question(s), 1 citation(s); tokens in=766 out=121"
+    },
+    {
+      "ts": "2026-06-23T22:53:54.434462Z",
+      "actor": "deliver_answer",
+      "action": "deliver_answer",
+      "before": {},
+      "after": {
+        "status": "ANSWERED_PARTIAL",
+        "grounded": 1,
+        "low": 1
+      },
+      "detail": "ANSWERED_PARTIAL: 1 grounded, 1 low"
+    },
+    {
+      "ts": "2026-06-23T22:53:54.448588Z",
+      "actor": "ingest_question",
+      "action": "open_turn",
+      "before": {},
+      "after": {
+        "turn_id": "t4",
+        "status": "RECEIVED"
+      },
+      "detail": "turn opened (44 chars)"
+    },
+    {
+      "ts": "2026-06-23T22:53:55.720090Z",
+      "actor": "decompose_question",
+      "action": "decompose_question",
+      "before": {
+        "sub_question_count": 0,
+        "status": "RECEIVED"
+      },
+      "after": {
+        "sub_question_count": 1,
+        "sub_questions": [
+          {
+            "id": "sq1",
+            "text": "What is the company's parental leave policy?",
+            "proposed_source": "UNKNOWN"
+          }
+        ],
+        "status": "DECOMPOSED"
+      },
+      "detail": "decomposed into 1 sub-question(s): ['UNKNOWN']"
+    },
+    {
+      "ts": "2026-06-23T22:53:55.723153Z",
+      "actor": "route_sources",
+      "action": "route_sources",
+      "before": {
+        "sub_questions": [
+          "sq1"
+        ]
+      },
+      "after": {
+        "routed": {},
+        "unknown_count": 1,
+        "status": "ROUTED"
+      },
+      "detail": "routed 0 sub-q(s) to known sources {}; 1 UNKNOWN (skipped from retrieval)"
+    },
+    {
+      "ts": "2026-06-23T22:53:55.726228Z",
+      "actor": "assess_confidence",
+      "action": "assess_confidence",
+      "before": {},
+      "after": {
+        "turn_confidence": "LOW",
+        "levels": {
+          "HIGH": 0,
+          "MEDIUM": 0,
+          "LOW": 1
+        }
+      },
+      "detail": "turn_confidence=LOW {'HIGH': 0, 'MEDIUM': 0, 'LOW': 1}"
+    },
+    {
+      "ts": "2026-06-23T22:53:55.727106Z",
+      "actor": "abstain",
+      "action": "abstain_turn",
+      "before": {
+        "status": "ABSTAINED",
+        "answer_text": null
+      },
+      "after": {
+        "status": "ABSTAINED",
+        "turn_confidence": "LOW",
+        "attempted_sources": [
+          "UNKNOWN"
+        ]
+      },
+      "detail": "abstained on turn t4; attempted_sources=[UNKNOWN]"
+    }
+  ],
+  "events": [
+    {
+      "thread_id": "smoke-1",
+      "node": "ingest_question",
+      "ts": "2026-06-23T22:53:20.458789Z",
+      "status": "RECEIVED",
+      "model": null,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "latency_ms": 0.00941698090173304,
+      "retries": 0,
+      "cost_usd": 0.0,
+      "summary": "turn opened (48 chars)",
+      "state_delta": {
+        "status": "RECEIVED"
+      },
+      "error": null
+    },
+    {
+      "thread_id": "smoke-1",
+      "node": "decompose_question",
+      "ts": "2026-06-23T22:53:26.808712Z",
+      "status": "DECOMPOSED",
+      "model": "google/gemini-3-flash-preview",
+      "tokens_in": 182,
+      "tokens_out": 35,
+      "latency_ms": 6349.3056249863,
+      "retries": 0,
+      "cost_usd": 0.000196,
+      "summary": "decomposed into 1 sub-question(s): ['MAINTENANCE_MANUALS']",
+      "state_delta": {
+        "status": "DECOMPOSED",
+        "sub_questions_created": 1,
+        "sources": [
+          "MAINTENANCE_MANUALS"
+        ]
+      },
+      "error": null
+    },
+    {
+      "thread_id": "smoke-1",
+      "node": "route_sources",
+      "ts": "2026-06-23T22:53:26.812936Z",
+      "status": "ROUTED",
+      "model": null,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "latency_ms": 0.03508297959342599,
+      "retries": 0,
+      "cost_usd": 0.0,
+      "summary": "routed 1 sub-q(s) to known sources {'MAINTENANCE_MANUALS': 1}; 0 UNKNOWN (skipped from retrieval)",
+      "state_delta": {
+        "routed": {
+          "MAINTENANCE_MANUALS": 1
+        },
+        "unknown_count": 0,
+        "status": "ROUTED"
+      },
+      "error": null
+    },
+    {
+      "thread_id": "smoke-1",
+      "node": "retrieve_chunks",
+      "ts": "2026-06-23T22:53:26.830706Z",
+      "status": "RETRIEVED",
+      "model": null,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "latency_ms": 16.65220901486464,
+      "retries": 0,
+      "cost_usd": 0.0,
+      "summary": "sq=sq1 hits=5 top_score=0.763 (attempt 1/2)",
+      "state_delta": {
+        "status": "RETRIEVED",
+        "attempted": [
+          "sq1"
+        ],
+        "skipped_unknown": []
+      },
+      "error": null
+    },
+    {
+      "thread_id": "smoke-1",
+      "node": "judge_grounding",
+      "ts": "2026-06-23T22:53:29.601725Z",
+      "status": "JUDGED",
+      "model": "anthropic/claude-opus-4.8",
+      "tokens_in": 3310,
+      "tokens_out": 162,
+      "latency_ms": 2769.7549580188934,
+      "retries": 0,
+      "cost_usd": 0.0206,
+      "summary": "verdicts: {'sq1': 'PASS(llm)'}; tokens_in=3310, tokens_out=162",
+      "state_delta": {
+        "status": "JUDGED",
+        "verdicts": {
+          "sq1": "PASS(llm)"
+        }
+      },
+      "error": null
+    },
+    {
+      "thread_id": "smoke-1",
+      "node": "assess_confidence",
+      "ts": "2026-06-23T22:53:29.605607Z",
+      "status": "ASSESSED",
+      "model": null,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "latency_ms": 0.1158749801106751,
+      "retries": 0,
+      "cost_usd": 0.0,
+      "summary": "turn_confidence=HIGH {'HIGH': 1, 'MEDIUM': 0, 'LOW': 0}",
+      "state_delta": {
+        "turn_confidence": "HIGH"
+      },
+      "error": null
+    },
+    {
+      "thread_id": "smoke-1",
+      "node": "assemble_answer",
+      "ts": "2026-06-23T22:53:31.948355Z",
+      "status": "ASSEMBLED",
+      "model": "anthropic/claude-sonnet-4.6",
+      "tokens_in": 767,
+      "tokens_out": 125,
+      "latency_ms": 2339.145333011402,
+      "retries": 0,
+      "cost_usd": 0.004176,
+      "summary": "assembled 1 sub-question(s), 1 citation(s); tokens in=767 out=125",
+      "state_delta": {
+        "status": "ASSEMBLED",
+        "assembled_sq_ids": [
+          "sq1"
+        ],
+        "citation_count": 1
+      },
+      "error": null
+    },
+    {
+      "thread_id": "smoke-1",
+      "node": "deliver_answer",
+      "ts": "2026-06-23T22:53:31.949719Z",
+      "status": "ANSWERED",
+      "model": null,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "latency_ms": 0.0262079993262887,
+      "retries": 0,
+      "cost_usd": 0.0,
+      "summary": "ANSWERED: 1 grounded, 0 low",
+      "state_delta": {
+        "status": "ANSWERED"
+      },
+      "error": null
+    },
+    {
+      "thread_id": "smoke-1",
+      "node": "ingest_question",
+      "ts": "2026-06-23T22:53:31.954135Z",
+      "status": "RECEIVED",
+      "model": null,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "latency_ms": 0.007875001756474376,
+      "retries": 0,
+      "cost_usd": 0.0,
+      "summary": "turn opened (56 chars)",
+      "state_delta": {
+        "status": "RECEIVED"
+      },
+      "error": null
+    },
+    {
+      "thread_id": "smoke-1",
+      "node": "decompose_question",
+      "ts": "2026-06-23T22:53:32.996106Z",
+      "status": "DECOMPOSED",
+      "model": "google/gemini-3-flash-preview",
+      "tokens_in": 574,
+      "tokens_out": 38,
+      "latency_ms": 1040.8418329898268,
+      "retries": 0,
+      "cost_usd": 0.000401,
+      "summary": "decomposed into 1 sub-question(s): ['MAINTENANCE_MANUALS']",
+      "state_delta": {
+        "status": "DECOMPOSED",
+        "sub_questions_created": 1,
+        "sources": [
+          "MAINTENANCE_MANUALS"
+        ]
+      },
+      "error": null
+    },
+    {
+      "thread_id": "smoke-1",
+      "node": "route_sources",
+      "ts": "2026-06-23T22:53:32.998109Z",
+      "status": "ROUTED",
+      "model": null,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "latency_ms": 0.02241699257865548,
+      "retries": 0,
+      "cost_usd": 0.0,
+      "summary": "routed 1 sub-q(s) to known sources {'MAINTENANCE_MANUALS': 1}; 0 UNKNOWN (skipped from retrieval)",
+      "state_delta": {
+        "routed": {
+          "MAINTENANCE_MANUALS": 1
+        },
+        "unknown_count": 0,
+        "status": "ROUTED"
+      },
+      "error": null
+    },
+    {
+      "thread_id": "smoke-1",
+      "node": "retrieve_chunks",
+      "ts": "2026-06-23T22:53:33.095747Z",
+      "status": "RETRIEVED",
+      "model": null,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "latency_ms": 95.00804200069979,
+      "retries": 0,
+      "cost_usd": 0.0,
+      "summary": "sq=sq1 hits=5 top_score=0.788 (attempt 1/2)",
+      "state_delta": {
+        "status": "RETRIEVED",
+        "attempted": [
+          "sq1"
+        ],
+        "skipped_unknown": []
+      },
+      "error": null
+    },
+    {
+      "thread_id": "smoke-1",
+      "node": "judge_grounding",
+      "ts": "2026-06-23T22:53:36.160748Z",
+      "status": "JUDGED",
+      "model": "anthropic/claude-opus-4.8",
+      "tokens_in": 2583,
+      "tokens_out": 184,
+      "latency_ms": 3064.215583988698,
+      "retries": 0,
+      "cost_usd": 0.017515,
+      "summary": "verdicts: {'sq1': 'PASS(llm)'}; tokens_in=2583, tokens_out=184",
+      "state_delta": {
+        "status": "JUDGED",
+        "verdicts": {
+          "sq1": "PASS(llm)"
+        }
+      },
+      "error": null
+    },
+    {
+      "thread_id": "smoke-1",
+      "node": "assess_confidence",
+      "ts": "2026-06-23T22:53:36.166217Z",
+      "status": "ASSESSED",
+      "model": null,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "latency_ms": 0.06462499732151628,
+      "retries": 0,
+      "cost_usd": 0.0,
+      "summary": "turn_confidence=HIGH {'HIGH': 1, 'MEDIUM': 0, 'LOW': 0}",
+      "state_delta": {
+        "turn_confidence": "HIGH"
+      },
+      "error": null
+    },
+    {
+      "thread_id": "smoke-1",
+      "node": "assemble_answer",
+      "ts": "2026-06-23T22:53:38.242502Z",
+      "status": "ASSEMBLED",
+      "model": "anthropic/claude-sonnet-4.6",
+      "tokens_in": 968,
+      "tokens_out": 99,
+      "latency_ms": 2073.9028340030927,
+      "retries": 0,
+      "cost_usd": 0.004389,
+      "summary": "assembled 1 sub-question(s), 2 citation(s); tokens in=968 out=99",
+      "state_delta": {
+        "status": "ASSEMBLED",
+        "assembled_sq_ids": [
+          "sq1"
+        ],
+        "citation_count": 2
+      },
+      "error": null
+    },
+    {
+      "thread_id": "smoke-1",
+      "node": "deliver_answer",
+      "ts": "2026-06-23T22:53:38.248045Z",
+      "status": "ANSWERED",
+      "model": null,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "latency_ms": 0.03637498593889177,
+      "retries": 0,
+      "cost_usd": 0.0,
+      "summary": "ANSWERED: 1 grounded, 0 low",
+      "state_delta": {
+        "status": "ANSWERED"
+      },
+      "error": null
+    },
+    {
+      "thread_id": "smoke-1",
+      "node": "ingest_question",
+      "ts": "2026-06-23T22:53:38.257251Z",
+      "status": "RECEIVED",
+      "model": null,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "latency_ms": 0.007665978046134114,
+      "retries": 0,
+      "cost_usd": 0.0,
+      "summary": "turn opened (80 chars)",
+      "state_delta": {
+        "status": "RECEIVED"
+      },
+      "error": null
+    },
+    {
+      "thread_id": "smoke-1",
+      "node": "decompose_question",
+      "ts": "2026-06-23T22:53:45.518578Z",
+      "status": "DECOMPOSED",
+      "model": "google/gemini-3-flash-preview",
+      "tokens_in": 840,
+      "tokens_out": 56,
+      "latency_ms": 7259.404915996129,
+      "retries": 0,
+      "cost_usd": 0.000588,
+      "summary": "decomposed into 2 sub-question(s): ['MAINTENANCE_MANUALS', 'QUALITY_CONTROL']",
+      "state_delta": {
+        "status": "DECOMPOSED",
+        "sub_questions_created": 2,
+        "sources": [
+          "MAINTENANCE_MANUALS",
+          "QUALITY_CONTROL"
+        ]
+      },
+      "error": null
+    },
+    {
+      "thread_id": "smoke-1",
+      "node": "route_sources",
+      "ts": "2026-06-23T22:53:45.524339Z",
+      "status": "ROUTED",
+      "model": null,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "latency_ms": 0.030208000680431724,
+      "retries": 0,
+      "cost_usd": 0.0,
+      "summary": "routed 2 sub-q(s) to known sources {'MAINTENANCE_MANUALS': 1, 'QUALITY_CONTROL': 1}; 0 UNKNOWN (skipped from retrieval)",
+      "state_delta": {
+        "routed": {
+          "MAINTENANCE_MANUALS": 1,
+          "QUALITY_CONTROL": 1
+        },
+        "unknown_count": 0,
+        "status": "ROUTED"
+      },
+      "error": null
+    },
+    {
+      "thread_id": "smoke-1",
+      "node": "retrieve_chunks",
+      "ts": "2026-06-23T22:53:45.554188Z",
+      "status": "RETRIEVED",
+      "model": null,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "latency_ms": 25.94670798862353,
+      "retries": 0,
+      "cost_usd": 0.0,
+      "summary": "sq=sq1 hits=5 top_score=0.729 (attempt 1/2) | sq=sq2 hits=5 top_score=0.598 (attempt 1/2)",
+      "state_delta": {
+        "status": "RETRIEVED",
+        "attempted": [
+          "sq1",
+          "sq2"
+        ],
+        "skipped_unknown": []
+      },
+      "error": null
+    },
+    {
+      "thread_id": "smoke-1",
+      "node": "judge_grounding",
+      "ts": "2026-06-23T22:53:52.311032Z",
+      "status": "JUDGED",
+      "model": "anthropic/claude-opus-4.8",
+      "tokens_in": 5974,
+      "tokens_out": 313,
+      "latency_ms": 6755.692916980479,
+      "retries": 0,
+      "cost_usd": 0.037695,
+      "summary": "verdicts: {'sq1': 'PASS(llm)', 'sq2': 'FAIL(llm)'}; tokens_in=5974, tokens_out=313",
+      "state_delta": {
+        "status": "JUDGED",
+        "verdicts": {
+          "sq1": "PASS(llm)",
+          "sq2": "FAIL(llm)"
+        }
+      },
+      "error": null
+    },
+    {
+      "thread_id": "smoke-1",
+      "node": "retrieve_chunks",
+      "ts": "2026-06-23T22:53:52.320051Z",
+      "status": "RETRIEVED",
+      "model": null,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "latency_ms": 2.983707992825657,
+      "retries": 0,
+      "cost_usd": 0.0,
+      "summary": "sq=sq2 hits=5 top_score=0.598 (attempt 2/2) | skipped PASS (already grounded): ['sq1'] | skipped AT_CAP: ['sq2']",
+      "state_delta": {
+        "status": "RETRIEVED",
+        "attempted": [
+          "sq2"
+        ],
+        "skipped_unknown": []
+      },
+      "error": null
+    },
+    {
+      "thread_id": "smoke-1",
+      "node": "judge_grounding",
+      "ts": "2026-06-23T22:53:52.324034Z",
+      "status": "JUDGED",
+      "model": null,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "latency_ms": 0.019166007405146956,
+      "retries": 0,
+      "cost_usd": 0.0,
+      "summary": "verdicts: {'sq1': 'PASS(forced)', 'sq2': 'FAIL(forced)'}; tokens_in=0, tokens_out=0",
+      "state_delta": {
+        "status": "JUDGED",
+        "verdicts": {
+          "sq1": "PASS(forced)",
+          "sq2": "FAIL(forced)"
+        }
+      },
+      "error": null
+    },
+    {
+      "thread_id": "smoke-1",
+      "node": "assess_confidence",
+      "ts": "2026-06-23T22:53:52.328650Z",
+      "status": "ASSESSED",
+      "model": null,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "latency_ms": 2.9007090197410434,
+      "retries": 0,
+      "cost_usd": 0.0,
+      "summary": "turn_confidence=LOW {'HIGH': 0, 'MEDIUM': 1, 'LOW': 1}",
+      "state_delta": {
+        "turn_confidence": "LOW"
+      },
+      "error": null
+    },
+    {
+      "thread_id": "smoke-1",
+      "node": "assemble_answer",
+      "ts": "2026-06-23T22:53:54.430497Z",
+      "status": "ASSEMBLED",
+      "model": "anthropic/claude-sonnet-4.6",
+      "tokens_in": 766,
+      "tokens_out": 121,
+      "latency_ms": 2099.064417008776,
+      "retries": 0,
+      "cost_usd": 0.0041129999999999995,
+      "summary": "assembled 1 sub-question(s), 1 citation(s); tokens in=766 out=121",
+      "state_delta": {
+        "status": "ASSEMBLED",
+        "assembled_sq_ids": [
+          "sq1"
+        ],
+        "citation_count": 1
+      },
+      "error": null
+    },
+    {
+      "thread_id": "smoke-1",
+      "node": "deliver_answer",
+      "ts": "2026-06-23T22:53:54.434445Z",
+      "status": "ANSWERED_PARTIAL",
+      "model": null,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "latency_ms": 0.08612498641014099,
+      "retries": 0,
+      "cost_usd": 0.0,
+      "summary": "ANSWERED_PARTIAL: 1 grounded, 1 low",
+      "state_delta": {
+        "status": "ANSWERED_PARTIAL"
+      },
+      "error": null
+    },
+    {
+      "thread_id": "smoke-1",
+      "node": "ingest_question",
+      "ts": "2026-06-23T22:53:54.448580Z",
+      "status": "RECEIVED",
+      "model": null,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "latency_ms": 0.008458009688183665,
+      "retries": 0,
+      "cost_usd": 0.0,
+      "summary": "turn opened (44 chars)",
+      "state_delta": {
+        "status": "RECEIVED"
+      },
+      "error": null
+    },
+    {
+      "thread_id": "smoke-1",
+      "node": "decompose_question",
+      "ts": "2026-06-23T22:53:55.720074Z",
+      "status": "DECOMPOSED",
+      "model": "google/gemini-3-flash-preview",
+      "tokens_in": 1269,
+      "tokens_out": 44,
+      "latency_ms": 1270.1910829928238,
+      "retries": 0,
+      "cost_usd": 0.0007665,
+      "summary": "decomposed into 1 sub-question(s): ['UNKNOWN']",
+      "state_delta": {
+        "status": "DECOMPOSED",
+        "sub_questions_created": 1,
+        "sources": [
+          "UNKNOWN"
+        ]
+      },
+      "error": null
+    },
+    {
+      "thread_id": "smoke-1",
+      "node": "route_sources",
+      "ts": "2026-06-23T22:53:55.723143Z",
+      "status": "ROUTED",
+      "model": null,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "latency_ms": 0.015375000657513738,
+      "retries": 0,
+      "cost_usd": 0.0,
+      "summary": "routed 0 sub-q(s) to known sources {}; 1 UNKNOWN (skipped from retrieval)",
+      "state_delta": {
+        "routed": {},
+        "unknown_count": 1,
+        "status": "ROUTED"
+      },
+      "error": null
+    },
+    {
+      "thread_id": "smoke-1",
+      "node": "assess_confidence",
+      "ts": "2026-06-23T22:53:55.726220Z",
+      "status": "ASSESSED",
+      "model": null,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "latency_ms": 0.487915996927768,
+      "retries": 0,
+      "cost_usd": 0.0,
+      "summary": "turn_confidence=LOW {'HIGH': 0, 'MEDIUM': 0, 'LOW': 1}",
+      "state_delta": {
+        "turn_confidence": "LOW"
+      },
+      "error": null
+    },
+    {
+      "thread_id": "smoke-1",
+      "node": "abstain",
+      "ts": "2026-06-23T22:53:55.727102Z",
+      "status": "ABSTAINED",
+      "model": null,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "latency_ms": 0.012333999620750546,
+      "retries": 0,
+      "cost_usd": 0.0,
+      "summary": "abstained on turn t4; attempted_sources=[UNKNOWN]",
+      "state_delta": {
+        "status": "ABSTAINED",
+        "turn_confidence": "LOW"
+      },
+      "error": null
+    }
+  ],
+  "metrics": {
+    "cycle_time": 35.16599599889014,
+    "stage_dwell": {
+      "ingest_question": 0.033415970392525196,
+      "decompose_question": 15919.74345696508,
+      "route_sources": 0.10308297351002693,
+      "retrieve_chunks": 140.5906669970136,
+      "judge_grounding": 12589.682624995476,
+      "assess_confidence": 3.569124994101003,
+      "assemble_answer": 6512.112584023271,
+      "deliver_answer": 0.14870797167532146,
+      "abstain": 0.012333999620750546
+    },
+    "tokens_total": 18410,
+    "cost_total": 0.09043949999999999,
+    "cost_by_agent": {
+      "ingest_question": 0.0,
+      "decompose_question": 0.0019515,
+      "route_sources": 0.0,
+      "retrieve_chunks": 0.0,
+      "judge_grounding": 0.07580999999999999,
+      "assess_confidence": 0.0,
+      "assemble_answer": 0.012677999999999998,
+      "deliver_answer": 0.0,
+      "abstain": 0.0
+    },
+    "retries": 0,
+    "judge_reject_rate": 0.25,
+    "straight_through_pct": 50.0,
+    "partial_rate": 25.0,
+    "abstain_rate": 25.0,
+    "knowledge_gap_count": 2
+  }
+}

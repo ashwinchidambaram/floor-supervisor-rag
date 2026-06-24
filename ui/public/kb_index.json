@@ -1,0 +1,901 @@
+{
+  "vector_store": {
+    "backend": "Redis",
+    "metric": "cosine",
+    "embedding_model": "BAAI/bge-small-en-v1.5",
+    "dim": 384
+  },
+  "totals": {
+    "chunks": 67,
+    "documents": 3,
+    "sections": 55,
+    "tables": 13,
+    "prose": 54
+  },
+  "documents": [
+    {
+      "source": "SAFETY_PROCEDURES",
+      "doc_title": "PLANT SAFETY PROCEDURES MANUAL",
+      "doc_number": "MPM-EHS-001",
+      "doc_version": "7.2",
+      "effective_date": "January 15, 2026",
+      "supersedes": "Revision 7.1 (June 1, 2025)",
+      "counts": {
+        "chunks": 26,
+        "sections": 24,
+        "tables": 3,
+        "prose": 23
+      },
+      "sections": [
+        {
+          "section": "Preamble",
+          "chunks": [
+            {
+              "chunk_id": "MPM-EHS-001#preamble#t1",
+              "element_type": "TABLE",
+              "text": "Preamble | columns: Document Number, MPM-EHS-001 | Revision; 7.2; Effective Date; January 15, 2026; Supersedes; Revision 7.1 (June 1, 2025); Document Owner; Environmental, Health & Safety Department; Approved By; Director of Operations; EHS",
+              "table_markdown": "| | |\n|---|---|\n| Document Number | MPM-EHS-001 |\n| Revision | 7.2 |\n| Effective Date | January 15, 2026 |\n| Supersedes | Revision 7.1 (June 1, 2025) |\n| Document Owner | Environmental, Health & Safety Department |\n| Approved By | Director of Operations; EHS Coordinator |\n| Review Cycle | Annual, or upon any process change |\n| Classification | Controlled \u2014 printed copies are uncontrolled |"
+            }
+          ]
+        },
+        {
+          "section": "FOREWORD",
+          "chunks": [
+            {
+              "chunk_id": "MPM-EHS-001#foreword#p1",
+              "element_type": "PROSE",
+              "text": "This manual sets out the safety procedures that govern work in the production areas of Plant 7. It is written for every person who enters the floor: operators, maintenance technicians, quality inspectors, supervisors, temporary workers, con",
+              "table_markdown": null
+            }
+          ]
+        },
+        {
+          "section": "SECTION 1 \u2014 GENERAL SAFETY RULES",
+          "chunks": [
+            {
+              "chunk_id": "MPM-EHS-001#section-1-general-safety-rules#p2",
+              "element_type": "PROSE",
+              "text": "All personnel must observe the following baseline rules at all times within production areas.\n\nSafety glasses meeting ANSI Z87.1 with side shields and safety-toe footwear meeting ASTM F2413 are required the moment you cross onto the product",
+              "table_markdown": null
+            }
+          ]
+        },
+        {
+          "section": "SECTION 2 \u2014 PERSONAL PROTECTIVE EQUIPMENT",
+          "chunks": [
+            {
+              "chunk_id": "MPM-EHS-001#section-2-personal-protective-equipment#p3",
+              "element_type": "PROSE",
+              "text": "Personal protective equipment, or PPE, is your last line of defense. It does not remove a hazard; it reduces the harm if every other control fails. PPE is mandatory by area, and the supervisor verifies compliance at the start of each shift.",
+              "table_markdown": null
+            }
+          ]
+        },
+        {
+          "section": "2.1 Eye and Face Protection",
+          "chunks": [
+            {
+              "chunk_id": "MPM-EHS-001#2-1-eye-and-face-protection#p4",
+              "element_type": "PROSE",
+              "text": "Safety glasses are worn everywhere on the floor. In addition, a welding shield with the correct shade (10 to 13 depending on amperage) is required at the robotic welding cells, and a face shield over safety glasses is required when spraying",
+              "table_markdown": null
+            }
+          ]
+        },
+        {
+          "section": "2.2 Hearing Protection",
+          "chunks": [
+            {
+              "chunk_id": "MPM-EHS-001#2-2-hearing-protection#p5",
+              "element_type": "PROSE",
+              "text": "Hearing protection \u2014 either plugs or muffs \u2014 is required wherever the noise level meets or exceeds 85 dBA measured as an eight-hour time-weighted average. Press Line A operates at approximately 92 dBA during stamping and always requires pro",
+              "table_markdown": null
+            }
+          ]
+        },
+        {
+          "section": "2.3 Hand Protection",
+          "chunks": [
+            {
+              "chunk_id": "MPM-EHS-001#2-3-hand-protection#p6",
+              "element_type": "PROSE",
+              "text": "Hand protection is selected for the task. Cut-resistant gloves rated ANSI A4 are worn when handling stamped blanks and sheet stock at Press Line A. ANSI A2 gloves are worn in machining and general assembly. Leather welding gloves are worn a",
+              "table_markdown": null
+            }
+          ]
+        },
+        {
+          "section": "2.4 Foot, Body, and Respiratory Protection",
+          "chunks": [
+            {
+              "chunk_id": "MPM-EHS-001#2-4-foot-body-and-respiratory-protection#p7",
+              "element_type": "PROSE",
+              "text": "Safety-toe footwear is the plant minimum. Metatarsal guard boots are required at Press Line A, where dropped dies and blanks are a hazard. Flame-resistant jackets and leather spats are required at the welding cells. In the powder coat booth",
+              "table_markdown": null
+            },
+            {
+              "chunk_id": "MPM-EHS-001#2-4-foot-body-and-respiratory-protection#t2",
+              "element_type": "TABLE",
+              "text": "2.4 Foot, Body, and Respiratory Protection | columns: Area, Eye, Hearing, Hand, Foot, Additional | Stamping \u2014 Press Line A; Z87.1 glasses; \u2265 NRR 25; Cut-resistant A4; Metatarsal boots; No gloves at point of operation; CNC Machining Cells; Z",
+              "table_markdown": "| Area | Eye | Hearing | Hand | Foot | Additional |\n|---|---|---|---|---|---|\n| Stamping \u2014 Press Line A | Z87.1 glasses | \u2265 NRR 25 | Cut-resistant A4 | Metatarsal boots | No gloves at point of operation |\n| CNC Machining Cells | Z87.1 glasses | \u2265 NRR 22 | Cut-resistant A2 | Safety-toe | No gloves while spindle runs |\n| Robotic Welding WC-1/WC-2 | Welding shield 10\u201313 | \u2265 NRR 22 | Leather welding | Safety-toe, leather spats | FR jacket, no synthetics |\n| Assembly | Z87.1 glasses | As posted | Nitrile or A2 | Safety-toe | \u2014 |\n| Powder Coat Finishing | Glasses + face shield | \u2265 NRR 22 | Chemical-resistant nitrile | Safety-toe | Respirator, Tyvek suit |"
+            }
+          ]
+        },
+        {
+          "section": "SECTION 3 \u2014 CONTROL OF HAZARDOUS ENERGY (LOCKOUT/TAGOUT)",
+          "chunks": [
+            {
+              "chunk_id": "MPM-EHS-001#section-3-control-of-hazardous-energy-lo#p8",
+              "element_type": "PROSE",
+              "text": "This section is the most important in the manual. The control of hazardous energy \u2014 lockout/tagout, or LOTO \u2014 prevents machinery from starting or releasing stored energy while someone is working on it.",
+              "table_markdown": null
+            }
+          ]
+        },
+        {
+          "section": "3.1 When LOTO Is Required",
+          "chunks": [
+            {
+              "chunk_id": "MPM-EHS-001#3-1-when-loto-is-required#p9",
+              "element_type": "PROSE",
+              "text": "You must apply lockout/tagout before performing any of the following: clearing a jam, changing a die or tooling, performing maintenance, removing or bypassing a guard, or placing any part of your body into a point of operation or other dang",
+              "table_markdown": null
+            }
+          ]
+        },
+        {
+          "section": "3.2 Energy Sources",
+          "chunks": [
+            {
+              "chunk_id": "MPM-EHS-001#3-2-energy-sources#p10",
+              "element_type": "PROSE",
+              "text": "Before you can isolate energy, you must know what energy is present. The principal sources for each major asset are listed below.",
+              "table_markdown": null
+            },
+            {
+              "chunk_id": "MPM-EHS-001#3-2-energy-sources#t3",
+              "element_type": "TABLE",
+              "text": "3.2 Energy Sources | columns: Equipment, Electrical, Hydraulic, Pneumatic, Stored / Other | MPS-400 Press (Line A); 480V 3-phase; 2,200 psi main ram; 90 psi counterbalance; Flywheel inertia; gravity on ram and die; CNC VF-4 Cell; 480V 3-pha",
+              "table_markdown": "| Equipment | Electrical | Hydraulic | Pneumatic | Stored / Other |\n|---|---|---|---|---|\n| MPS-400 Press (Line A) | 480V 3-phase | 2,200 psi main ram | 90 psi counterbalance | Flywheel inertia; gravity on ram and die |\n| CNC VF-4 Cell | 480V 3-phase | \u2014 | 85 psi chuck/coolant | Spindle rotation; servo axes |\n| Welding Cell WC-1/WC-2 | 480V 3-phase | \u2014 | 90 psi clamps | Robot arm gravity; shielding-gas pressure |\n| Powder Coat Booth | 480V / 120V controls | \u2014 | 80 psi spray | Compressed gas; static charge |"
+            }
+          ]
+        },
+        {
+          "section": "3.3 The Lockout Procedure",
+          "chunks": [
+            {
+              "chunk_id": "MPM-EHS-001#3-3-the-lockout-procedure#p11",
+              "element_type": "PROSE",
+              "text": "Perform the following six steps in order. Do not skip or reorder any step.\n\n**Step 1 \u2014 Notify.** Tell all affected employees that the equipment is being shut down and locked out, and why.\n\n**Step 2 \u2014 Shut Down.** Stop the equipment using it",
+              "table_markdown": null
+            }
+          ]
+        },
+        {
+          "section": "3.4 Press Ram Safety Prop",
+          "chunks": [
+            {
+              "chunk_id": "MPM-EHS-001#3-4-press-ram-safety-prop#p12",
+              "element_type": "PROSE",
+              "text": "**CAUTION:** Electrical and hydraulic isolation alone will not prevent the ram of the MPS-400 from drifting downward under its own weight. Whenever any part of the body enters the die area, the mechanical safety prop MUST be inserted, even ",
+              "table_markdown": null
+            }
+          ]
+        },
+        {
+          "section": "3.5 Removal of Locks",
+          "chunks": [
+            {
+              "chunk_id": "MPM-EHS-001#3-5-removal-of-locks#p13",
+              "element_type": "PROSE",
+              "text": "Only the employee who applied a lock may remove it. If that employee has left the site and cannot be reached, their lock may be removed only by the area supervisor following the lock-removal verification procedure: confirm the employee is o",
+              "table_markdown": null
+            }
+          ]
+        },
+        {
+          "section": "SECTION 4 \u2014 MACHINE GUARDING",
+          "chunks": [
+            {
+              "chunk_id": "MPM-EHS-001#section-4-machine-guarding#p14",
+              "element_type": "PROSE",
+              "text": "Every point-of-operation guard, light curtain, two-hand control, and interlock must be in place and functioning before a machine is operated.\n\n**WARNING:** Bypassing, defeating, taping over, or otherwise disabling a safety interlock or guar",
+              "table_markdown": null
+            }
+          ]
+        },
+        {
+          "section": "SECTION 5 \u2014 HAZARDOUS CHEMICALS",
+          "chunks": [
+            {
+              "chunk_id": "MPM-EHS-001#section-5-hazardous-chemicals#p15",
+              "element_type": "PROSE",
+              "text": "A Safety Data Sheet (SDS) is available for every chemical on site, through the SDS terminal and in the binder at each area station. Read the SDS before using any chemical you are not already trained on, and follow the PPE and handling instr",
+              "table_markdown": null
+            }
+          ]
+        },
+        {
+          "section": "SECTION 6 \u2014 HOT WORK",
+          "chunks": [
+            {
+              "chunk_id": "MPM-EHS-001#section-6-hot-work#p16",
+              "element_type": "PROSE",
+              "text": "Welding inside the dedicated cells WC-1 and WC-2 is governed by standing procedure and does not require a separate permit. Any welding, cutting, or grinding performed anywhere else in the plant requires a Hot Work Permit issued by the EHS C",
+              "table_markdown": null
+            }
+          ]
+        },
+        {
+          "section": "SECTION 7 \u2014 POWERED INDUSTRIAL TRUCKS",
+          "chunks": [
+            {
+              "chunk_id": "MPM-EHS-001#section-7-powered-industrial-trucks#p17",
+              "element_type": "PROSE",
+              "text": "Only certified operators may operate a forklift. Certification is renewed every three years and after any incident. The operator performs and logs a pre-operation inspection \u2014 forks, tires, horn, brakes, hydraulics, and leaks \u2014 before first",
+              "table_markdown": null
+            }
+          ]
+        },
+        {
+          "section": "SECTION 8 \u2014 CONFINED SPACE ENTRY",
+          "chunks": [
+            {
+              "chunk_id": "MPM-EHS-001#section-8-confined-space-entry#p18",
+              "element_type": "PROSE",
+              "text": "Certain locations \u2014 coolant sump pits, the interior of the powder coat oven, and large material hoppers \u2014 are permit-required confined spaces. Entry into these spaces is never performed alone and never without a permit.\n\nConfined-space entr",
+              "table_markdown": null
+            }
+          ]
+        },
+        {
+          "section": "9.1 Evacuation",
+          "chunks": [
+            {
+              "chunk_id": "MPM-EHS-001#9-1-evacuation#p19",
+              "element_type": "PROSE",
+              "text": "When the continuous evacuation alarm sounds, shut down your equipment if it is safe to do so \u2014 press the emergency stop \u2014 and leave by the nearest marked exit. Proceed to the muster point in the Assembly Lot (the north parking row). Supervi",
+              "table_markdown": null
+            }
+          ]
+        },
+        {
+          "section": "9.2 Reporting Emergencies",
+          "chunks": [
+            {
+              "chunk_id": "MPM-EHS-001#9-2-reporting-emergencies#p20",
+              "element_type": "PROSE",
+              "text": "For any fire, serious medical emergency, or major chemical release, call 911 first, then notify EHS at extension 4400. For a minor injury, notify your supervisor and use the nearest first-aid station. For an equipment fault or power loss, n",
+              "table_markdown": null
+            }
+          ]
+        },
+        {
+          "section": "9.3 Injury and Near-Miss Reporting",
+          "chunks": [
+            {
+              "chunk_id": "MPM-EHS-001#9-3-injury-and-near-miss-reporting#p21",
+              "element_type": "PROSE",
+              "text": "Every injury \u2014 including minor first-aid cases \u2014 and every near-miss must be reported to the supervisor before the end of the shift in which it occurs. The supervisor completes the formal incident report within 24 hours. Near-miss reporting",
+              "table_markdown": null
+            }
+          ]
+        },
+        {
+          "section": "SECTION 10 \u2014 ERGONOMICS AND MANUAL HANDLING",
+          "chunks": [
+            {
+              "chunk_id": "MPM-EHS-001#section-10-ergonomics-and-manual-handlin#p22",
+              "element_type": "PROSE",
+              "text": "Repetitive assembly tasks are rotated among crew members every two hours to reduce strain. Any manual lift over 40 pounds requires either a team lift or a mechanical aid such as a hoist, cart, or vacuum lifter. Stamped blanks and finished b",
+              "table_markdown": null
+            }
+          ]
+        },
+        {
+          "section": "SECTION 11 \u2014 SUPERVISOR RESPONSIBILITIES",
+          "chunks": [
+            {
+              "chunk_id": "MPM-EHS-001#section-11-supervisor-responsibilities#p23",
+              "element_type": "PROSE",
+              "text": "Before any shift or task, a floor supervisor confirms that the crew is trained and current, that required PPE is worn, that all guards and interlocks are functional, that lockout/tagout is applied for any servicing, and that the work area i",
+              "table_markdown": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "source": "MAINTENANCE_MANUALS",
+      "doc_title": "EQUIPMENT MAINTENANCE MANUAL",
+      "doc_number": "MPM-MNT-002",
+      "doc_version": "5.4",
+      "effective_date": "February 1, 2026",
+      "supersedes": null,
+      "counts": {
+        "chunks": 22,
+        "sections": 19,
+        "tables": 5,
+        "prose": 17
+      },
+      "sections": [
+        {
+          "section": "Preamble",
+          "chunks": [
+            {
+              "chunk_id": "MPM-MNT-002#preamble#t1",
+              "element_type": "TABLE",
+              "text": "Preamble | columns: Document Number, MPM-MNT-002 | Revision; 5.4; Effective Date; February 1, 2026; Document Owner; Maintenance Department; Approved By; Maintenance Manager; Reliability Engineer; Review Cycle; Annual; Classification; Contro",
+              "table_markdown": "| | |\n|---|---|\n| Document Number | MPM-MNT-002 |\n| Revision | 5.4 |\n| Effective Date | February 1, 2026 |\n| Document Owner | Maintenance Department |\n| Approved By | Maintenance Manager; Reliability Engineer |\n| Review Cycle | Annual |\n| Classification | Controlled \u2014 printed copies are uncontrolled |"
+            }
+          ]
+        },
+        {
+          "section": "FOREWORD",
+          "chunks": [
+            {
+              "chunk_id": "MPM-MNT-002#foreword#p1",
+              "element_type": "PROSE",
+              "text": "This manual is the working reference for maintaining the primary production equipment at Plant 7. It is written to be used at the machine, by the people who keep it running: maintenance technicians performing scheduled work, operators perfo",
+              "table_markdown": null
+            }
+          ]
+        },
+        {
+          "section": "SECTION 1 \u2014 EQUIPMENT COVERED",
+          "chunks": [
+            {
+              "chunk_id": "MPM-MNT-002#section-1-equipment-covered#p2",
+              "element_type": "PROSE",
+              "text": "This manual covers the MPS-400 stamping press on Press Line A, the four CNC VF-4 machining cells, the robotic welding cells WC-1 and WC-2, and the powder coat line consisting of the conveyor, spray booth, and cure oven. Asset identification",
+              "table_markdown": null
+            }
+          ]
+        },
+        {
+          "section": "SECTION 2 \u2014 PREVENTIVE MAINTENANCE",
+          "chunks": [
+            {
+              "chunk_id": "MPM-MNT-002#section-2-preventive-maintenance#p3",
+              "element_type": "PROSE",
+              "text": "Preventive maintenance, or PM, is scheduled and tracked in the CMMS. The intervals below are minimums. If conditions are harsh \u2014 heavy production, high ambient temperature, abrasive material \u2014 the interval is shortened on the advice of the ",
+              "table_markdown": null
+            }
+          ]
+        },
+        {
+          "section": "2.1 MPS-400 Stamping Press",
+          "chunks": [
+            {
+              "chunk_id": "MPM-MNT-002#2-1-mps-400-stamping-press#p4",
+              "element_type": "PROSE",
+              "text": "Each day, before production, the operator checks the hydraulic oil level, walks the machine for leaks, confirms the light-curtain test passes, and drains the pneumatic filter bowl. The operator also performs the brake-monitor stopping-time ",
+              "table_markdown": null
+            }
+          ]
+        },
+        {
+          "section": "2.2 CNC VF-4 Machining Cells",
+          "chunks": [
+            {
+              "chunk_id": "MPM-MNT-002#2-2-cnc-vf-4-machining-cells#p5",
+              "element_type": "PROSE",
+              "text": "Each day, the operator checks coolant concentration with a refractometer (target 8 to 10 percent), clears chips, and confirms the way-lube reservoir is filled. Each week, the operator cleans the coolant tank screen, checks spindle air press",
+              "table_markdown": null
+            }
+          ]
+        },
+        {
+          "section": "2.3 Welding Cells WC-1 and WC-2",
+          "chunks": [
+            {
+              "chunk_id": "MPM-MNT-002#2-3-welding-cells-wc-1-and-wc-2#p6",
+              "element_type": "PROSE",
+              "text": "Each day, the operator checks shielding-gas flow (target 25 to 30 cubic feet per hour), inspects the torch consumables, and cleans spatter from the nozzle. Each week, the operator inspects the wire feed rollers and liner, checks clamp air p",
+              "table_markdown": null
+            }
+          ]
+        },
+        {
+          "section": "2.4 Powder Coat Line",
+          "chunks": [
+            {
+              "chunk_id": "MPM-MNT-002#2-4-powder-coat-line#p7",
+              "element_type": "PROSE",
+              "text": "Each day, the operator checks the oven temperature setpoint and ramp, inspects the booth filters, and verifies conveyor speed. Each week, the booth filters are cleaned or replaced, gun voltage is checked (target 60 to 90 kV), and the spray ",
+              "table_markdown": null
+            }
+          ]
+        },
+        {
+          "section": "SECTION 3 \u2014 LUBRICATION",
+          "chunks": [
+            {
+              "chunk_id": "MPM-MNT-002#section-3-lubrication#p8",
+              "element_type": "PROSE",
+              "text": "Use only the lubricant specified for each point. Lubrication points are color-tagged at the machine to match the specification.\n\n**CAUTION:** Do not mix incompatible greases. Combining a lithium-base grease with a polyurea-base grease, for ",
+              "table_markdown": null
+            },
+            {
+              "chunk_id": "MPM-MNT-002#section-3-lubrication#t2",
+              "element_type": "TABLE",
+              "text": "SECTION 3 \u2014 LUBRICATION | columns: Equipment, Point, Lubricant, Specification, Interval | MPS-400; Ram gibs / slides; Way oil; ISO VG 220; Weekly; MPS-400; Main bearings; EP grease, lithium; NLGI 2; Monthly; MPS-400; Hydraulic reservoir; AW",
+              "table_markdown": "| Equipment | Point | Lubricant | Specification | Interval |\n|---|---|---|---|---|\n| MPS-400 | Ram gibs / slides | Way oil | ISO VG 220 | Weekly |\n| MPS-400 | Main bearings | EP grease, lithium | NLGI 2 | Monthly |\n| MPS-400 | Hydraulic reservoir | AW hydraulic oil | ISO VG 46 | Top off daily; replace annually |\n| CNC VF-4 | Way surfaces | Way lube | ISO VG 68 | Auto-lube; check reservoir daily |\n| CNC VF-4 | Spindle | Sealed, no service | \u2014 | \u2014 |\n| Welding robots | Axis gearboxes | Robot reducer oil | Manufacturer-specified | Annually |\n| Powder conveyor | Chain | High-temp chain oil | NLGI 1, rated 400\u00b0F | Monthly |"
+            }
+          ]
+        },
+        {
+          "section": "SECTION 4 \u2014 TORQUE SPECIFICATIONS",
+          "chunks": [
+            {
+              "chunk_id": "MPM-MNT-002#section-4-torque-specifications#p9",
+              "element_type": "PROSE",
+              "text": "Torque values below are for dry threads unless noted. Always use a torque wrench with current calibration; calibration is verified quarterly and cross-referenced to the quality records in MPM-QC-003, Section 6.\n\n**CAUTION:** Never reuse a s",
+              "table_markdown": null
+            },
+            {
+              "chunk_id": "MPM-MNT-002#section-4-torque-specifications#t3",
+              "element_type": "TABLE",
+              "text": "SECTION 4 \u2014 TORQUE SPECIFICATIONS | columns: Application, Fastener, Torque, Notes | MPS-400 die clamp bolts; M20 grade 10.9; 410 N\u00b7m (302 ft\u00b7lb); Tighten in a star pattern; re-check after the first stroke; MPS-400 bolster mounting; M24 grad",
+              "table_markdown": "| Application | Fastener | Torque | Notes |\n|---|---|---|---|\n| MPS-400 die clamp bolts | M20 grade 10.9 | 410 N\u00b7m (302 ft\u00b7lb) | Tighten in a star pattern; re-check after the first stroke |\n| MPS-400 bolster mounting | M24 grade 10.9 | 710 N\u00b7m (524 ft\u00b7lb) | \u2014 |\n| CNC VF-4 tool holder retention | Per drawbar spec | 1,200 lbf draw | Verify with drawbar gauge |\n| CNC VF-4 vise jaw bolts | M12 grade 8.8 | 80 N\u00b7m (59 ft\u00b7lb) | \u2014 |\n| Welding fixture clamp base | M16 grade 8.8 | 195 N\u00b7m (144 ft\u00b7lb) | Apply Loctite 243 (blue) |\n| Conveyor drive coupling | M10 grade 8.8 | 47 N\u00b7m (35 ft\u00b7lb) | \u2014 |"
+            }
+          ]
+        },
+        {
+          "section": "SECTION 5 \u2014 TROUBLESHOOTING",
+          "chunks": [
+            {
+              "chunk_id": "MPM-MNT-002#section-5-troubleshooting#p10",
+              "element_type": "PROSE",
+              "text": "This section guides first-response diagnosis. For each symptom, the likely cause and the corrective action are given. Actions marked (O) may be performed by an operator or supervisor; actions marked (T) require a technician and a work order",
+              "table_markdown": null
+            }
+          ]
+        },
+        {
+          "section": "5.1 MPS-400 Stamping Press",
+          "chunks": [
+            {
+              "chunk_id": "MPM-MNT-002#5-1-mps-400-stamping-press#p11",
+              "element_type": "PROSE",
+              "text": "If the press will not initiate a stroke, the light curtain is most likely blocked or the two-hand controls are outside their timing window. Clear the light-curtain field (O). If the press still will not stroke, the control timing has drifte",
+              "table_markdown": null
+            }
+          ]
+        },
+        {
+          "section": "5.2 CNC VF-4",
+          "chunks": [
+            {
+              "chunk_id": "MPM-MNT-002#5-2-cnc-vf-4#p12",
+              "element_type": "PROSE",
+              "text": "A poor surface finish usually means a dull tool, low coolant concentration, or spindle runout. Replace the tool and confirm coolant at 8 to 10 percent (O). If runout is suspected, raise a work order (T).\n\nAlarm 144, way lube low, means the ",
+              "table_markdown": null
+            }
+          ]
+        },
+        {
+          "section": "5.3 Welding Cells",
+          "chunks": [
+            {
+              "chunk_id": "MPM-MNT-002#5-3-welding-cells#p13",
+              "element_type": "PROSE",
+              "text": "Porosity in the weld points to low gas flow, dirty base metal, or a spatter-clogged nozzle. Confirm gas flow at 25 to 30 CFH and clean the nozzle and part (O).\n\nWire feed stutter or birdnesting at the feeder usually means worn drive rollers",
+              "table_markdown": null
+            }
+          ]
+        },
+        {
+          "section": "5.4 Powder Coat",
+          "chunks": [
+            {
+              "chunk_id": "MPM-MNT-002#5-4-powder-coat#p14",
+              "element_type": "PROSE",
+              "text": "Thin or uneven coating points to low gun voltage, a poor part ground, or a worn nozzle. Confirm voltage at 60 to 90 kV and verify the ground reads less than 1 megohm (O). **NOTE:** Coating thickness problems are frequently a process fault r",
+              "table_markdown": null
+            }
+          ]
+        },
+        {
+          "section": "SECTION 6 \u2014 FAULT CODE QUICK REFERENCE (CNC VF-4)",
+          "chunks": [
+            {
+              "chunk_id": "MPM-MNT-002#section-6-fault-code-quick-reference-cnc#t4",
+              "element_type": "TABLE",
+              "text": "SECTION 6 \u2014 FAULT CODE QUICK REFERENCE (CNC VF-4) | columns: Code, Meaning, First Action | 102; Servo overheat; Check the enclosure cooling fan; allow to cool (O); 117; Spindle overload; Reduce load; inspect the tool (O); 144; Way lube low;",
+              "table_markdown": "| Code | Meaning | First Action |\n|---|---|---|\n| 102 | Servo overheat | Check the enclosure cooling fan; allow to cool (O) |\n| 117 | Spindle overload | Reduce load; inspect the tool (O) |\n| 144 | Way lube low | Refill the reservoir (O) |\n| 159 | Low air pressure | Verify the 85 psi supply (O) |\n| 201 | Axis travel limit | Jog off the limit in handle mode (O) |\n| 9999 | Control battery low | Schedule the battery PM; do not power off until parameters are backed up (T) |"
+            }
+          ]
+        },
+        {
+          "section": "SECTION 7 \u2014 CRITICAL SPARE PARTS",
+          "chunks": [
+            {
+              "chunk_id": "MPM-MNT-002#section-7-critical-spare-parts#p15",
+              "element_type": "PROSE",
+              "text": "The following parts are held in critical stock so that a failure does not become extended downtime. When stock falls below the minimum, the storeroom reorders automatically.",
+              "table_markdown": null
+            },
+            {
+              "chunk_id": "MPM-MNT-002#section-7-critical-spare-parts#t5",
+              "element_type": "TABLE",
+              "text": "SECTION 7 \u2014 CRITICAL SPARE PARTS | columns: Part, Used On, Minimum Stock, CMMS Number | Hydraulic filter element; MPS-400; 2; SP-MPS-FLT-10; Light curtain transmitter/receiver pair; MPS-400; 1; SP-MPS-LC-04; Way-lube cartridge; CNC VF-4; 6;",
+              "table_markdown": "| Part | Used On | Minimum Stock | CMMS Number |\n|---|---|---|---|\n| Hydraulic filter element | MPS-400 | 2 | SP-MPS-FLT-10 |\n| Light curtain transmitter/receiver pair | MPS-400 | 1 | SP-MPS-LC-04 |\n| Way-lube cartridge | CNC VF-4 | 6 | SP-VF4-LUBE-68 |\n| Spindle drawbar spring kit | CNC VF-4 | 1 | SP-VF4-DB-22 |\n| Torch nozzle / contact tip kit | WC-1/WC-2 | 12 | SP-WC-TORCH-A |\n| Wire feed drive roller | WC-1/WC-2 | 4 | SP-WC-ROLL-035 |\n| Booth filter, primary | Powder line | 8 | SP-PC-FLT-PRI |"
+            }
+          ]
+        },
+        {
+          "section": "SECTION 8 \u2014 WORK ORDERS AND ESCALATION",
+          "chunks": [
+            {
+              "chunk_id": "MPM-MNT-002#section-8-work-orders-and-escalation#p16",
+              "element_type": "PROSE",
+              "text": "When a fault is found, first attempt the operator-level corrective action in Section 5. If it cannot be resolved at that level, or the task is technician-level, the supervisor raises a CMMS work order recording the asset, the symptom, any f",
+              "table_markdown": null
+            }
+          ]
+        },
+        {
+          "section": "SECTION 9 \u2014 RECORDS",
+          "chunks": [
+            {
+              "chunk_id": "MPM-MNT-002#section-9-records#p17",
+              "element_type": "PROSE",
+              "text": "All preventive-maintenance completions, work orders, oil analysis reports, and calibration records are retained in the CMMS for a minimum of five years. Torque-wrench and gauge calibration certificates are cross-referenced to the quality re",
+              "table_markdown": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "source": "QUALITY_CONTROL",
+      "doc_title": "QUALITY CONTROL MANUAL",
+      "doc_number": "MPM-QC-003",
+      "doc_version": "4.1",
+      "effective_date": "January 20, 2026",
+      "supersedes": null,
+      "counts": {
+        "chunks": 19,
+        "sections": 12,
+        "tables": 5,
+        "prose": 14
+      },
+      "sections": [
+        {
+          "section": "Preamble",
+          "chunks": [
+            {
+              "chunk_id": "MPM-QC-003#preamble#t1",
+              "element_type": "TABLE",
+              "text": "Preamble | columns: Document Number, MPM-QC-003 | Revision; 4.1; Effective Date; January 20, 2026; Document Owner; Quality Department; Approved By; Quality Manager; Plant Director; Conformance; Aligned to IATF 16949 / ISO 9001; Review Cycle",
+              "table_markdown": "| | |\n|---|---|\n| Document Number | MPM-QC-003 |\n| Revision | 4.1 |\n| Effective Date | January 20, 2026 |\n| Document Owner | Quality Department |\n| Approved By | Quality Manager; Plant Director |\n| Conformance | Aligned to IATF 16949 / ISO 9001 |\n| Review Cycle | Annual |\n| Classification | Controlled \u2014 printed copies are uncontrolled |"
+            }
+          ]
+        },
+        {
+          "section": "FOREWORD",
+          "chunks": [
+            {
+              "chunk_id": "MPM-QC-003#foreword#p1",
+              "element_type": "PROSE",
+              "text": "This manual defines how quality is measured, judged, and protected at Plant 7. It is written for the people who make the calls on the floor: inspectors performing measurements, operators reacting to a control chart, and supervisors deciding",
+              "table_markdown": null
+            }
+          ]
+        },
+        {
+          "section": "SECTION 1 \u2014 INSPECTION STAGES",
+          "chunks": [
+            {
+              "chunk_id": "MPM-QC-003#section-1-inspection-stages#p2",
+              "element_type": "PROSE",
+              "text": "A part is inspected at defined points along its route through the plant, and each inspection is recorded in the quality management system (QMS) against the part's traceability lot.\n\nIncoming raw material \u2014 steel coil and sheet \u2014 is inspecte",
+              "table_markdown": null
+            },
+            {
+              "chunk_id": "MPM-QC-003#section-1-inspection-stages#t2",
+              "element_type": "TABLE",
+              "text": "SECTION 1 \u2014 INSPECTION STAGES | columns: Stage, What Is Inspected, Method, Frequency | Incoming material; Certificate, thickness; Cert review, micrometer; Every lot; First Article (FAI); Full dimensional layout; CMM and gauges; Each new set",
+              "table_markdown": "| Stage | What Is Inspected | Method | Frequency |\n|---|---|---|---|\n| Incoming material | Certificate, thickness | Cert review, micrometer | Every lot |\n| First Article (FAI) | Full dimensional layout | CMM and gauges | Each new setup / die change |\n| In-process stamping | Key dimensions, burr, cracks | Caliper, visual | Per sampling plan |\n| In-process welding | Weld size, penetration, position | Weld gauge, visual | Per sampling plan |\n| Final | Coating, all features, function | Gauges, fixture | Per sampling plan |\n| Outgoing | Pack, label, lot | Visual, scan | Every shipment |"
+            }
+          ]
+        },
+        {
+          "section": "SECTION 2 \u2014 DIMENSIONAL SPECIFICATIONS",
+          "chunks": [
+            {
+              "chunk_id": "MPM-QC-003#section-2-dimensional-specifications#p3",
+              "element_type": "PROSE",
+              "text": "The acceptance limits for part MPM-4471 are taken directly from the released engineering drawing and are reproduced below. A feature conforms only when its measured value falls within the stated limits, inclusive of the limit values themsel",
+              "table_markdown": null
+            },
+            {
+              "chunk_id": "MPM-QC-003#section-2-dimensional-specifications#t3",
+              "element_type": "TABLE",
+              "text": "SECTION 2 \u2014 DIMENSIONAL SPECIFICATIONS | columns: Feature, Nominal, Tolerance, Limits, Gauge | Overall length; 142.0 mm; \u00b10.30 mm; 141.70 \u2013 142.30 mm; Caliper / CMM; Mounting hole diameter; 10.50 mm; +0.10 / \u22120.00 mm; 10.50 \u2013 10.60 mm; Pin ",
+              "table_markdown": "| Feature | Nominal | Tolerance | Limits | Gauge |\n|---|---|---|---|---|\n| Overall length | 142.0 mm | \u00b10.30 mm | 141.70 \u2013 142.30 mm | Caliper / CMM |\n| Mounting hole diameter | 10.50 mm | +0.10 / \u22120.00 mm | 10.50 \u2013 10.60 mm | Pin gauge |\n| Hole true position | \u2014 | \u00d80.25 mm at MMC | \u2014 | CMM |\n| Flange angle | 90.0\u00b0 | \u00b10.5\u00b0 | 89.5 \u2013 90.5\u00b0 | Angle fixture |\n| Material thickness | 3.00 mm | \u00b10.08 mm | 2.92 \u2013 3.08 mm | Micrometer |\n| Weld leg size | 5.0 mm | +1.0 / \u22120.0 mm | 5.0 \u2013 6.0 mm | Fillet weld gauge |\n| Powder coat thickness | 75 \u00b5m | \u2014 | 60 \u2013 110 \u00b5m | Eddy-current gauge |\n| Base flatness | \u2014 | 0.20 mm | \u2264 0.20 mm | CMM / surface plate |"
+            },
+            {
+              "chunk_id": "MPM-QC-003#section-2-dimensional-specifications#p4",
+              "element_type": "PROSE",
+              "text": "**NOTE:** Material thickness ties back to the incoming-material specification in Section 1. Coating thickness ties back to the powder-line process settings in MPM-MNT-002, Section 2.4. When coating thickness is out of range, suspect a proce",
+              "table_markdown": null
+            }
+          ]
+        },
+        {
+          "section": "SECTION 3 \u2014 SAMPLING PLANS",
+          "chunks": [
+            {
+              "chunk_id": "MPM-QC-003#section-3-sampling-plans#p5",
+              "element_type": "PROSE",
+              "text": "In-process inspection uses ANSI/ASQ Z1.4, general inspection level II, single sampling, unless the control plan calls for 100 percent inspection. The acceptance quality limit, or AQL, applied to a lot depends on the severity of the defect b",
+              "table_markdown": null
+            }
+          ]
+        },
+        {
+          "section": "SECTION 4 \u2014 DEFECT CLASSIFICATION",
+          "chunks": [
+            {
+              "chunk_id": "MPM-QC-003#section-4-defect-classification#p6",
+              "element_type": "PROSE",
+              "text": "Every defect is classified by severity, because severity determines both the sampling plan and what may be done with the part.\n\nA **critical defect** is one that affects safety, violates a regulatory requirement, or causes the part to lose ",
+              "table_markdown": null
+            }
+          ]
+        },
+        {
+          "section": "SECTION 5 \u2014 MEASUREMENT SYSTEMS AND CALIBRATION",
+          "chunks": [
+            {
+              "chunk_id": "MPM-QC-003#section-5-measurement-systems-and-calibr#p7",
+              "element_type": "PROSE",
+              "text": "Every gauge and instrument used to accept product is calibrated on a defined interval and is traceable to the National Institute of Standards and Technology. When an instrument is found out of calibration, it is removed from service and eve",
+              "table_markdown": null
+            },
+            {
+              "chunk_id": "MPM-QC-003#section-5-measurement-systems-and-calibr#t4",
+              "element_type": "TABLE",
+              "text": "SECTION 5 \u2014 MEASUREMENT SYSTEMS AND CALIBRATION | columns: Equipment, Calibration Interval, Tolerance / Standard | Coordinate measuring machine (CMM); Annual, plus monthly artifact check; Per manufacturer; ball-bar verification; Digital cal",
+              "table_markdown": "| Equipment | Calibration Interval | Tolerance / Standard |\n|---|---|---|\n| Coordinate measuring machine (CMM) | Annual, plus monthly artifact check | Per manufacturer; ball-bar verification |\n| Digital calipers | 6 months | \u00b1 0.02 mm |\n| Micrometers | 6 months | \u00b1 0.002 mm |\n| Pin / plug gauges | Annual | Class ZZ |\n| Eddy-current coating gauge | Annual, plus daily shim check | NIST-traceable foils |\n| Torque wrenches (quality use) | Quarterly | \u00b1 4%; cross-reference MPM-MNT-002 Sec. 4 |"
+            },
+            {
+              "chunk_id": "MPM-QC-003#section-5-measurement-systems-and-calibr#p8",
+              "element_type": "PROSE",
+              "text": "The capability of each measurement system is assessed by a gauge repeatability and reproducibility study. A gauge with a GRR below 10 percent of the tolerance is acceptable. A GRR between 10 and 30 percent is conditionally acceptable, and o",
+              "table_markdown": null
+            }
+          ]
+        },
+        {
+          "section": "SECTION 6 \u2014 STATISTICAL PROCESS CONTROL",
+          "chunks": [
+            {
+              "chunk_id": "MPM-QC-003#section-6-statistical-process-control#p9",
+              "element_type": "PROSE",
+              "text": "Key characteristics \u2014 overall length, mounting-hole diameter, weld leg size, and coating thickness \u2014 are monitored on the floor using X-bar and R control charts. The subgroup size is 5, sampled at the frequency set in the control plan.\n\nA l",
+              "table_markdown": null
+            }
+          ]
+        },
+        {
+          "section": "SECTION 7 \u2014 NONCONFORMING PRODUCT",
+          "chunks": [
+            {
+              "chunk_id": "MPM-QC-003#section-7-nonconforming-product#p10",
+              "element_type": "PROSE",
+              "text": "When nonconforming product is found, it is tagged with a red HOLD tag and physically moved to the quarantine area so that it cannot be used by mistake. The supervisor then opens a Nonconformance Report in the QMS.\n\nThe disposition of noncon",
+              "table_markdown": null
+            },
+            {
+              "chunk_id": "MPM-QC-003#section-7-nonconforming-product#t5",
+              "element_type": "TABLE",
+              "text": "SECTION 7 \u2014 NONCONFORMING PRODUCT | columns: Disposition, Meaning, Approval Required | Use-as-is; Accept despite the deviation; Material Review Board, plus customer if specified; Rework; Restore to full specification; Quality Engineer; Repa",
+              "table_markdown": "| Disposition | Meaning | Approval Required |\n|---|---|---|\n| Use-as-is | Accept despite the deviation | Material Review Board, plus customer if specified |\n| Rework | Restore to full specification | Quality Engineer |\n| Repair | Restore to usable, not full spec | Material Review Board, plus customer approval |\n| Scrap | Destroy or recycle | Quality (a supervisor may initiate) |\n| Return to supplier | Incoming material defect | Quality and Purchasing |"
+            },
+            {
+              "chunk_id": "MPM-QC-003#section-7-nonconforming-product#p11",
+              "element_type": "PROSE",
+              "text": "**NOTE:** A floor supervisor may quarantine product, and may initiate the scrapping of clearly critical-defect parts, but may NOT authorize a use-as-is or repair disposition. Those decisions belong to the Material Review Board. A critical d",
+              "table_markdown": null
+            }
+          ]
+        },
+        {
+          "section": "SECTION 8 \u2014 FIRST ARTICLE INSPECTION",
+          "chunks": [
+            {
+              "chunk_id": "MPM-QC-003#section-8-first-article-inspection#p12",
+              "element_type": "PROSE",
+              "text": "A full First Article Inspection is required whenever the process changes in a way that could affect the product: a new part, a die or fixture change, a tooling repair that affects form, a material change, or a process relocation. The inspec",
+              "table_markdown": null
+            }
+          ]
+        },
+        {
+          "section": "SECTION 9 \u2014 TRACEABILITY",
+          "chunks": [
+            {
+              "chunk_id": "MPM-QC-003#section-9-traceability#p13",
+              "element_type": "PROSE",
+              "text": "Every lot carries a traceability record that links the raw-material certificate, the production date and shift, the operator, the equipment used (press, machining cell, and weld cell identifiers), the inspection records, and the SPC data. R",
+              "table_markdown": null
+            }
+          ]
+        },
+        {
+          "section": "SECTION 10 \u2014 ESCALATION GUIDE FOR SUPERVISORS",
+          "chunks": [
+            {
+              "chunk_id": "MPM-QC-003#section-10-escalation-guide-for-supervis#p14",
+              "element_type": "PROSE",
+              "text": "This guide summarizes the actions a floor supervisor takes for the most common quality events.\n\nWhen a critical defect is found, stop the process, quarantine the affected product, place the lot under 100 percent containment, open a Nonconfo",
+              "table_markdown": null
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "retrieval_demo": [
+    {
+      "query": "M12 vise jaw torque value",
+      "source": "MAINTENANCE_MANUALS",
+      "results": [
+        {
+          "chunk_id": "MPM-MNT-002#section-4-torque-specifications#t3",
+          "section": "SECTION 4 \u2014 TORQUE SPECIFICATIONS",
+          "element_type": "TABLE",
+          "doc_version": "5.4",
+          "score": 0.689,
+          "snippet": "SECTION 4 \u2014 TORQUE SPECIFICATIONS \u2014 This table lists torque specifications for various manufacturing applications, including the MPS-400 die",
+          "table_markdown": "| Application | Fastener | Torque | Notes |\n|---|---|---|---|\n| MPS-400 die clamp bolts | M20 grade 10.9 | 410 N\u00b7m (302 ft\u00b7lb) | Tighten in a star pattern; re-check after the first stroke |\n| MPS-400 bolster mounting | M24 grade 10.9 | 710 N\u00b7m (524 ft\u00b7lb) | \u2014 |\n| CNC VF-4 tool holder retention | Per drawbar spec | 1,200 lbf draw | Verify with drawbar gauge |\n| CNC VF-4 vise jaw bolts | M12 grade 8.8 | 80 N\u00b7m (59 ft\u00b7lb) | \u2014 |\n| Welding fixture clamp base | M16 grade 8.8 | 195 N\u00b7m (144 ft\u00b7lb) | Apply Loctite 243 (blue) |\n| Conveyor drive coupling | M10 grade 8.8 | 47 N\u00b7m (35 ft\u00b7lb) | \u2014 |"
+        },
+        {
+          "chunk_id": "MPM-MNT-002#section-4-torque-specifications#p9",
+          "section": "SECTION 4 \u2014 TORQUE SPECIFICATIONS",
+          "element_type": "PROSE",
+          "doc_version": "5.4",
+          "score": 0.645,
+          "snippet": "Torque values below are for dry threads unless noted. Always use a torque wrench with current calibration; calibration is verified quarterly",
+          "table_markdown": null
+        },
+        {
+          "chunk_id": "MPM-MNT-002#5-1-mps-400-stamping-press#p11",
+          "section": "5.1 MPS-400 Stamping Press",
+          "element_type": "PROSE",
+          "doc_version": "5.4",
+          "score": 0.587,
+          "snippet": "If the press will not initiate a stroke, the light curtain is most likely blocked or the two-hand controls are outside their timing window. ",
+          "table_markdown": null
+        },
+        {
+          "chunk_id": "MPM-MNT-002#section-3-lubrication#t2",
+          "section": "SECTION 3 \u2014 LUBRICATION",
+          "element_type": "TABLE",
+          "doc_version": "5.4",
+          "score": 0.544,
+          "snippet": "SECTION 3 \u2014 LUBRICATION \u2014 This table details lubrication requirements for manufacturing equipment including the MPS-400, CNC VF-4, welding r",
+          "table_markdown": "| Equipment | Point | Lubricant | Specification | Interval |\n|---|---|---|---|---|\n| MPS-400 | Ram gibs / slides | Way oil | ISO VG 220 | Weekly |\n| MPS-400 | Main bearings | EP grease, lithium | NLGI 2 | Monthly |\n| MPS-400 | Hydraulic reservoir | AW hydraulic oil | ISO VG 46 | Top off daily; replace annually |\n| CNC VF-4 | Way surfaces | Way lube | ISO VG 68 | Auto-lube; check reservoir daily |\n| CNC VF-4 | Spindle | Sealed, no service | \u2014 | \u2014 |\n| Welding robots | Axis gearboxes | Robot reducer oil | Manufacturer-specified | Annually |\n| Powder conveyor | Chain | High-temp chain oil | NLGI 1, rated 400\u00b0F | Monthly |"
+        }
+      ]
+    },
+    {
+      "query": "lockout tagout before maintenance",
+      "source": "SAFETY_PROCEDURES",
+      "results": [
+        {
+          "chunk_id": "MPM-EHS-001#3-1-when-loto-is-required#p9",
+          "section": "3.1 When LOTO Is Required",
+          "element_type": "PROSE",
+          "doc_version": "7.2",
+          "score": 0.782,
+          "snippet": "You must apply lockout/tagout before performing any of the following: clearing a jam, changing a die or tooling, performing maintenance, rem",
+          "table_markdown": null
+        },
+        {
+          "chunk_id": "MPM-EHS-001#section-3-control-of-hazardous-energy-lo#p8",
+          "section": "SECTION 3 \u2014 CONTROL OF HAZARDOUS ENERGY (LOCKOUT/TAGOUT)",
+          "element_type": "PROSE",
+          "doc_version": "7.2",
+          "score": 0.716,
+          "snippet": "This section is the most important in the manual. The control of hazardous energy \u2014 lockout/tagout, or LOTO \u2014 prevents machinery from starti",
+          "table_markdown": null
+        },
+        {
+          "chunk_id": "MPM-EHS-001#section-11-supervisor-responsibilities#p23",
+          "section": "SECTION 11 \u2014 SUPERVISOR RESPONSIBILITIES",
+          "element_type": "PROSE",
+          "doc_version": "7.2",
+          "score": 0.67,
+          "snippet": "Before any shift or task, a floor supervisor confirms that the crew is trained and current, that required PPE is worn, that all guards and i",
+          "table_markdown": null
+        },
+        {
+          "chunk_id": "MPM-EHS-001#3-4-press-ram-safety-prop#p12",
+          "section": "3.4 Press Ram Safety Prop",
+          "element_type": "PROSE",
+          "doc_version": "7.2",
+          "score": 0.609,
+          "snippet": "**CAUTION:** Electrical and hydraulic isolation alone will not prevent the ram of the MPS-400 from drifting downward under its own weight. W",
+          "table_markdown": null
+        }
+      ]
+    },
+    {
+      "query": "Cpk acceptance criteria",
+      "source": "QUALITY_CONTROL",
+      "results": [
+        {
+          "chunk_id": "MPM-QC-003#section-6-statistical-process-control#p9",
+          "section": "SECTION 6 \u2014 STATISTICAL PROCESS CONTROL",
+          "element_type": "PROSE",
+          "doc_version": "4.1",
+          "score": 0.668,
+          "snippet": "Key characteristics \u2014 overall length, mounting-hole diameter, weld leg size, and coating thickness \u2014 are monitored on the floor using X-bar ",
+          "table_markdown": null
+        },
+        {
+          "chunk_id": "MPM-QC-003#section-2-dimensional-specifications#p3",
+          "section": "SECTION 2 \u2014 DIMENSIONAL SPECIFICATIONS",
+          "element_type": "PROSE",
+          "doc_version": "4.1",
+          "score": 0.635,
+          "snippet": "The acceptance limits for part MPM-4471 are taken directly from the released engineering drawing and are reproduced below. A feature conform",
+          "table_markdown": null
+        },
+        {
+          "chunk_id": "MPM-QC-003#section-3-sampling-plans#p5",
+          "section": "SECTION 3 \u2014 SAMPLING PLANS",
+          "element_type": "PROSE",
+          "doc_version": "4.1",
+          "score": 0.621,
+          "snippet": "In-process inspection uses ANSI/ASQ Z1.4, general inspection level II, single sampling, unless the control plan calls for 100 percent inspec",
+          "table_markdown": null
+        },
+        {
+          "chunk_id": "MPM-QC-003#preamble#t1",
+          "section": "Preamble",
+          "element_type": "TABLE",
+          "doc_version": "4.1",
+          "score": 0.594,
+          "snippet": "Preamble \u2014 This table provides administrative metadata for document MPM-QC-003, including revision 4.1 and an effective date of January 20, ",
+          "table_markdown": "| | |\n|---|---|\n| Document Number | MPM-QC-003 |\n| Revision | 4.1 |\n| Effective Date | January 20, 2026 |\n| Document Owner | Quality Department |\n| Approved By | Quality Manager; Plant Director |\n| Conformance | Aligned to IATF 16949 / ISO 9001 |\n| Review Cycle | Annual |\n| Classification | Controlled \u2014 printed copies are uncontrolled |"
+        }
+      ]
+    }
+  ],
+  "cache": {
+    "embedding": {
+      "status": "LIVE",
+      "namespace": "cache:emb",
+      "entries": 102,
+      "ttl_seconds": 86400,
+      "embedding_model": "BAAI/bge-small-en-v1.5",
+      "note": "Each unique string embedded once; reused for 24h."
+    },
+    "response": {
+      "status": "PENDING_LIVE",
+      "namespaces": [
+        {
+          "key": "cache:llm",
+          "purpose": "decompose \u00b7 judge \u00b7 assemble results",
+          "entries": null
+        },
+        {
+          "key": "cache:retrieval",
+          "purpose": "source-filtered retrieval sets",
+          "entries": null
+        }
+      ],
+      "metrics_preview": {
+        "hit_rate": null,
+        "entries": null,
+        "cost_avoided_usd": null
+      },
+      "activation_note": "Populates as questions are asked once the Redis cache thread ships."
+    }
+  }
+}
