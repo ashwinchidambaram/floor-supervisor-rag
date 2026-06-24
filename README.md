@@ -20,7 +20,7 @@ A password-gated deployment of the full system — ask a real question, get a re
 - **Backend:** the FastAPI graph on a **Hugging Face Docker Space**
   (`https://axchidam-floor-supervisor-rag.hf.space`, gated `POST /ask` + open `GET /health`).
 - **Access:** the Ask surface is behind a **shared password** (a `DEMO_ACCESS_KEY` bearer enforced at the
-  API, not just the UI). An interviewer needs that key — shared separately.
+  API, not just the UI).
 - **Non-prod note:** the free Space sleeps when idle, so the **first request after a cold start takes
   ~30–60 s** (container wake + a one-time in-process index build). The app's backend-status pill shows
   *waking → live*. Subsequent answers are ~7–16 s.

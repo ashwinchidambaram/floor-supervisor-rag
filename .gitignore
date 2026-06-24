@@ -12,3 +12,8 @@ ui/dist/
 mock_data/*
 !mock_data/.gitkeep
 var/
+
+# Local-only — not pushed to remote
+.claude/
+docs/*
+!docs/img/
