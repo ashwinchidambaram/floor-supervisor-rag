@@ -37,6 +37,24 @@ A password-gated deployment of the full system — ask a real question, get a re
 > the backend is cold. The response cache is measured locally (the public Space runs Redis-less) — see the
 > cache band on Knowledge.
 
+### What it looks like
+
+*Ask — a grounded, cited answer (confidence badge · verbatim spec table · source citation):*
+
+![Ask — a grounded, cited answer with a verbatim torque table](docs/img/ask.png)
+
+*…and an honest abstain when the documentation doesn't cover it — never a fabricated number or unsafe step:*
+
+![Ask — honest abstain on an unanswerable question](docs/img/ask-abstain.png)
+
+*Observe — the operator's run-health summary and per-node cost (the capable-tier judge dominates spend):*
+
+![Observe — executive summary and cost-by-node breakdown](docs/img/observe.png)
+
+*Knowledge — the corpus browser and the **measured** response-cache band (miss vs hit; why the judge re-runs):*
+
+![Knowledge — the measured response-cache band](docs/img/knowledge-cache.png)
+
 ---
 
 ## The problem
@@ -62,24 +80,33 @@ The colour of each node is the whole story — it's the answer to "is this fair 
 
 ```mermaid
 flowchart TD
-  start([invoke: new question]) --> ingest_question --> decompose_question --> route_sources
-  route_sources -->|any known source| retrieve_chunks
-  route_sources -->|all UNKNOWN| assess_confidence
-  retrieve_chunks --> judge_grounding
-  judge_grounding -->|any FAIL & known & attempts < max| retrieve_chunks
-  judge_grounding -->|else| assess_confidence
-  assess_confidence -->|any HIGH/MEDIUM part| assemble_answer
-  assess_confidence -->|all LOW| abstain
-  assemble_answer --> deliver_answer
-  deliver_answer -->|>=1 grounded part| done([END · await next question])
-  deliver_answer -->|all parts downgraded to LOW| abstain
-  abstain --> done
+  Q([new question]):::io --> ING[ingest_question]:::det
+  ING --> DEC[decompose_question]:::llm
+  DEC --> RT[route_sources]:::det
+  RT -->|any known source| RET["retrieve_chunks  ⟳"]:::det
+  RT -->|all UNKNOWN| ASS[assess_confidence]:::det
+  RET --> JDG[judge_grounding]:::llm
+  JDG -. "retry — FAIL, known, under cap" .-> RET
+  JDG -->|else| ASS
+  ASS -->|any HIGH/MEDIUM part| ASM["assemble_answer  ⟳"]:::llm
+  ASS -->|all LOW| ABS[abstain]:::det
+  ASM --> DEL[deliver_answer]:::det
+  DEL -->|"≥1 grounded part"| OUT([cited answer · confidence]):::good
+  DEL -->|all parts downgraded| ABS
+  ABS --> NO([honest abstain — no fabrication]):::stop
 
-  classDef llm fill:#fde68a,stroke:#b45309,color:#000
-  classDef det fill:#bfdbfe,stroke:#1e40af,color:#000
-  class decompose_question,judge_grounding,assemble_answer llm
-  class ingest_question,route_sources,retrieve_chunks,assess_confidence,deliver_answer,abstain det
+  classDef llm  fill:#FDECC8,stroke:#B45309,color:#3A2A0A,stroke-width:1.5px;
+  classDef det  fill:#D6E4F0,stroke:#1E40AF,color:#0B1E36,stroke-width:1.5px;
+  classDef io   fill:#EFE7D6,stroke:#8A7A5C,color:#0B1E36;
+  classDef good fill:#E2E9DC,stroke:#5D6A53,color:#2C3327,stroke-width:1.5px;
+  classDef stop fill:#FBE3E1,stroke:#B23A34,color:#5C1E1A,stroke-width:1.5px;
+  linkStyle 6 stroke:#B23A34,stroke-width:2px;
 ```
+
+🟧 **LLM agent** — reads, judges, drafts (cheap / capable / mid tiers).
+🟦 **deterministic** — routes, computes confidence, enforces citations, abstains.
+**⟳** response-cached (`retrieve_chunks` + `assemble_answer`); the **judge is never cached — it re-runs on
+every answer** so grounding is never served stale. The dashed red edge is the bounded retrieval retry.
 
 ### The agency line
 
