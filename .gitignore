@@ -15,5 +15,6 @@ var/
 
 # Local-only — not pushed to remote
 .claude/
+CLAUDE.md
 docs/*
 !docs/img/

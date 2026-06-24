@@ -271,9 +271,8 @@ source-filter, version-carrying), `tests/test_rag.py` (embedding norm, ranking, 
 cache disabled by default for the suite) — these skip cleanly if Redis or the index isn't present.
 
 > Regenerate the evidence: `pytest -q` (suite + cache tests) · `python run_demo.py` (skeleton feed) ·
-> `python -m scripts.measure_cache` (cache miss/hit → `var/cache_measure.log`). The captured results live
-> in **`docs/RESULTS.md`** — full Phase-6 verification: pytest, the 4-agent code review, the live
-> Playwright end-to-end (15/15), and curl evidence.
+> `python -m scripts.measure_cache` (cache miss/hit → `var/cache_measure.log`). Verification covered the
+> full Phase-6 pass: pytest, the 4-agent code review, the live Playwright end-to-end (15/15), and curl evidence.
 
 ---
 
@@ -387,7 +386,6 @@ confidence badges, explicit "unsure"/abstain callouts, and an optional node-by-n
 
 ```
 .
-├── CLAUDE.md                  # build constitution (the agency-line philosophy)
 ├── run_demo.py                # push a sample question through; print the event feed
 ├── verify_models.py           # ping the live OpenRouter catalog; confirm IDs + pricing
 ├── Dockerfile · render.yaml   # backend container (deployed to a Hugging Face Docker Space)
@@ -407,7 +405,7 @@ confidence badges, explicit "unsure"/abstain callouts, and an optional node-by-n
 ├── tests/                     # test_orchestration (invariants) · test_retrieval · test_rag · test_cache · conftest
 ├── ui/                        # React UI — recorded playback + live /ask (Ask · Observe · Knowledge)
 ├── var/                       # trace.db · cache_measure.log (the measured cache run) · e2e/ (screenshots)
-└── docs/                      # spec.md · AGENTS-SPEC.md · RESULTS.md · CODE_REVIEW.md · architecture.mmd
+└── docs/img/                  # the screenshots embedded above (rest of docs/ is local-only)
 ```
 
 Conventions worth knowing: `state.py` imports nothing and is imported everywhere (it's the freeze
