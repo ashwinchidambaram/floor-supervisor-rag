@@ -186,6 +186,7 @@ class Event(BaseModel):
     latency_ms: float = 0.0
     retries: int = 0
     cost_usd: float = 0.0
+    cache_hit: bool = False  # node reused a cached result (retrieve/assemble) — cost_usd=0 on a hit
     summary: str = ""
     state_delta: dict = Field(default_factory=dict)
     error: str | None = None

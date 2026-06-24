@@ -22,8 +22,24 @@ Failure:  hybrid_search never raises (returns [] on EMPTY_INDEX or EMBED_ERROR �
 from __future__ import annotations
 
 from src.observability import traced_node
-from src.state import ConversationState, DocSource, JudgeVerdict, TurnStatus
-from src.tools.hybrid_search import hybrid_search
+from src.state import ConversationState, DocSource, JudgeVerdict, RetrievedChunk, TurnStatus
+from src.tools.cache import cache_get, cache_set, node_cache_enabled
+from src.tools.hybrid_search import hybrid_search, index_fingerprint
+
+
+def _retrieve(query_text: str, source: DocSource, top_k: int, fp: str) -> tuple[list[RetrievedChunk], bool]:
+    """hybrid_search behind the spec-§4b retrieval cache. Deterministic, so a hit saves latency
+    (the cost is $0 either way). Key = (subq, source, top_k, index fingerprint). Returns
+    (chunks, was_cache_hit). Best-effort: any cache error just recomputes."""
+    if not node_cache_enabled():
+        return hybrid_search(query_text=query_text, source=source, top_k=top_k), False
+    key = {"subq": query_text, "source": source.value, "top_k": top_k, "fp": fp}
+    cached = cache_get("retrieval", key)
+    if cached is not None:
+        return [RetrievedChunk.model_validate(c) for c in cached["chunks"]], True
+    results = hybrid_search(query_text=query_text, source=source, top_k=top_k)
+    cache_set("retrieval", key, {"chunks": [c.model_dump(mode="json") for c in results]})
+    return results, False
 
 
 @traced_node("retrieve_chunks", deterministic=True)
@@ -55,15 +71,14 @@ def retrieve_chunks(state: ConversationState, span) -> ConversationState:
 
     # Per-sub-question stats for the audit summary (populated below).
     audit_rows: list[str] = []
+    fp = index_fingerprint() if to_retrieve and node_cache_enabled() else ""
 
     for sq in to_retrieve:
-        results = hybrid_search(
-            query_text=sq.text,
-            source=sq.routed_source,
-            top_k=top_k,
-        )
+        results, was_cached = _retrieve(sq.text, sq.routed_source, top_k, fp)
+        if was_cached:
+            span.cache_hit = True
         sq.retrieved = results
-        sq.retrieval_attempts += 1
+        sq.retrieval_attempts += 1  # counted regardless of cache (enforces the retry cap)
 
         # Audit summary row: sq id · #hits · top score (or "empty").
         if results:

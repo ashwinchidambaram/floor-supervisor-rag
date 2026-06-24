@@ -61,6 +61,7 @@ class Span:
         self.tokens_in = 0
         self.tokens_out = 0
         self.retries = 0
+        self.cache_hit = False  # set True when the node reused a cached result (retrieve/assemble)
         self.summary = ""
         self.delta: dict = {}
         self.action = node
@@ -107,6 +108,7 @@ def traced_node(name: str, deterministic: bool = True):
                 latency_ms=latency_ms,
                 retries=span.retries,
                 cost_usd=cost,
+                cache_hit=span.cache_hit,
                 summary=span.summary or f"{name} → {status}",
                 state_delta=span.delta,
                 error=span.error,

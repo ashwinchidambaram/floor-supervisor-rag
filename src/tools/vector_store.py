@@ -66,6 +66,7 @@ class VectorStore:
         try:
             r = get_redis()
             keys = list(r.scan_iter(match=f"rag:{self.index}:*"))
+            vecs: list[np.ndarray] = []  # collect then stack once (avoid O(n²) re-allocation)
             for key in keys:
                 h = r.hgetall(key)
                 if not h:
@@ -73,12 +74,9 @@ class VectorStore:
                 self._ids.append(h[b"id"].decode())
                 self._texts.append(h[b"text"].decode())
                 self._metas.append(json.loads(h[b"metadata"]))
-                vec = np.frombuffer(h[b"vector"], dtype=np.float32)
-                self._matrix = (
-                    vec.reshape(1, DIM)
-                    if self._matrix.shape[0] == 0
-                    else np.vstack([self._matrix, vec])
-                )
+                vecs.append(np.frombuffer(h[b"vector"], dtype=np.float32))
+            if vecs:
+                self._matrix = np.vstack(vecs)
             if keys:
                 log.info("vector_store[%s]: loaded %d docs from Redis", self.index, len(keys))
         except redis.RedisError as e:
@@ -110,18 +108,17 @@ class VectorStore:
 
         vectors = embed_texts(texts)
         new_ids: list[str] = []
+        new_vecs: list[np.ndarray] = []  # stack once at the end (avoid O(n²) re-allocation)
         for text, meta, vec in zip(texts, metadatas, vectors):
             doc_id = uuid.uuid4().hex
             new_ids.append(doc_id)
             self._ids.append(doc_id)
             self._texts.append(text)
             self._metas.append(meta)
-            self._matrix = (
-                vec.reshape(1, DIM)
-                if self._matrix.shape[0] == 0
-                else np.vstack([self._matrix, vec])
-            )
+            new_vecs.append(vec)
             self._persist(doc_id, text, meta, vec)
+        stacked = np.vstack(new_vecs)
+        self._matrix = stacked if self._matrix.shape[0] == 0 else np.vstack([self._matrix, stacked])
         return new_ids
 
     @staticmethod

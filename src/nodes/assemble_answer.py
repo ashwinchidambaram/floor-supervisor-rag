@@ -28,7 +28,7 @@ from __future__ import annotations
 import json
 
 from src.config import complete_with_usage
-from src.observability import traced_node
+from src.observability import compute_cost, traced_node
 from src.state import (
     Citation,
     ConfidenceLevel,
@@ -37,6 +37,33 @@ from src.state import (
     RetrievedChunk,
     TurnStatus,
 )
+from src.tools.cache import cache_get, cache_set, node_cache_enabled, record_cost_avoided
+
+
+def _assemble_cached(
+    agent_key: str, sq_text: str, supporting_chunks: list[RetrievedChunk], messages: list[dict]
+) -> tuple[str, dict, bool]:
+    """The per-sub-question assemble LLM call behind the spec-§4b cache. Key = (subq,
+    sorted supporting_chunk_ids, sorted doc_versions). A hit returns the stored draft with
+    ZERO token usage (so the node prices to $0 for that part) and records cost_avoided.
+    The judge is NOT cached — it always re-runs upstream, so grounding is never served stale.
+    Returns (draft, usage, was_cache_hit)."""
+    if not node_cache_enabled():
+        draft, usage = complete_with_usage(agent_key, messages, temperature=0)
+        return draft, usage, False
+    key = {
+        "subq": sq_text,
+        "support": sorted(c.chunk_id for c in supporting_chunks),
+        "versions": sorted({c.doc_version for c in supporting_chunks}),
+    }
+    cached = cache_get("llm:assemble", key)
+    if cached is not None:
+        record_cost_avoided("llm:assemble", float(cached.get("cost_usd", 0.0)))
+        return cached["draft"], {"tokens_in": 0, "tokens_out": 0, "model": cached.get("model")}, True
+    draft, usage = complete_with_usage(agent_key, messages, temperature=0)
+    cost = compute_cost(usage["model"], usage["tokens_in"], usage["tokens_out"])
+    cache_set("llm:assemble", key, {"draft": draft, "model": usage["model"], "cost_usd": cost})
+    return draft, usage, False
 
 # The confidence levels this assembler is authorised to handle
 _ASSEMBLE_LEVELS = {ConfidenceLevel.HIGH, ConfidenceLevel.MEDIUM}
@@ -191,11 +218,13 @@ def assemble_answer(state: ConversationState, span) -> ConversationState:
             # deliver_answer catches the missing citation and downgrades the part to LOW.
             continue
 
-        # --- REAL LLM CALL: one call per qualifying sub-question, temperature=0 ---
+        # --- REAL LLM CALL (cached per §4b): one call per qualifying sub-question, temperature=0 ---
         messages = _build_prompt(sq.text, supporting_chunks)
-        draft, usage = complete_with_usage(_AGENT_KEY, messages, temperature=0)
+        draft, usage, was_cached = _assemble_cached(_AGENT_KEY, sq.text, supporting_chunks, messages)
+        if was_cached:
+            span.cache_hit = True
 
-        # Accumulate token usage across calls
+        # Accumulate token usage across calls (cached parts contribute 0 → that part prices to $0)
         total_tokens_in += usage["tokens_in"]
         total_tokens_out += usage["tokens_out"]
         model_used = usage["model"]

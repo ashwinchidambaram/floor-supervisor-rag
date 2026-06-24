@@ -16,6 +16,8 @@ Index:    the Redis-backed `kb` VectorStore (built by src/ingest.py). Loaded onc
 
 from __future__ import annotations
 
+import hashlib
+import json
 import re
 from functools import lru_cache
 
@@ -35,9 +37,26 @@ def _store() -> VectorStore:
     return VectorStore(index=KB_INDEX)
 
 
+def index_fingerprint() -> str:
+    """A short, deterministic signature of the current index (chunk_ids + doc_versions).
+    Used in the retrieval cache key so a re-ingest (new corpus) busts stale cached results."""
+    _, _, metas, _ = _store().subset()
+    sig = sorted((m.get("chunk_id", ""), m.get("doc_version", "")) for m in metas)
+    return hashlib.sha256(json.dumps(sig, default=str).encode()).hexdigest()[:16]
+
+
 def _tokenize(text: str) -> list[str]:
     """Lowercase tokens that KEEP identifiers intact (m12-a307, sp-vf4-db-22, 144)."""
     return re.findall(r"[a-z0-9][a-z0-9\-\.]*", text.lower())
+
+
+@lru_cache(maxsize=8)
+def _source_index(source_value: str, fp: str):
+    """Source-scoped slice + a prebuilt BM25 index, memoized per (source, index fingerprint).
+    Keying on `fp` means a re-ingest naturally evicts the stale BM25 (no per-query rebuild)."""
+    ids, texts, metas, mat = _store().subset(where={"source": source_value})
+    bm25 = BM25Okapi([_tokenize(t) for t in texts]) if texts else None
+    return ids, texts, metas, mat, bm25
 
 
 def _rrf(rankings: list[list[str]]) -> dict[str, float]:
@@ -50,7 +69,7 @@ def _rrf(rankings: list[list[str]]) -> dict[str, float]:
 
 
 def hybrid_search(query_text: str, source: DocSource, top_k: int = 5) -> list[RetrievedChunk]:
-    ids, texts, metas, mat = _store().subset(where={"source": source.value})
+    ids, texts, metas, mat, bm25 = _source_index(source.value, index_fingerprint())
     if not ids:
         return []  # EMPTY_INDEX for this source
 
@@ -63,8 +82,7 @@ def hybrid_search(query_text: str, source: DocSource, top_k: int = 5) -> list[Re
     dense_scores = mat @ q
     dense_rank = [ids[i] for i in np.argsort(-dense_scores)]
 
-    # Sparse: BM25 over the same source-filtered chunk texts.
-    bm25 = BM25Okapi([_tokenize(t) for t in texts])
+    # Sparse: BM25 over the same source-filtered chunk texts (prebuilt + cached per source).
     bm25_scores = bm25.get_scores(_tokenize(query_text))
     bm25_rank = [ids[i] for i in np.argsort(-bm25_scores)]
 

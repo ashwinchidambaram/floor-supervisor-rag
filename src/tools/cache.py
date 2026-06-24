@@ -22,6 +22,7 @@ from __future__ import annotations
 import functools
 import hashlib
 import json
+import os
 from typing import Any, Callable
 
 import redis
@@ -29,6 +30,52 @@ import redis
 from .redis_client import get_redis
 
 DEFAULT_TTL = 60 * 60 * 24  # 24h
+
+
+def node_cache_enabled() -> bool:
+    """The per-node response caches (retrieve_chunks / assemble_answer) are gated on this so
+    the §11 forced-stub tests run cache-free and deterministic. Set RAG_DISABLE_NODE_CACHE=1
+    to turn them off (the test conftest does this). The embedding + table caches are unaffected."""
+    return os.getenv("RAG_DISABLE_NODE_CACHE", "") != "1"
+
+
+# --- lightweight in-process instrumentation (per-namespace hit/miss + cost avoided) ---------
+# Process-local counters: enough to ground the README's measured run and to drive the Knowledge
+# cache band locally. The deployed demo runs Redis-less, so its band reads recorded fixtures.
+_STATS: dict[str, dict[str, float]] = {}
+
+
+def _bump(namespace: str, field: str, by: float = 1) -> None:
+    _STATS.setdefault(namespace, {"hits": 0, "misses": 0, "cost_avoided_usd": 0.0})[field] += by
+
+
+def record_cost_avoided(namespace: str, usd: float) -> None:
+    """A cache hit on a priced node (e.g. assemble) avoided this much spend — track it for the band."""
+    _bump(namespace, "cost_avoided_usd", usd)
+
+
+def cache_stats() -> dict[str, dict[str, float]]:
+    """Per-namespace {hits, misses, hit_rate, cost_avoided_usd}. Process-local since last reset."""
+    out: dict[str, dict[str, float]] = {}
+    for ns, s in _STATS.items():
+        total = s["hits"] + s["misses"]
+        out[ns] = {**s, "hit_rate": (s["hits"] / total if total else 0.0)}
+    return out
+
+
+def reset_stats() -> None:
+    """Zero the counters (used by the measured run + cache tests)."""
+    _STATS.clear()
+
+
+def flush_namespace(namespace: str) -> int:
+    """Delete every entry under one namespace. Returns the count removed (0 on any cache error)."""
+    try:
+        r = get_redis()
+        keys = list(r.scan_iter(match=f"cache:{namespace}:*"))
+        return r.delete(*keys) if keys else 0
+    except redis.RedisError:
+        return 0
 
 
 def _make_key(namespace: str, key_parts: Any) -> str:
@@ -39,11 +86,16 @@ def _make_key(namespace: str, key_parts: Any) -> str:
 
 
 def cache_get(namespace: str, key_parts: Any) -> dict | None:
-    """Return the cached JSON value, or None on miss / any cache error."""
+    """Return the cached JSON value, or None on miss / any cache error. Records a hit/miss."""
     try:
         raw = get_redis().get(_make_key(namespace, key_parts))
-        return json.loads(raw) if raw is not None else None
+        if raw is not None:
+            _bump(namespace, "hits")
+            return json.loads(raw)
+        _bump(namespace, "misses")
+        return None
     except (redis.RedisError, json.JSONDecodeError, TypeError):
+        _bump(namespace, "misses")
         return None
 
 
