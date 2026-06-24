@@ -35,13 +35,13 @@ ask→answer), and deploy a password-gated demo (Render + Vercel). Cache + cache
       LIVE: UI https://floor-supervisor-rag.vercel.app · backend https://axchidam-floor-supervisor-rag.hf.space
       (index_loaded:true). Password-gated; /ask → 401 w/o key; happy + bad-path verified. Pretty URL + maker-mark removed.
 
-- [~] **P6 · Full verification + code review + Playwright (FINAL GATE)** — status: IN_PROGRESS
-      6a all pytest+smokes — **DONE: 18/18 passed.**
-      6b parallel code-review subagents (backend·tools/api·ui·prompts) — **DONE: 4 agents reported → docs/CODE_REVIEW.md.**
-          Agency line CLEAN · brand/status CLEAN · auth sound. Triage: Tier-1 fixes + Tier-2 prompt edits pending apply.
-      6c Playwright e2e (live stack) — **DONE: 15/15 (scripts/e2e_playwright.py; screenshots var/e2e/).**
-      6d RESULTS.md evidence — pending.
-      Remaining: apply triaged fixes (pending user steer on redeploy scope) → re-verify → RESULTS.md.
+- [x] **P6 · Full verification + code review + Playwright (FINAL GATE)** — status: COMPLETE
+      6a pytest — **18/18 passed.**
+      6b 4 parallel review agents → docs/CODE_REVIEW.md. Agency line CLEAN · brand/status CLEAN · auth sound.
+          Tier-1 fixes + Tier-2 prompt edits APPLIED (commit 8b6361c); table_summary edit deferred-w/-rationale.
+      6c Playwright e2e (LIVE stack) — **15/15** (scripts/e2e_playwright.py; screenshots var/e2e/).
+      6d Evidence → **docs/RESULTS.md** (real test output, curl evidence, confidence-calibration note).
+      Redeployed both (HF + Vercel) after fixes; re-verified 15/15 + curl happy/bad/401. DONE.
 
 ## Errors encountered
 | Error | Attempt | Resolution |

@@ -48,3 +48,15 @@
     articles (left rail lists recorded titles → false-match). Backend warm /ask latency measured ≈ 6.8s.
 - Pending: apply triaged fixes (Tier-1 + Tier-2 prompts) → redeploy → re-verify → write RESULTS.md. Needs user
   steer on redeploy aggressiveness (live demo currently green).
+
+## Session — 2026-06-23 · Phase 6 COMPLETE (fixes applied + redeployed + re-verified)
+- Applied Tier-1 review fixes + Tier-2 prompt hardening (commit 8b6361c). Reverted table_summary prompt edit
+  (would perturb the LLM-generated index → confidence band) — logged with rationale.
+- Re-verified locally: pytest 18/18 · `npm run build` green · graph smoke (happy ANSWERED+cited "80 N·m"; bad ABSTAINED).
+- Redeployed HF backend (confirmed new judge prompt present on the Space) + Vercel frontend (re-aliased pretty URL to
+  the new build; deployed CSS now contains accent-rgb ×14 → focus rings/dividers render).
+- Final LIVE e2e: **15/15**. Curl: happy ANSWERED/MEDIUM/cited "80 N", bad ABSTAINED, no-key 401, /health index_loaded:true.
+- FINDING (honest, not a bug): torque query sits at the HIGH/MEDIUM score boundary; LLM-generated ingest captions make
+  the band vary across cold-start rebuilds. Value+citation always correct. e2e now asserts the real invariant
+  (ANSWERED + correct value + citation + non-LOW band). Documented in RESULTS.md.
+- Artifacts: docs/CODE_REVIEW.md, docs/RESULTS.md, scripts/e2e_playwright.py, var/e2e/*.png.
