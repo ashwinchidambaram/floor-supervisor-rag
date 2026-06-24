@@ -14,7 +14,7 @@
 
 import { useState } from "react";
 import { Check, ChevronRight, X } from "lucide-react";
-import type { SubQuestion, Turn } from "@/lib/types";
+import type { Event, SubQuestion, Turn } from "@/lib/types";
 import { confidenceColor } from "@/lib/tokens";
 import { cn } from "@/lib/utils";
 import { sourceLabel } from "@/components/qna/sourceLabel";
@@ -37,7 +37,18 @@ function spineStages(turn: Turn): { node: string; detail: string }[] {
   ];
 }
 
-export function PipelineReveal({ turn }: { turn: Turn }) {
+/** Build a set of node names that had cache_hit=true in this turn's events. */
+function buildCacheHitSet(events: Event[]): Set<string> {
+  const hits = new Set<string>();
+  for (const e of events) {
+    if (e.cache_hit === true) hits.add(e.node);
+  }
+  return hits;
+}
+
+export function PipelineReveal({ turn, events = [] }: { turn: Turn; events?: Event[] }) {
+  const cacheHits = buildCacheHitSet(events);
+
   return (
     <section className="mt-4 rounded-lg border border-subtle bg-surface-alt/60 px-4 py-3.5">
       <div className="mb-3 flex items-center gap-2">
@@ -49,22 +60,44 @@ export function PipelineReveal({ turn }: { turn: Turn }) {
 
       {/* The spine — stages with status + summary, deterministic from the turn. */}
       <ol className="space-y-0">
-        {spineStages(turn).map((stage, i, all) => (
-          <li key={stage.node} className="flex items-center gap-2.5 py-1">
-            <span className="grid h-5 w-5 shrink-0 place-items-center rounded-full border border-border bg-surface">
-              <Check className="h-3 w-3 text-sage" strokeWidth={2.5} aria-hidden />
-            </span>
-            <span className="w-24 shrink-0 font-mono text-micro font-semibold uppercase tracking-[0.06em] text-ink">
-              {stage.node}
-            </span>
-            <span className="min-w-0 flex-1 truncate font-mono text-micro text-ink-muted">
-              {stage.detail}
-            </span>
-            {i < all.length - 1 && (
-              <ChevronRight className="h-3 w-3 shrink-0 text-ink-faint/50" aria-hidden />
-            )}
-          </li>
-        ))}
+        {spineStages(turn).map((stage, i, all) => {
+          // Map spine stage names to event node names.
+          const nodeKey = stage.node === "retrieve" ? "retrieve_chunks"
+            : stage.node === "assemble" ? "assemble_answer"
+            : stage.node === "judge" ? "judge_grounding"
+            : stage.node;
+          const isCached = cacheHits.has(nodeKey);
+          // The judge always re-runs (grounding is never served stale), even on cache hits.
+          const isJudge = stage.node === "judge";
+
+          return (
+            <li key={stage.node} className="flex items-center gap-2.5 py-1">
+              <span className="grid h-5 w-5 shrink-0 place-items-center rounded-full border border-border bg-surface">
+                <Check className="h-3 w-3 text-sage" strokeWidth={2.5} aria-hidden />
+              </span>
+              <span className="w-24 shrink-0 font-mono text-micro font-semibold uppercase tracking-[0.06em] text-ink">
+                {stage.node}
+              </span>
+              <span className="min-w-0 flex-1 truncate font-mono text-micro text-ink-muted">
+                {stage.detail}
+              </span>
+              {/* Subtle cache marker — neutral ink, never a status color. */}
+              {isCached && !isJudge && (
+                <span className="shrink-0 font-mono text-micro text-ink-faint" title="Served from cache">
+                  ⟳ reused
+                </span>
+              )}
+              {isJudge && cacheHits.size > 0 && (
+                <span className="shrink-0 font-mono text-micro text-ink-faint" title="Judge always re-runs — grounding is never served stale">
+                  re-ran
+                </span>
+              )}
+              {i < all.length - 1 && (
+                <ChevronRight className="h-3 w-3 shrink-0 text-ink-faint/50" aria-hidden />
+              )}
+            </li>
+          );
+        })}
       </ol>
 
       {/* Inline evidence: the retrieved chunks + scores and the judge verdict, per part. */}

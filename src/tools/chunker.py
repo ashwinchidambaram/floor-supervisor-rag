@@ -82,6 +82,7 @@ def chunk_markdown(path: str | Path) -> list[RetrievedChunk]:
     prose: list[str] = []
     table: list[str] = []
     counters = {"p": 0, "t": 0}
+    file_stem = path.stem  # included in chunk_id so two docs with number="UNKNOWN" can't collide
 
     def flush_prose() -> None:
         text = "\n".join(prose).strip()
@@ -91,7 +92,7 @@ def chunk_markdown(path: str | Path) -> list[RetrievedChunk]:
         for part in _split_prose(text):
             counters["p"] += 1
             chunks.append(_mk(source, title, version, number, section, ElementType.PROSE,
-                             part, counters["p"]))
+                             part, counters["p"], file_stem=file_stem))
 
     def flush_table() -> None:
         if not table:
@@ -101,7 +102,7 @@ def chunk_markdown(path: str | Path) -> list[RetrievedChunk]:
         counters["t"] += 1
         chunks.append(_mk(source, title, version, number, section, ElementType.TABLE,
                          _table_caption(section, block.splitlines()), counters["t"],
-                         table_markdown=block))
+                         table_markdown=block, file_stem=file_stem))
 
     for line in raw:
         if line.startswith("## ") or line.startswith("### "):
@@ -139,10 +140,10 @@ def _split_prose(text: str) -> list[str]:
 
 
 def _mk(source, title, version, number, section, element_type, text, n,
-        table_markdown=None) -> RetrievedChunk:
+        table_markdown=None, file_stem: str = "") -> RetrievedChunk:
     kind = "t" if element_type == ElementType.TABLE else "p"
     return RetrievedChunk(
-        chunk_id=f"{number}#{_slug(section)}#{kind}{n}",
+        chunk_id=f"{file_stem}#{number}#{_slug(section)}#{kind}{n}",
         source=source,
         doc_title=title,
         doc_version=version,

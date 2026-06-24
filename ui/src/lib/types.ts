@@ -138,6 +138,8 @@ export interface Event {
   latency_ms: number;
   retries: number;
   cost_usd: number;
+  /** True when retrieve_chunks or assemble_answer was served from the Redis cache (cost_usd=0 on hit). */
+  cache_hit?: boolean;
   summary: string;
   state_delta: Record<string, unknown>;
   error: string | null;
@@ -232,6 +234,37 @@ export interface RetrievalDemoResult {
 }
 export interface RetrievalDemoQuery { query: string; source: DocSource; results: RetrievalDemoResult[]; }
 export interface CacheNamespace { key: string; purpose: string; entries: number | null; }
+
+/** Measured cache economics (local Redis run). All figures from var/cache_measure.log. */
+export interface CacheMeasured {
+  /** Cost per answer on a cold miss (USD). */
+  miss_cost_usd: number;
+  /** Cost per answer on a cache hit (USD) — assemble skipped, judge still re-runs. */
+  hit_cost_usd: number;
+  /** Cost avoided per hit on the assemble step only (USD). */
+  cost_avoided_usd: number;
+  /** Judge share of total answer cost (0–1). Judge always re-runs — grounding is never served stale. */
+  judge_share: number;
+  /** Percentage of answer cost saved on a hit (assemble only). */
+  saved_pct: number;
+  /** Effective cost at 0 % hit rate (USD). */
+  effective_cost_0pct: number;
+  /** Effective cost at 50 % hit rate (USD). */
+  effective_cost_50pct: number;
+  /** Effective cost at 80 % hit rate (USD). */
+  effective_cost_80pct: number;
+  /** Effective cost floor — judge + decompose, even at 100 % hit rate (USD). */
+  effective_cost_floor: number;
+  /** Cold-path latency (ms). */
+  latency_miss_ms: number;
+  /** Cache-hit latency (ms). */
+  latency_hit_ms: number;
+  /** False = cache is a no-op in the public demo (Redis not available). True = local Redis run. */
+  redis_live: boolean;
+  /** Human-readable caveat for display. */
+  note: string;
+}
+
 export interface CacheStats {
   embedding: {
     status: string; namespace: string; entries: number | null;
@@ -241,6 +274,8 @@ export interface CacheStats {
     status: string; namespaces: CacheNamespace[];
     metrics_preview: { hit_rate: number | null; entries: number | null; cost_avoided_usd: number | null };
     activation_note: string;
+    /** Measured economics from a local Redis run. Only present when redis_live=false (public demo). */
+    measured?: CacheMeasured;
   };
 }
 export interface KbCorpus {

@@ -19,13 +19,14 @@ import { SlidersHorizontal } from "lucide-react";
 import {
   ask,
   getConversation,
+  getEvents,
   getSelectedId,
   getTurns,
   isLive,
   selectConversation,
 } from "@/lib/dataSource";
 import { useHashParam } from "@/lib/router";
-import type { Turn } from "@/lib/types";
+import type { Event, Turn } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { ConversationRail } from "@/components/qna/conversationRail";
 import { Composer } from "@/components/qna/composer";
@@ -68,6 +69,7 @@ export function QnaPortal() {
 
   // Live conversation state (the turns produced by ask() this session).
   const [liveTurns, setLiveTurns] = useState<Turn[]>([]);
+  const [liveEvents, setLiveEvents] = useState<Event[]>([]);
   const [draft, setDraft] = useState("");
   const [thinking, setThinking] = useState(false);
   const [askError, setAskError] = useState<string | null>(null);
@@ -82,7 +84,12 @@ export function QnaPortal() {
     () => (isNewSession ? [] : getTurns(convParam ?? getSelectedId())),
     [isNewSession, convParam]
   );
+  const recordedEvents = useMemo(
+    () => (isNewSession ? [] : getEvents(convParam ?? getSelectedId())),
+    [isNewSession, convParam]
+  );
   const turns = isNewSession ? liveTurns : recordedTurns;
+  const events = isNewSession ? liveEvents : recordedEvents;
 
   // Auto-scroll the transcript to the newest turn.
   const endRef = useRef<HTMLDivElement>(null);
@@ -118,6 +125,7 @@ export function QnaPortal() {
       const last = state.current_turn ?? state.turns[state.turns.length - 1];
       if (last) {
         setLiveTurns((prev) => [...prev, last]);
+        setLiveEvents(state.events ?? []);
       } else {
         // A 200 with no turn — surface it rather than silently dropping the answer.
         setAskError("Something went wrong reaching the assistant. Please try again.");
@@ -182,7 +190,7 @@ export function QnaPortal() {
           ) : (
             <div className="mx-auto w-full max-w-reading space-y-8">
               {turns.map((turn) => (
-                <TurnView key={turn.turn_id} turn={turn} showPipeline={showPipeline} />
+                <TurnView key={turn.turn_id} turn={turn} showPipeline={showPipeline} events={events} />
               ))}
               {askError && (
                 <p className="rounded-lg border border-[rgba(216,86,80,0.40)] bg-danger-soft px-4 py-3 text-meta text-danger" role="alert">

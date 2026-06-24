@@ -15,7 +15,7 @@
 // ---------------------------------------------------------------------------
 
 import { useMemo, useRef, useState } from "react";
-import { ArrowUpRight, Database, FileText, Table2, Zap } from "lucide-react";
+import { ArrowUpRight, Database, FileText, Table2 } from "lucide-react";
 import {
   getCacheStats,
   getCorpus,
@@ -30,6 +30,7 @@ import { ChunkInspector } from "@/components/kb/ChunkInspector";
 import { CorpusTree } from "@/components/kb/CorpusTree";
 import { DocumentCard } from "@/components/kb/DocumentCard";
 import { ScoreBar } from "@/components/kb/ScoreBar";
+import { Band } from "@/components/observability/primitives";
 
 interface ResolvedChunk {
   chunk: KbChunk;
@@ -149,28 +150,6 @@ export function KnowledgeBase() {
         </Band>
       </div>
     </div>
-  );
-}
-
-/* ───────────────────────────── shared band frame ─────────────────────── */
-
-function Band({
-  eyebrow,
-  title,
-  children,
-}: {
-  eyebrow: string;
-  title: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <section>
-      <div className="mb-4">
-        <div className="eyebrow">◦ {eyebrow}</div>
-        <h2 className="mt-1 font-display text-title font-semibold tracking-tight text-ink">{title}</h2>
-      </div>
-      {children}
-    </section>
   );
 }
 
@@ -335,68 +314,126 @@ function RetrievalDemo({
 function CacheBand({ cache }: { cache: ReturnType<typeof getCacheStats> }) {
   const { embedding, response } = cache;
   const ttlHours = Math.round(embedding.ttl_seconds / 3600);
+  const m = response.measured;
+
   return (
-    <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-      {/* Embedding cache — LIVE: a solid sage stat block. */}
-      <div className="rounded-xl border border-[rgba(139,157,131,0.45)] bg-[rgba(139,157,131,0.08)] p-5">
-        <div className="flex items-center justify-between">
-          <span className="label-micro flex items-center gap-1.5 text-[#5D6A53]">
-            <Database className="h-3.5 w-3.5" strokeWidth={2} /> Embedding cache
-          </span>
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-[rgba(139,157,131,0.5)] bg-surface px-2 py-0.5 text-micro font-semibold text-[#5D6A53]">
-            <span className="h-1.5 w-1.5 rounded-full bg-sage" /> LIVE
-          </span>
+    <div className="space-y-4">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+        {/* Embedding cache — LIVE: a solid sage stat block. */}
+        <div className="rounded-xl border border-[rgba(139,157,131,0.45)] bg-[rgba(139,157,131,0.08)] p-5">
+          <div className="flex items-center justify-between">
+            <span className="label-micro flex items-center gap-1.5 text-[#5D6A53]">
+              <Database className="h-3.5 w-3.5" strokeWidth={2} /> Embedding cache
+            </span>
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-[rgba(139,157,131,0.5)] bg-surface px-2 py-0.5 text-micro font-semibold text-[#5D6A53]">
+              <span className="h-1.5 w-1.5 rounded-full bg-sage" /> LIVE
+            </span>
+          </div>
+          <div className="mt-4 flex items-end gap-2">
+            <span className="font-display text-display font-semibold tabular-nums text-ink">
+              {embedding.entries ?? "—"}
+            </span>
+            <span className="pb-1 text-meta text-ink-muted">entries cached</span>
+          </div>
+          <dl className="mt-4 grid grid-cols-2 gap-3 text-micro">
+            <CacheStat label="TTL" value={`${ttlHours}h`} />
+            <CacheStat label="Namespace" value={embedding.namespace} mono />
+            <CacheStat label="Model" value={embedding.embedding_model} mono span2 />
+          </dl>
+          <p className="mt-3 border-t border-[rgba(139,157,131,0.3)] pt-3 text-micro text-ink-muted">
+            {embedding.note}
+          </p>
         </div>
-        <div className="mt-4 flex items-end gap-2">
-          <span className="font-display text-display font-semibold tabular-nums text-ink">
-            {embedding.entries ?? "—"}
-          </span>
-          <span className="pb-1 text-meta text-ink-muted">entries cached</span>
+
+        {/* Response cache — measured locally, no-op in the public demo. */}
+        <div className="rounded-xl border border-border bg-surface p-5">
+          <div className="flex items-center justify-between">
+            <span className="label-micro flex items-center gap-1.5 text-ink-muted">
+              <FileText className="h-3.5 w-3.5" strokeWidth={1.75} /> Response cache
+            </span>
+            <span className="inline-flex items-center gap-1 rounded-full border border-border bg-surface-alt px-2 py-0.5 font-mono text-micro text-ink-faint">
+              ⟳ local Redis only
+            </span>
+          </div>
+
+          {m ? (
+            <dl className="mt-4 grid grid-cols-3 gap-3 text-micro">
+              <CacheStat label="Cold miss" value={`$${m.miss_cost_usd.toFixed(4)}`} mono />
+              <CacheStat label="Cache hit" value={`$${m.hit_cost_usd.toFixed(4)}`} mono />
+              <CacheStat label="Saved / hit" value={`~${m.saved_pct}%`} />
+              <CacheStat label="Latency miss" value={`${(m.latency_miss_ms / 1000).toFixed(1)}s`} mono />
+              <CacheStat label="Latency hit" value={`${(m.latency_hit_ms / 1000).toFixed(1)}s`} mono />
+              <CacheStat label="Cost avoided" value={`$${m.cost_avoided_usd.toFixed(4)}`} mono />
+            </dl>
+          ) : (
+            <p className="mt-4 text-micro text-ink-faint">Measured figures not available.</p>
+          )}
+
+          <ul className="mt-4 space-y-1.5">
+            {response.namespaces.map((ns) => (
+              <li
+                key={ns.key}
+                className="flex items-center justify-between gap-3 rounded-lg border border-border-subtle bg-surface/60 px-3 py-2"
+              >
+                <div className="min-w-0">
+                  <div className="font-mono text-micro text-ink-muted">{ns.key}</div>
+                  <div className="truncate text-micro text-ink-faint">{ns.purpose}</div>
+                </div>
+                <span className="shrink-0 font-mono text-micro tabular-nums text-ink-faint">
+                  {ns.entries ?? "—"}
+                </span>
+              </li>
+            ))}
+          </ul>
+
+          <p className="mt-3 border-t border-border-subtle pt-3 text-micro text-ink-faint">
+            {response.activation_note}
+          </p>
         </div>
-        <dl className="mt-4 grid grid-cols-2 gap-3 text-micro">
-          <CacheStat label="TTL" value={`${ttlHours}h`} />
-          <CacheStat label="Namespace" value={embedding.namespace} mono />
-          <CacheStat label="Model" value={embedding.embedding_model} mono span2 />
-        </dl>
-        <p className="mt-3 border-t border-[rgba(139,157,131,0.3)] pt-3 text-micro text-ink-muted">
-          {embedding.note}
-        </p>
       </div>
 
-      {/* Response cache — PENDING_LIVE: dashed, dimmed, aspirational. No fabricated numbers. */}
-      <div className="rounded-xl border border-dashed border-border bg-surface-alt/40 p-5">
-        <div className="flex items-center justify-between">
-          <span className="label-micro flex items-center gap-1.5 text-ink-faint">
-            <Zap className="h-3.5 w-3.5" strokeWidth={2} /> Response cache
-          </span>
-          <span className="eyebrow text-ink-faint">◦ Activates next</span>
-        </div>
+      {/* Measured economics band — only shown when measured figures are present. */}
+      {m && (
+        <div className="rounded-xl border border-border-subtle bg-surface-alt/50 p-5">
+          <div className="mb-3 flex items-center justify-between">
+            <span className="label-micro text-ink-muted">Effective cost vs. hit rate (measured, local Redis)</span>
+            <span className="font-mono text-micro text-ink-faint">judge always re-runs</span>
+          </div>
 
-        <dl className="mt-4 grid grid-cols-3 gap-3">
-          <SkeletonMetric label="Hit rate" />
-          <SkeletonMetric label="Entries" />
-          <SkeletonMetric label="Cost avoided" />
-        </dl>
-
-        <ul className="mt-4 space-y-1.5">
-          {response.namespaces.map((ns) => (
-            <li
-              key={ns.key}
-              className="flex items-center justify-between gap-3 rounded-lg border border-border-subtle bg-surface/60 px-3 py-2"
-            >
-              <div className="min-w-0">
-                <div className="font-mono text-micro text-ink-muted">{ns.key}</div>
-                <div className="truncate text-micro text-ink-faint">{ns.purpose}</div>
+          {/* Effective cost rows at 0 / 50 / 80 % hit rates + floor. */}
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+            {[
+              { label: "0% hits", value: m.effective_cost_0pct },
+              { label: "50% hits", value: m.effective_cost_50pct },
+              { label: "80% hits", value: m.effective_cost_80pct },
+              { label: "floor", value: m.effective_cost_floor },
+            ].map(({ label, value }) => (
+              <div
+                key={label}
+                className="rounded-lg border border-border-subtle bg-surface px-3 py-2.5"
+              >
+                <div className="label-micro text-ink-faint">{label}</div>
+                <div className="mt-1 font-mono text-meta tabular-nums text-ink">
+                  ${value.toFixed(4)}
+                </div>
               </div>
-              <span className="shrink-0 font-mono text-micro tabular-nums text-ink-faint">
-                {ns.entries ?? "—"}
-              </span>
-            </li>
-          ))}
-        </ul>
+            ))}
+          </div>
 
-        <p className="mt-3 text-micro text-ink-faint">{response.activation_note}</p>
-      </div>
+          {/* Why the judge always re-runs. */}
+          <p className="mt-3 text-micro text-ink-muted">
+            <span className="font-semibold">Why the judge re-runs:</span> grounding is never served stale.
+            The judge (~{Math.round(m.judge_share * 100)}% of answer cost) verifies retrieved chunks against
+            each question on every call — even a cache hit — so grounded answers are always fresh.
+            Cost savings ({m.saved_pct}%) come from skipping the assemble step only.
+          </p>
+
+          {/* Honest framing note. */}
+          <p className="mt-2 rounded-lg border border-border-subtle bg-surface/60 px-3 py-2 text-micro italic text-ink-faint">
+            {m.note}
+          </p>
+        </div>
+      )}
     </div>
   );
 }
@@ -408,16 +445,6 @@ function CacheStat({ label, value, mono, span2 }: { label: string; value: string
       <dd className={cn("mt-0.5 truncate text-ink", mono ? "font-mono text-micro" : "text-meta tabular-nums")}>
         {value}
       </dd>
-    </div>
-  );
-}
-
-/** A labelled metric with a skeleton value — never a fabricated number. */
-function SkeletonMetric({ label }: { label: string }) {
-  return (
-    <div className="rounded-lg border border-border-subtle bg-surface/50 px-3 py-2.5">
-      <dt className="label-micro text-ink-faint">{label}</dt>
-      <dd className="mt-1.5 h-4 w-12 rounded bg-border-subtle/70" aria-label="not yet available" />
     </div>
   );
 }

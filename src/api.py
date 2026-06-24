@@ -17,6 +17,7 @@ from __future__ import annotations
 import logging
 import os
 import secrets
+from contextlib import asynccontextmanager
 from uuid import uuid4
 
 from dotenv import load_dotenv
@@ -41,23 +42,10 @@ from src.tools.hybrid_search import _store
 app_graph = build_graph(checkpointer=MemorySaver())
 
 # ---------------------------------------------------------------------------
-# FastAPI app + CORS
+# Lifespan: build the index if the Redis store is empty
 # ---------------------------------------------------------------------------
-app = FastAPI(title="Grounded-RAG API", version="1.0.0")
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=[os.getenv("ALLOWED_ORIGIN", "*")],
-    allow_credentials=False,
-    allow_methods=["GET", "POST", "OPTIONS"],
-    allow_headers=["Authorization", "Content-Type"],
-)
-
-# ---------------------------------------------------------------------------
-# Startup: build the index if the Redis store is empty
-# ---------------------------------------------------------------------------
-@app.on_event("startup")
-async def _startup() -> None:
+@asynccontextmanager
+async def _lifespan(app: FastAPI):
     """Build the RAG index in-process on first boot.
 
     Requires OPENROUTER_API_KEY for the table-summary LLM calls (~20 s).
@@ -69,6 +57,21 @@ async def _startup() -> None:
         print("[api] Index build complete.")
     else:
         print(f"[api] Index already loaded ({_store().count()} chunks).")
+    yield  # application runs here
+
+
+# ---------------------------------------------------------------------------
+# FastAPI app + CORS
+# ---------------------------------------------------------------------------
+app = FastAPI(title="Grounded-RAG API", version="1.0.0", lifespan=_lifespan)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[os.getenv("ALLOWED_ORIGIN", "*")],
+    allow_credentials=False,
+    allow_methods=["GET", "POST", "OPTIONS"],
+    allow_headers=["Authorization", "Content-Type"],
+)
 
 
 # ---------------------------------------------------------------------------

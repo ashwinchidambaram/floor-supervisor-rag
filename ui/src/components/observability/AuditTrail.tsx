@@ -68,7 +68,7 @@ function AuditRow({ entry }: { entry: AuditEntry }) {
           hasDelta && "hover:bg-surface-alt",
         )}
       >
-        <span className="w-44 shrink-0 truncate font-mono text-micro text-accent">
+        <span className="w-44 shrink-0 truncate font-mono text-micro text-ink-muted">
           {entry.actor}
         </span>
         <span className="w-40 shrink-0 truncate font-mono text-micro uppercase tracking-[0.06em] text-ink-faint">

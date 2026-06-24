@@ -174,9 +174,8 @@ export function CorpusTree({ documents, selectedChunkId, onSelectChunk, focusDoc
               : undefined;
         const selected = row.kind === "chunk" && row.chunkId === selectedChunkId;
         return (
-          <button
+          <div
             key={row.id}
-            type="button"
             data-row-index={i}
             role="treeitem"
             aria-level={row.depth + 1}
@@ -188,7 +187,7 @@ export function CorpusTree({ documents, selectedChunkId, onSelectChunk, focusDoc
               activateRow(row);
             }}
             className={cn(
-              "flex w-full items-center gap-1.5 rounded-md py-1.5 pr-2 text-left transition-colors",
+              "flex w-full cursor-pointer items-center gap-1.5 rounded-md py-1.5 pr-2 text-left transition-colors",
               row.depth === 0 ? "pl-2" : row.depth === 1 ? "pl-6" : "pl-11",
               selected
                 ? "bg-accent/12 text-ink"
@@ -224,7 +223,7 @@ export function CorpusTree({ documents, selectedChunkId, onSelectChunk, focusDoc
               <span className="shrink-0 font-mono text-micro tabular-nums text-ink-faint">{row.count}</span>
             )}
             {selected && <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden />}
-          </button>
+          </div>
         );
       })}
     </div>

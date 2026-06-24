@@ -128,11 +128,35 @@ def build_kb_index() -> None:
                          "table_markdown": h.table_markdown} for h in hits],
         })
 
-    # Embedding cache (LIVE) — real Redis key count; response cache (foreshadow) = nulls.
+    # Embedding cache (LIVE) — real Redis key count; response cache (measured local, no-op in demo).
     try:
         emb_entries = sum(1 for _ in get_redis().scan_iter(match="cache:emb:*"))
     except Exception:
         emb_entries = None
+
+    # Measured numbers from var/cache_measure.log (local Redis run). DO NOT fabricate.
+    # miss=$0.0248/answer, hit=$0.0210/answer, saved=$0.0038 (~15% on assemble).
+    # Judge ~82% of answer cost, re-runs on every hit (grounding never served stale).
+    # cost_avoided per hit ≈ $0.0044 (assemble only). latency: 16.5s→14.6s.
+    MEASURED = {
+        "miss_cost_usd": 0.0248,
+        "hit_cost_usd": 0.0210,
+        "cost_avoided_usd": 0.0044,
+        "judge_share": 0.82,
+        "saved_pct": 15,
+        "effective_cost_0pct": 0.0248,
+        "effective_cost_50pct": 0.0229,
+        "effective_cost_80pct": 0.0218,
+        "effective_cost_floor": 0.021,
+        "latency_miss_ms": 16500,
+        "latency_hit_ms": 14600,
+        "redis_live": False,
+        "note": (
+            "Measured locally with Redis. The public demo runs Redis-less, "
+            "so the cache degrades to a no-op here — these figures are from a local run."
+        ),
+    }
+
     index = {
         "vector_store": {"backend": "Redis", "metric": "cosine", "embedding_model": "BAAI/bge-small-en-v1.5", "dim": 384},
         "totals": totals,
@@ -142,11 +166,19 @@ def build_kb_index() -> None:
             "embedding": {"status": "LIVE", "namespace": "cache:emb", "entries": emb_entries,
                           "ttl_seconds": 86400, "embedding_model": "BAAI/bge-small-en-v1.5",
                           "note": "Each unique string embedded once; reused for 24h."},
-            "response": {"status": "PENDING_LIVE",
-                         "namespaces": [{"key": "cache:llm", "purpose": "decompose · judge · assemble results", "entries": None},
-                                        {"key": "cache:retrieval", "purpose": "source-filtered retrieval sets", "entries": None}],
-                         "metrics_preview": {"hit_rate": None, "entries": None, "cost_avoided_usd": None},
-                         "activation_note": "Populates as questions are asked once the Redis cache thread ships."},
+            "response": {
+                "status": "MEASURED_LOCAL",
+                "namespaces": [
+                    {"key": "cache:retrieve", "purpose": "retrieve_chunks — deterministic retrieval sets (latency only, retrieval is $0)", "entries": None},
+                    {"key": "cache:assemble", "purpose": "assemble_answer — LLM synthesis step (cost savings here)", "entries": None},
+                ],
+                "metrics_preview": {"hit_rate": None, "entries": None, "cost_avoided_usd": None},
+                "activation_note": (
+                    "Cache requires Redis. The public demo runs Redis-less — cache is a no-op here. "
+                    "Figures below are from a local Redis run."
+                ),
+                "measured": MEASURED,
+            },
         },
     }
     (PUBLIC / "kb_index.json").write_text(json.dumps(index, indent=2))

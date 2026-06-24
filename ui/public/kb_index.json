@@ -877,16 +877,16 @@
       "note": "Each unique string embedded once; reused for 24h."
     },
     "response": {
-      "status": "PENDING_LIVE",
+      "status": "MEASURED_LOCAL",
       "namespaces": [
         {
-          "key": "cache:llm",
-          "purpose": "decompose \u00b7 judge \u00b7 assemble results",
+          "key": "cache:retrieve",
+          "purpose": "retrieve_chunks \u2014 deterministic retrieval sets (latency only, retrieval is $0)",
           "entries": null
         },
         {
-          "key": "cache:retrieval",
-          "purpose": "source-filtered retrieval sets",
+          "key": "cache:assemble",
+          "purpose": "assemble_answer \u2014 LLM synthesis step (cost savings here)",
           "entries": null
         }
       ],
@@ -895,7 +895,22 @@
         "entries": null,
         "cost_avoided_usd": null
       },
-      "activation_note": "Populates as questions are asked once the Redis cache thread ships."
+      "activation_note": "Cache requires Redis. The public demo runs Redis-less \u2014 cache is a no-op here. Figures below are from a local Redis run.",
+      "measured": {
+        "miss_cost_usd": 0.0248,
+        "hit_cost_usd": 0.0210,
+        "cost_avoided_usd": 0.0044,
+        "judge_share": 0.82,
+        "saved_pct": 15,
+        "effective_cost_0pct": 0.0248,
+        "effective_cost_50pct": 0.0229,
+        "effective_cost_80pct": 0.0218,
+        "effective_cost_floor": 0.021,
+        "latency_miss_ms": 16500,
+        "latency_hit_ms": 14600,
+        "redis_live": false,
+        "note": "Measured locally with Redis. The public demo runs Redis-less, so the cache degrades to a no-op here \u2014 these figures are from a local run."
+      }
     }
   }
 }

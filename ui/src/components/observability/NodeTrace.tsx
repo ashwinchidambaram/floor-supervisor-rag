@@ -30,6 +30,7 @@ export function NodeTrace({ events }: { events: Event[] }) {
         const det = e.cost_usd === 0;
         const topCost = topHasCost && i === topCostIdx;
         const errored = e.error != null && e.error !== "";
+        const cached = e.cache_hit === true;
         return (
           <div
             key={i}
@@ -49,14 +50,24 @@ export function NodeTrace({ events }: { events: Event[] }) {
                   top cost
                 </span>
               )}
+              {/* Neutral cache indicator — not a status/confidence color. */}
+              {cached && (
+                <span
+                  className="font-mono text-micro text-ink-faint"
+                  title="Served from cache — cost_usd=$0"
+                >
+                  ⟳
+                </span>
+              )}
             </div>
             <div className="mt-1 flex items-center gap-2 font-mono text-micro tabular-nums text-ink-faint">
               <span>{ms(e.latency_ms)}</span>
               <span>·</span>
               <span>{(e.tokens_in + e.tokens_out).toLocaleString()}t</span>
               <span>·</span>
-              <span className={det ? "text-[#5D6A53]" : topCost ? "text-accent" : "text-ink-muted"}>
-                {money(e.cost_usd)}
+              {/* On a cache hit: always $0 (assemble skipped); show it explicitly. */}
+              <span className={cached ? "text-[#5D6A53]" : det ? "text-[#5D6A53]" : topCost ? "text-accent" : "text-ink-muted"}>
+                {cached ? "$0" : money(e.cost_usd)}
               </span>
             </div>
             {errored && <div className="mt-1 font-mono text-micro text-danger">{e.error}</div>}

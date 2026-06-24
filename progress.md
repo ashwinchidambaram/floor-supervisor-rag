@@ -60,3 +60,15 @@
   the band vary across cold-start rebuilds. Value+citation always correct. e2e now asserts the real invariant
   (ANSWERED + correct value + citation + non-LOW band). Documented in RESULTS.md.
 - Artifacts: docs/CODE_REVIEW.md, docs/RESULTS.md, scripts/e2e_playwright.py, var/e2e/*.png.
+
+## Session — 2026-06-23 · Thread: Redis cache + nits + README finishing
+- Phase 1 (cache backend, spec §4b) DONE: retrieve_chunks + assemble_answer cached; judge NOT cached
+  (re-runs every hit). Event/Span.cache_hit; cache.py stats+cost_avoided+node-cache gate; index_fingerprint
+  + BM25-per-source cache (nit 5b); vstack fix (nit 5a). conftest disables node cache for §11 suite;
+  test_cache.py added. pytest 20/20.
+- Phase 2 (measured run) DONE → var/cache_measure.log: MISS $0.0248/answer → HIT $0.0210 (15% saved =
+  assemble only). Judge $0.0208 (~82%), re-runs every hit. retrieve+assemble CACHED, $0. latency 16.5→14.6s.
+  cost_avoided $0.0044/hit.
+- verify_models.py: opus 5/25, sonnet 3/15, gemini-3-flash 0.5/3 — README table CURRENT; fallback chain green.
+- Phase 3 (UI cache band) + Phase 4 (backend nits 1/2/3/4) running as parallel subagents.
+- Phase 5 (README finishing) + Phase 6 (verify+redeploy) pending.

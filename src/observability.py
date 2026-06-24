@@ -20,6 +20,7 @@ from __future__ import annotations
 
 import json
 import sqlite3
+import threading
 import time
 from pathlib import Path
 
@@ -130,21 +131,35 @@ def traced_node(name: str, deterministic: bool = True):
 # --- durable sinks (sqlite trace store + knowledge-gaps table) ---
 _DB_PATH = Path(__file__).resolve().parents[1] / "var" / "trace.db"
 _conn: sqlite3.Connection | None = None
+_conn_lock = threading.Lock()
 
 
 def _db() -> sqlite3.Connection | None:
+    """Return (or lazily create) the module-level sqlite connection.
+
+    Double-checked locking: the fast path (conn already set) avoids acquiring the lock;
+    the slow path (first call or after a creation failure) holds the lock while it
+    creates the connection and tables, so two FastAPI worker threads can never both
+    attempt creation concurrently.
+    """
     global _conn
     if _conn is None:
-        try:
-            _DB_PATH.parent.mkdir(parents=True, exist_ok=True)
-            _conn = sqlite3.connect(_DB_PATH, check_same_thread=False)
-            _conn.execute("CREATE TABLE IF NOT EXISTS events (thread_id, node, ts, status, model, "
-                          "tokens_in, tokens_out, latency_ms, retries, cost_usd, summary, error)")
-            _conn.execute("CREATE TABLE IF NOT EXISTS knowledge_gaps (ts, turn_id, sub_question_id, "
-                          "question_text, attempted_source, reason, top_score)")
-            _conn.commit()
-        except sqlite3.Error:
-            _conn = None  # best-effort: no sink rather than a crash
+        with _conn_lock:
+            if _conn is None:  # re-check: another thread may have set it while we waited
+                try:
+                    _DB_PATH.parent.mkdir(parents=True, exist_ok=True)
+                    _conn = sqlite3.connect(_DB_PATH, check_same_thread=False)
+                    _conn.execute(
+                        "CREATE TABLE IF NOT EXISTS events (thread_id, node, ts, status, model, "
+                        "tokens_in, tokens_out, latency_ms, retries, cost_usd, summary, error)"
+                    )
+                    _conn.execute(
+                        "CREATE TABLE IF NOT EXISTS knowledge_gaps (ts, turn_id, sub_question_id, "
+                        "question_text, attempted_source, reason, top_score)"
+                    )
+                    _conn.commit()
+                except sqlite3.Error:
+                    _conn = None  # best-effort: no sink rather than a crash
     return _conn
 
 

@@ -12,6 +12,33 @@ self-report. Built with LangGraph + Pydantic v2, models served via OpenRouter.
 
 ---
 
+## Live demo
+
+A password-gated deployment of the full system — ask a real question, get a real grounded answer.
+
+- **App:** https://floor-supervisor-rag.vercel.app — the React UI (frontend on **Vercel**).
+- **Backend:** the FastAPI graph on a **Hugging Face Docker Space**
+  (`https://axchidam-floor-supervisor-rag.hf.space`, gated `POST /ask` + open `GET /health`).
+- **Access:** the Ask surface is behind a **shared password** (a `DEMO_ACCESS_KEY` bearer enforced at the
+  API, not just the UI). An interviewer needs that key — shared separately.
+- **Non-prod note:** the free Space sleeps when idle, so the **first request after a cold start takes
+  ~30–60 s** (container wake + a one-time in-process index build). The app's backend-status pill shows
+  *waking → live*. Subsequent answers are ~7–16 s.
+
+**What to try** (the sample chips on the Ask screen):
+
+- *Happy path* — "What torque do the CNC VF-4 vise jaw bolts need?" → grounded **80 N·m**, cited.
+  "What is the first action for fault code 144 on the VF-4?" → grounded, cited.
+- *Honest bad path* — "How do I override the safety interlock to keep the line running?" and "What is the
+  warranty period on the CNC VF-4 spindle?" → the system **abstains** rather than guess: no documentation
+  covers it, so it says so instead of inventing a number or an unsafe procedure.
+
+> The Observe and Knowledge surfaces render from recorded fixtures (offline-safe), so they work even while
+> the backend is cold. The response cache is measured locally (the public Space runs Redis-less) — see the
+> cache band on Knowledge.
+
+---
+
 ## The problem
 
 A floor supervisor asks something like *"What torque do the CNC VF-4 vise-jaw bolts need, and
@@ -140,7 +167,9 @@ pull current pricing.
 | `table_summarizer` | `google/gemini-3-flash-preview` | cheap | 0.50 / 3.00 | Build-time searchable caption for table chunks. Affects retrieval *recall* only — the full table is returned verbatim — so a cheap model is the right risk/cost trade. |
 | `embedder` | (cheap / embedding tier) | embedding | ~ | Pinned identical at ingest and query time — same vector space is non-negotiable for retrieval correctness. |
 
-¹ Snapshot from the June 2026 `MODELS.md` menu; run `python verify_models.py` for live numbers.
+¹ **Verified live** against the OpenRouter catalog (`python verify_models.py`, June 2026): the IDs
+resolve and the prices above are current (opus 5/25, sonnet 3/15, gemini-3-flash 0.5/3 $/M); the
+fallback chain pings green. Model IDs and pricing drift — re-run before a build.
 
 The judge sits one tier above everything else on purpose — it's where correctness is won or lost,
 and where most of the per-query cost goes (see below).
@@ -152,21 +181,28 @@ and where most of the per-query cost goes (see below).
 Two captured runs and an offline invariant suite. Numbers below are real artifacts in the repo, not
 claims.
 
-### Live end-to-end run (real models) — `var/confirm.log`
+### Live end-to-end run (real models) — `var/cache_measure.log`
 
 Question: *"What torque do the CNC VF-4 vise-jaw bolts need?"*
 
 | Metric | Value |
 |---|---|
-| Outcome | `ANSWERED`, confidence **HIGH** |
+| Outcome | `ANSWERED`, confidence **MEDIUM** ⁰ |
 | Answer | **80 N·m (59 ft·lb)**, M12 grade 8.8 — pulled verbatim from the torque table |
 | Citation | `MAINTENANCE_MANUALS · §4 Torque Specifications · v5.4` |
 | Events emitted | 8 (one per node) |
-| **Cost** | **$0.0251** |
-| Wall-clock | ~14 s (decompose 5.3s · judge 3.0s · assemble 5.6s · deterministic ≈ 0s) |
+| **Cost** | **$0.0248** (measured) |
+| Wall-clock | ~16.5 s (decompose ~11.3s · judge ~3.0s · assemble ~2.2s · deterministic ≈ 0s) |
+
+⁰ The torque query's top retrieval score sits right on the **HIGH/MEDIUM boundary** (the `0.75`
+floor). Table search-captions are LLM-generated at ingest and aren't byte-reproducible across cold-start
+rebuilds, so the band reads HIGH on one build and MEDIUM on another — **the answer, the value, and the
+citation are always correct.** That's the system being honestly calibrated, not overconfident; the floor
+is deliberately not tuned to force HIGH.
 
 The three LLM nodes account for essentially all of the latency and **all** of the cost; the six
-deterministic nodes ran in roughly zero time at $0.
+deterministic nodes ran in roughly zero time at $0. (`decompose` dominates latency here — model routing,
+not token volume; its cost is ~$0.0002.)
 
 ### Skeleton / orchestration run (deterministic real, LLMs stubbed) — `mock_data/data_out.json`
 
@@ -186,7 +222,7 @@ knowledge-gap loop — with no API key required.
 
 ### Offline invariant suite — `tests/test_orchestration.py`
 
-Eleven named invariants, all asserted **offline** (no LLM, no API key) by pre-seeding stub outputs and
+Twelve named invariants, all asserted **offline** (no LLM, no API key) by pre-seeding stub outputs and
 checking routing/state:
 
 1. grounded happy path → `ANSWERED`, fully cited
@@ -200,34 +236,38 @@ checking routing/state:
 9. max retrieval loops → retries bounded; at cap → LOW
 10. confidence is `min` across sub-questions
 11. conversation memory → two turns on one `thread_id` round-trip through the checkpointer
+12. retry **succeeds** → judge FAIL on attempt 1 → re-retrieve → PASS on attempt 2 → `ANSWERED`, attempts bounded at 2
 
 Plus `tests/test_retrieval.py` (real hybrid retrieval over the built index — table-hit, exact-identifier/BM25,
-source-filter, version-carrying) and `tests/test_rag.py` (embedding norm, ranking, response cache),
-which skip cleanly if Redis or the index isn't present.
+source-filter, version-carrying), `tests/test_rag.py` (embedding norm, ranking, response cache), and
+`tests/test_cache.py` (the §4b response cache: a repeat assemble is served from cache at $0, with the node
+cache disabled by default for the suite) — these skip cleanly if Redis or the index isn't present.
 
-> To regenerate the evidence: `pytest -q` for the suite, `python run_demo.py` for the skeleton feed.
-> Paste the real `pytest` output into `RESULTS.md` when you publish — evidence, not claims.
+> Regenerate the evidence: `pytest -q` (suite + cache tests) · `python run_demo.py` (skeleton feed) ·
+> `python -m scripts.measure_cache` (cache miss/hit → `var/cache_measure.log`). The captured results live
+> in **`docs/RESULTS.md`** — full Phase-6 verification: pytest, the 4-agent code review, the live
+> Playwright end-to-end (15/15), and curl evidence.
 
 ---
 
 ## Cost per run, and why it scales cheaply
 
-The measured anchor is **$0.0251 for a fully-grounded, cited answer**. Here's where that goes and why
+The measured anchor is **$0.0248 for a fully-grounded, cited answer**. Here's where that goes and why
 it stays flat as the corpus grows.
 
 ### Where the ~2.5 cents goes (per grounded single-part answer)
 
-| Step | Model | Approx. cost² | Share |
+| Step | Model | Measured cost² | Share |
 |---|---|---|---|
-| decompose | gemini-3-flash (cheap) | ~$0.001 | ~4% |
-| **judge** | **opus-4.8 (capable)** | **~$0.018** | **~72%** |
-| assemble | sonnet-4.6 (mid) | ~$0.006 | ~24% |
-| route · retrieve · assess · deliver · abstain · query-embed | deterministic | **$0.000** | 0% |
-| **Total** | | **≈ $0.025** | matches the measured run |
+| decompose | gemini-3-flash (cheap) | $0.0002 | ~1% |
+| **judge** | **opus-4.8 (capable)** | **$0.0202** | **~81%** |
+| assemble | sonnet-4.6 (mid) | $0.0044 | ~18% |
+| route · retrieve · assess · deliver · abstain · query-embed | deterministic | **$0.0000** | 0% |
+| **Total** | | **$0.0248** | measured |
 
-² Token-level split is **illustrative** (estimated from the model menu prices); the **$0.0251 total is
-measured**. The judge dominates — exactly why it's the one node that gets the capable tier and the only
-place worth optimising for cost.
+² These are **measured** per-node `cost_usd` values from the live run (`var/cache_measure.log`), priced
+from the OpenRouter rates `verify_models.py` confirms (opus 5/25, sonnet 3/15, gemini-flash 0.5/3 $/M).
+The judge dominates at ~81% — exactly why it gets the capable tier and is the one node worth optimising.
 
 ### Why per-query cost is decoupled from corpus size
 
@@ -245,30 +285,53 @@ approach grows linearly, so the gap widens as you scale:
 ³ Baseline column is **illustrative** — it assumes context grows roughly with the corpus. The point is
 the *shape*: flat vs. linear.
 
-### Why effective cost *falls* with usage
+### Why effective cost *falls* with usage — and the line we won't cross
 
-Two compounding effects, both real in this architecture:
+Two effects compound, but one of them is deliberately capped — and that cap is the most important
+design decision in this section.
 
-- **Response cache (Redis, `src/tools/cache.py`).** Plant questions are heavily Zipfian — a handful
-  (torque specs, fault codes, lockout steps) dominate traffic. A cache hit re-enters the same judge +
-  confidence + citation gates but skips the LLM spend. Effective cost ≈ `C × (1 − hit_rate)`:
+- **Response cache (Redis, `src/tools/cache.py`) — measured.** Plant questions are heavily Zipfian: a
+  handful (torque specs, fault codes, lockout steps) dominate traffic. The cache is a deterministic
+  wrapper around **`retrieve_chunks` and `assemble_answer` only** (spec §4b). On a repeat question those
+  two steps are served from cache; everything else still runs. Measured on the same question twice
+  (`var/cache_measure.log`):
+
+  | | Cost | What ran |
+  |---|---|---|
+  | **Miss** (cold) | **$0.0248** | every node |
+  | **Hit** (repeat) | **$0.0210** | retrieve + assemble reused ($0); **judge re-ran** |
+
+  A hit saves **~$0.0038 (≈15%)** — the assemble step. Retrieval is deterministic, so caching it buys
+  *latency* (16.5s → 14.6s), not dollars. Effective cost as the hit rate climbs (derived from the measured
+  miss/hit):
 
   | Cache hit rate | Effective $/answer |
   |---|---|
-  | 0% | $0.025 |
-  | 50% | $0.013 |
-  | 80% | $0.005 |
+  | 0% | $0.0248 |
+  | 50% | $0.0229 |
+  | 80% | $0.0218 |
 
-  As query volume grows over a stable corpus, the hit rate climbs and the effective cost drifts toward
-  the deterministic floor.
+  Note the **floor: ~$0.021, not $0.** Even at a 100% hit rate, every answer still pays the judge (plus
+  the tiny decompose). That floor is not an accident — it's the line below.
+
+> **Why the judge re-runs on every cache hit — the design choice.**
+> The cache never short-circuits the grounding gate. We cache the *optimisation-safe* steps — retrieval
+> (deterministic) and answer assembly — but the **judge re-runs on every served answer, even an identical
+> repeat.** The reason: cost optimisation must never override the grounding guarantee. An answer handed to
+> a floor supervisor should have been *freshly judged against its evidence*, not replayed from a cache that
+> could mask a corpus that changed underneath it. So the single most expensive node (~81% of the cost) is
+> exactly the one we refuse to cache. This is the agency line applied to caching: cheap where it can't
+> touch correctness, never cheap where it can. (`doc_version` is in the cache key too, so a re-ingest busts
+> stale entries — belt and suspenders.)
 
 - **Amortised ingest.** Embedding and chunking is a one-time, build-time cost per document version.
   Spread across that document's query lifetime, the per-query ingest cost trends to zero as volume
   grows. Adding documents adds a one-time ingest cost; it does **not** raise per-query inference cost.
 
-**The summary a reviewer can hold onto:** correctness lives in the capable-tier judge (~72% of a
-2.5-cent run); two-thirds of the pipeline is deterministic and free; per-query cost doesn't grow with
-the corpus; and caching + amortisation make it cheaper per answer the more it's used.
+**The summary a reviewer can hold onto:** correctness lives in the capable-tier judge (~81% of a 2.5-cent
+run) — the one node we deliberately re-run on every answer, cache or not; two-thirds of the pipeline is
+deterministic and free; per-query cost doesn't grow with the corpus; and the cache trims the assemble step
++ retrieval latency without ever letting a stale answer skip the grounding gate.
 
 ---
 
@@ -283,9 +346,13 @@ The **audit log** records `actor / action / before → after` for every routing 
 retry, confidence assessment, and abstain — compliance-grade attribution for "why did the system say
 that?"
 
-The **UI** (`ui/`, React + Vite + Tailwind) is a deterministic **playback** of the recorded event feed —
-no live inference. Three screens: the supervisor Q&A chat (with per-answer confidence badges and
-explicit "unsure"/abstain callouts), the metrics rollup, and the read-only knowledge-gaps log.
+The **UI** (`ui/`, React + Vite + Tailwind) consumes that one event/state surface two ways: it **replays
+recorded event feeds** for offline-safe demos *and* — when `VITE_API_URL` points at the FastAPI backend —
+**runs live questions through `/ask`**, rendering the same `export_data_out` shape either way. Three
+surfaces, each for its real user: **Ask** (the supervisor's chat — live or recorded — with per-answer
+confidence badges, explicit "unsure"/abstain callouts, and an optional node-by-node pipeline reveal),
+**Observe** (the operator's threaded trace + cost/latency rollup, with cache-reuse markers), and
+**Knowledge** (the doc team's corpus browser + the measured cache band).
 
 ---
 
@@ -296,6 +363,7 @@ explicit "unsure"/abstain callouts), the metrics rollup, and the read-only knowl
 ├── CLAUDE.md                  # build constitution (the agency-line philosophy)
 ├── run_demo.py                # push a sample question through; print the event feed
 ├── verify_models.py           # ping the live OpenRouter catalog; confirm IDs + pricing
+├── Dockerfile · render.yaml   # backend container (deployed to a Hugging Face Docker Space)
 ├── knowledge_documents_rag/   # the real source corpus (safety / maintenance / QC)
 ├── src/
 │   ├── state.py               # canonical Pydantic state + enums + event/audit schemas
@@ -303,14 +371,16 @@ explicit "unsure"/abstain callouts), the metrics rollup, and the read-only knowl
 │   ├── config.py              # per-agent model map (the model-risk record) + OpenRouter client
 │   ├── observability.py       # event emit · cost calc · audit · metrics rollup
 │   ├── ingest.py              # build the hybrid index from the corpus
+│   ├── api.py                 # FastAPI gateway — gated POST /ask + GET /health (the live demo)
 │   ├── nodes/                 # one file per node (header: role · contract · failure)
 │   ├── tools/                 # hybrid_search · embeddings · chunker · table_summary · cache · vector_store
 │   └── guardrails/            # validators + the LLM-as-judge
+├── scripts/                   # measure_cache · e2e_playwright · deploy_hf · make_ui_fixtures
 ├── mock_data/data_out.json    # recorded event feed (the skeleton run)
-├── tests/                     # test_orchestration (11 invariants) · test_retrieval · test_rag
-├── ui/                        # React playback UI (chat · metrics · knowledge gaps)
-├── var/                       # checkpoints.db · trace.db · confirm.log (the live run)
-└── docs/                      # spec.md · AGENTS-SPEC.md · UI-SPEC.md · architecture.mmd
+├── tests/                     # test_orchestration (invariants) · test_retrieval · test_rag · test_cache · conftest
+├── ui/                        # React UI — recorded playback + live /ask (Ask · Observe · Knowledge)
+├── var/                       # trace.db · cache_measure.log (the measured cache run) · e2e/ (screenshots)
+└── docs/                      # spec.md · AGENTS-SPEC.md · RESULTS.md · CODE_REVIEW.md · architecture.mmd
 ```
 
 Conventions worth knowing: `state.py` imports nothing and is imported everywhere (it's the freeze
@@ -327,16 +397,18 @@ pip install -r requirements.txt
 cp .env.example .env          # paste your OPENROUTER_API_KEY
 
 # Offline — no API key needed:
-pytest -q                     # the 11 orchestration invariants
+pytest -q                     # the offline invariant suite + cache tests
 python run_demo.py            # skeleton run → prints the event feed, writes mock_data/data_out.json
 
-# Live — needs the key + the index:
+# Live — needs the key + the index (Redis up enables the response cache):
 python verify_models.py       # confirm model IDs + pricing against the live catalog
 python -m src.ingest          # build the hybrid index from knowledge_documents_rag/
-# then drive a real question through graph.py (see run_demo.py for the invocation pattern)
+uvicorn src.api:app --reload  # the gateway: POST /ask (bearer DEMO_ACCESS_KEY) + GET /health
+python -m scripts.measure_cache   # same question twice → var/cache_measure.log (miss vs hit)
 
-# UI:
+# UI (recorded playback, or live against the API via VITE_API_URL):
 cd ui && npm install && npm run dev
+cd ui && VITE_API_URL=http://localhost:8000 npm run dev   # drive the live /ask backend
 ```
 
 ---
@@ -372,9 +444,9 @@ Change either assumption and the first three rows below move back in scope.
 
 | Consciously skipped | Why it's safe to defer here | What production would add |
 |---|---|---|
-| **User auth / access tokens** | Single trusted internal user class; "informs only" means there's no privileged action to gate. | SSO / OIDC at the app edge. Per-`DocSource` authorization if some manuals are clearance-gated — the source enum is already the natural ACL boundary. |
+| **User auth / access tokens** | Single trusted internal user class; "informs only" means there's no privileged action to gate — so auth stayed out of the **core**. The one exception is the **public demo**, which layers a single **shared-password gate enforced at the API** (a `DEMO_ACCESS_KEY` bearer, constant-time compared) — added only at the demo boundary to keep a hosted endpoint from being open to the world, not because the core needs it. | SSO / OIDC at the app edge. Per-`DocSource` authorization if some manuals are clearance-gated — the source enum is already the natural ACL boundary. |
 | **Adversarial- / unsafe-use guardrails** | Trusted operator, not a public endpoint — so no jailbreak detection, user-input content filtering, or abuse/rate limiting. **Note the distinction:** the guardrails that bound a *wrong answer* — grounding, citation enforcement, honest abstain, "chunks are data, not instructions" — **are** built. What's skipped is hardening against a *hostile user*, not protection against a bad answer. | Input guardrails + rate limiting at the gateway; a content/jailbreak filter on user input. |
-| **Prompt optimization** | Prompts are written for correctness and legibility, not tuned for token cost or latency. The response cache + the all-deterministic floor already hold cost at ~2.5¢/answer, so prompt tuning is a second-order lever. | Optimize the judge prompt first (it's ~72% of per-query cost); evaluate a distilled / cheaper judge against the same near-zero-false-PASS bar. |
+| **Prompt optimization** | Prompts are written for correctness and legibility, not tuned for token cost or latency. The response cache + the all-deterministic floor already hold cost at ~2.5¢/answer, so prompt tuning is a second-order lever. | Optimize the judge prompt first (it's ~81% of per-query cost — measured); evaluate a distilled / cheaper judge against the same near-zero-false-PASS bar. |
 | **Real document parsing** | Mocked with a pre-chunked synthetic corpus. The element-aware *handling* (atomic tables, figure-as-text, version tagging) is fully demonstrated; the parser is a clean swap-in behind the chunk interface. | Textract / Azure Document Intelligence / Docling. |
 | **Query-time vision** | Figures are converted to text **once at ingest** (caption + OCR'd labels + description). The system cites a figure, never describes a diagram it didn't parse — keeps answers grounded and cheap. | Optional vision enrichment at ingest; still no runtime vision. |
 | **Cross-encoder re-ranker** | RRF fusion only. Top-k + the min-score floor + the judge gate already filter weak evidence, so the re-ranker is a quality lever, not a correctness dependency. | A cross-encoder or managed semantic re-ranker after fusion. |
@@ -388,8 +460,9 @@ Change either assumption and the first three rows below move back in scope.
 ## Tech stack
 
 Python 3.11 · LangGraph (orchestration) · Pydantic v2 (typed state) · OpenRouter (model access) ·
-SQLite checkpointer · Redis (response cache + retrieval store) · React + Vite + Tailwind (playback UI) ·
-pytest (offline invariant suite).
+FastAPI (the live `/ask` gateway) · SQLite checkpointer · Redis (response cache + retrieval store) ·
+React + Vite + Tailwind (UI) · pytest (offline invariant suite) + Playwright (live end-to-end) ·
+deployed on a Hugging Face Docker Space (backend) + Vercel (frontend).
 
 ---
 

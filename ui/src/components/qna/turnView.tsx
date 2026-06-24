@@ -12,7 +12,7 @@
 // ---------------------------------------------------------------------------
 
 import { Ban } from "lucide-react";
-import type { Turn } from "@/lib/types";
+import type { Event, Turn } from "@/lib/types";
 import { abstainTone, confidenceColor } from "@/lib/tokens";
 import { sourceLabel } from "@/components/qna/sourceLabel";
 import { ConfidenceBadge, ConfidenceDot } from "@/components/qna/confidenceBadge";
@@ -20,7 +20,7 @@ import { AnswerBody } from "@/components/qna/answerBody";
 import { CitationChip } from "@/components/qna/citationChip";
 import { PipelineReveal } from "@/components/qna/pipelineReveal";
 
-export function TurnView({ turn, showPipeline }: { turn: Turn; showPipeline: boolean }) {
+export function TurnView({ turn, showPipeline, events = [] }: { turn: Turn; showPipeline: boolean; events?: Event[] }) {
   const abstained = turn.status === "ABSTAINED";
 
   return (
@@ -56,7 +56,7 @@ export function TurnView({ turn, showPipeline }: { turn: Turn; showPipeline: boo
           </>
         )}
 
-        {showPipeline && <PipelineReveal turn={turn} />}
+        {showPipeline && <PipelineReveal turn={turn} events={events} />}
       </div>
     </article>
   );
