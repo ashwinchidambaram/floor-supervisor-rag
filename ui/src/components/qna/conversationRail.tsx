@@ -50,7 +50,7 @@ export function ConversationRail({
                 <button
                   type="button"
                   onClick={() => onSelect(c.id)}
-                  aria-current={active ? "true" : undefined}
+                  aria-current={active ? "page" : undefined}
                   className={cn(
                     "group flex w-full items-start gap-2.5 rounded-lg px-3 py-2.5 text-left transition-colors duration-150 ease-out-quart",
                     active

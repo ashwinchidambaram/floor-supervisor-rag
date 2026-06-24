@@ -7,7 +7,7 @@ Contract: reads current_turn.{sub_questions[].confidence/supporting_chunk_ids, a
           grounded fragments), citations[]}. Writes final current_turn.answer_text, turn_confidence,
           status ANSWERED / ANSWERED_PARTIAL; appends the finished turn to state.turns (decision #2).
 Failure / routing: if NO grounded part survives citation enforcement, it leaves status non-terminal
-          (still ASSESSED) and does NOT append — the graph edge then routes to `abstain`.
+          (still ASSEMBLED, set by assemble_answer) and does NOT append — the graph edge then routes to `abstain`.
 
 Citation rule: a HIGH/MEDIUM sub-question is "cited" iff some Citation.chunk_id ∈ its
           supporting_chunk_ids. No overlap → downgrade that part to LOW (never delivered as fact).

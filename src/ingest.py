@@ -34,6 +34,9 @@ def ingest() -> VectorStore:
     total_prose, total_tables, llm_calls, fallbacks = 0, 0, 0, 0
     for path in sorted(glob.glob(CORPUS_GLOB)):
         chunks = chunk_markdown(path)
+        if not chunks:  # malformed doc (e.g. no ## headings) → never silently drop it
+            print(f"  ! WARNING: {path.split('/')[-1]} produced 0 chunks — skipped (check headings)")
+            continue
         for c in chunks:
             if c.element_type == ElementType.TABLE:
                 total_tables += 1

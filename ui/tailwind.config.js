@@ -22,13 +22,20 @@ export default {
         border: "var(--border)",
         "border-subtle": "var(--border-subtle)",
         "border-strong": "var(--border-subtle)",
+        // short alias so `border-subtle` / `divide-subtle` resolve (the lighter divider)
+        subtle: "var(--border-subtle)",
 
         ink: "var(--ink)",
         "ink-muted": "var(--ink-muted)",
         "ink-faint": "var(--ink-faint)",
 
-        // accent — terracotta, interactive/brand only (NEVER status)
-        accent: { DEFAULT: "var(--accent)", hover: "var(--accent-hover)" },
+        // accent — terracotta, interactive/brand only (NEVER status).
+        // RGB-channel form so BOTH solid (bg-accent) AND opacity modifiers (bg-accent/45,
+        // ring-accent/70, focus-within:border-accent/50) resolve. A hex var can't do the latter.
+        accent: {
+          DEFAULT: "rgb(var(--accent-rgb) / <alpha-value>)",
+          hover: "rgb(var(--accent-hover-rgb) / <alpha-value>)",
+        },
 
         // semantic status — disjoint from accent
         sage: "var(--sage)",

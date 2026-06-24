@@ -116,7 +116,13 @@ export function QnaPortal() {
     try {
       const state = await ask(question, currentThreadId());
       const last = state.current_turn ?? state.turns[state.turns.length - 1];
-      if (last) setLiveTurns((prev) => [...prev, last]);
+      if (last) {
+        setLiveTurns((prev) => [...prev, last]);
+      } else {
+        // A 200 with no turn — surface it rather than silently dropping the answer.
+        setAskError("Something went wrong reaching the assistant. Please try again.");
+        setDraft(question);
+      }
     } catch (err) {
       if (err instanceof Error && err.message === "unauthorized") {
         sessionStorage.removeItem(ACCESS_KEY);

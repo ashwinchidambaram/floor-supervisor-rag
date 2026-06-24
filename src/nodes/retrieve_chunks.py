@@ -77,6 +77,8 @@ def retrieve_chunks(state: ConversationState, span) -> ConversationState:
                 f"sq={sq.id} hits=0 EMPTY (attempt {sq.retrieval_attempts}/{max_loops})"
             )
 
+    # Capture prior status BEFORE mutating, so the audit before/after is a real transition.
+    prior_status = turn.status.value if turn else "NONE"
     turn.status = TurnStatus.RETRIEVED
 
     # Build the span note — what the audit log and event summary will carry.
@@ -115,7 +117,7 @@ def retrieve_chunks(state: ConversationState, span) -> ConversationState:
     }
     span.note(
         action="retrieve_chunks",
-        before={"turn_status": turn.status.value if turn else "NONE"},
+        before={"turn_status": prior_status},
         after={
             "turn_status": TurnStatus.RETRIEVED.value,
             "attempted": attempted_ids,

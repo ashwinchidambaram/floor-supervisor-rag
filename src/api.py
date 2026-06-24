@@ -14,6 +14,7 @@ Failure:  node-level exceptions are already caught by @traced_node (safe-degrade
 
 from __future__ import annotations
 
+import logging
 import os
 import secrets
 from uuid import uuid4
@@ -143,4 +144,7 @@ def ask(req: AskRequest) -> dict:
         raise
     except Exception as exc:
         # Final backstop — the node template already degrades safely, but just in case.
-        raise HTTPException(status_code=500, detail=str(exc)) from exc
+        # Log the real error server-side only; return a generic body so we don't leak
+        # internal paths / infra detail to the caller.
+        logging.getLogger("api").exception("unhandled error in /ask (thread=%s)", cid)
+        raise HTTPException(status_code=500, detail="Internal server error") from exc

@@ -82,6 +82,9 @@ def abstain(state: ConversationState, span) -> ConversationState:
     # Build the deterministic message — specific to what was tried.
     message = _build_abstain_message(attempted)
 
+    # Capture the prior status BEFORE mutating, so the audit before/after is a real transition.
+    prior_status = turn.status.value
+
     # Stamp the turn.
     turn.answer_text = message
     turn.status = TurnStatus.ABSTAINED
@@ -90,7 +93,7 @@ def abstain(state: ConversationState, span) -> ConversationState:
     # Audit the decision with before/after.
     span.note(
         "abstain_turn",
-        before={"status": turn.status.value, "answer_text": None},
+        before={"status": prior_status, "answer_text": None},
         after={
             "status": TurnStatus.ABSTAINED.value,
             "turn_confidence": ConfidenceLevel.LOW.value,

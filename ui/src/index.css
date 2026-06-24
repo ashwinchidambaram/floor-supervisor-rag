@@ -23,6 +23,9 @@
   /* accent — terracotta (interactive / brand ONLY, never status) */
   --accent: #D4745E;
   --accent-hover: #C4624D;
+  /* channel form (R G B) so Tailwind opacity modifiers work: rgb(var(--accent-rgb) / 0.45) */
+  --accent-rgb: 212 116 94;
+  --accent-hover-rgb: 196 98 77;
 
   /* semantic status — disjoint from accent */
   --sage: #8B9D83;     /* good / HIGH / straight-through */

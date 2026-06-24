@@ -25,26 +25,23 @@ ask→answer), and deploy a password-gated demo (Render + Vercel). Cache + cache
       + `kb_index.json` (67 chunks) ✓. **`npm run build` GREEN.**
       Note: override question → grounded SAFE refusal (ANSWERED/HIGH, cited) — reclassify as a safety highlight, not a bad-path.
 
-- [ ] **P3 · Parallel fan-out (4 subagents)** — status: IN_PROGRESS
-      3a Backend API+container (MemorySaver; bad-path verified) · 3b Ask+live wiring · 3c Observe (exec summary+threaded) · 3d Knowledge.
-      Exit: all 4 build green; backend boots.
+- [x] **P3 · Parallel fan-out (4 subagents)** — status: COMPLETE (all 4 built; build green; backend boots).
 
-- [ ] **P4 · Integration** — status: pending
-      Wire VITE_API_URL + live-swap; 3-surface nav; ask end-to-end. Exit: local ask→answer cited; build green.
+- [x] **P4 · Integration** — status: COMPLETE (VITE_API_URL live-swap; 3-surface nav; ask end-to-end cited).
 
-- [ ] **P4.5 · MIGRATE repo → /Users/ashwinchidambaram/dev/projects/floor-supervisor-rag/** — status: pending
-      Entry: P4 done, NOTHING running (agents/dev server/uvicorn stopped). Steps: (1) grep absolute paths in source;
-      (2) move source EXCLUDING `.venv`/`ui/node_modules`/`ui/dist`/`var/`; (3) at dest `uv venv && uv pip install -r
-      requirements.txt` + `cd ui && npm install`; (4) re-verify `npm run build` + pytest + `/ask` smoke; (5) continue all
-      remaining phases from the new location. Exit: new location builds + tests + api smoke green. (Redis kb index is global →
-      survives, or re-run `python -m src.ingest`.)
+- [x] **P4.5 · MIGRATE repo → /Users/ashwinchidambaram/dev/projects/floor-supervisor-rag/** — status: COMPLETE.
 
-- [ ] **P5 · Deploy (Render automated via RENDER_API_KEY + Vercel) — FROM THE NEW LOCATION** — status: pending
-      Exit: live password-gated URL answers happy + bad-path; /ask 401 w/o key.
+- [x] **P5 · Deploy (HF Space backend + Vercel frontend)** — status: COMPLETE.
+      LIVE: UI https://floor-supervisor-rag.vercel.app · backend https://axchidam-floor-supervisor-rag.hf.space
+      (index_loaded:true). Password-gated; /ask → 401 w/o key; happy + bad-path verified. Pretty URL + maker-mark removed.
 
-- [ ] **P6 · Full verification + code review + Playwright (FINAL GATE)** — status: pending
-      6a all pytest+smokes · 6b parallel code-review subagents · 6c Playwright e2e · 6d RESULTS.md evidence.
-      Exit: every element verified end-to-end; no green-washing.
+- [~] **P6 · Full verification + code review + Playwright (FINAL GATE)** — status: IN_PROGRESS
+      6a all pytest+smokes — **DONE: 18/18 passed.**
+      6b parallel code-review subagents (backend·tools/api·ui·prompts) — **DONE: 4 agents reported → docs/CODE_REVIEW.md.**
+          Agency line CLEAN · brand/status CLEAN · auth sound. Triage: Tier-1 fixes + Tier-2 prompt edits pending apply.
+      6c Playwright e2e (live stack) — **DONE: 15/15 (scripts/e2e_playwright.py; screenshots var/e2e/).**
+      6d RESULTS.md evidence — pending.
+      Remaining: apply triaged fixes (pending user steer on redeploy scope) → re-verify → RESULTS.md.
 
 ## Errors encountered
 | Error | Attempt | Resolution |

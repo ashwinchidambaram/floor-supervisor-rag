@@ -35,7 +35,10 @@ _SYSTEM_PROMPT = (
     "Resolve all pronouns and ellipsis using history so every sub-question stands alone "
     "(a reader with no history must understand it). "
     "Split multi-part questions along source lines — one sub-question per source. "
-    "If a part maps to no known source, label it UNKNOWN. "
+    "Preserve the supervisor's original intent exactly — copy the key terms verbatim; "
+    "do NOT rephrase, broaden, or narrow the question. "
+    "If a part maps to no known source, or the question is ambiguous about which source "
+    "applies, label it UNKNOWN — do not guess a source. "
     "Output STRICT JSON only — no prose, no markdown fences:\n"
     '{"sub_questions":[{"text":"...","source":"SAFETY_PROCEDURES|MAINTENANCE_MANUALS|QUALITY_CONTROL|UNKNOWN"}]}'
 )

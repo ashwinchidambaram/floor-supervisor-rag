@@ -120,7 +120,7 @@ export function ThreadRow({
           {/* (c) the answer + citations, or the honest abstain panel */}
           <div>
             <h4 className="label-micro mb-2 text-ink-faint">Delivered</h4>
-            {turn.status === "ABSTAINED" || turn.answer_text == null ? (
+            {turn.status === "ABSTAINED" || turn.status === "FAILED" || turn.answer_text == null ? (
               <AbstainPanel />
             ) : (
               <AnswerPanel answer={turn.answer_text} citations={turn.citations} />

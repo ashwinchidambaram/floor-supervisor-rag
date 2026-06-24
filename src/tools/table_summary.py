@@ -25,6 +25,11 @@ _PROMPT = (
     "(equipment names, part/fastener codes, fault codes, spec values with units). "
     "Describe only what is present — do NOT invent, interpret, or add values not in the table. "
     "Output only the caption, no preamble."
+    # NOTE (Phase 6 review): an injection-resilience + "1-3 plain sentences" hardening was
+    # proposed for this prompt. Deferred deliberately — it changes the embedded caption text,
+    # which would perturb retrieval scores (and confidence bands) on the next index rebuild.
+    # Captions are internal-only (never delivered) and sourced from our own trusted docs, so
+    # the injection risk here is negligible. Apply with a fresh confidence baseline if adopted.
 )
 
 
